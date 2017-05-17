@@ -1,4 +1,4 @@
--- https://oracle-base.com/articles/11g/data-guard-setup-11gr2#switchover
+ï»¿-- https://oracle-base.com/articles/11g/data-guard-setup-11gr2#switchover
 
 -- ### GOTO PRIMARY
 PROMPT Switchover to Primary
@@ -48,6 +48,6 @@ then this can be done relatively easily (shown here). If not, the whole setup pr
 ## http://www.oracle.com/technetwork/pt/articles/database-performance/duplicate-active-dataguard-11-3437184-ptb.html
 
 ALTER DATABASE RECOVER MANAGED STANDBY DATABASE CANCEL; -- Cancela o recover da base.
-ALTER DATABASE ACTIVATE STANDBY DATABASE; -- Ativa a base de standby como produção.
+ALTER DATABASE ACTIVATE STANDBY DATABASE; -- Ativa a base de standby como produÃ§Ã£o.
 ALTER DATABASE OPEN; -- Abre a base em modo read/write
 

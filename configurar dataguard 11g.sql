@@ -1,4 +1,4 @@
-https://dbatricksworld.com/steps-to-configure-oracle-11g-data-guard-physical-standby-data-guard-part-i/
+﻿https://dbatricksworld.com/steps-to-configure-oracle-11g-data-guard-physical-standby-data-guard-part-i/
 solman: 8000028170
 
 -- cria pfile no $ORACLE_HOME/dbs/initXXXX.ora  XXXX = SID = ED0

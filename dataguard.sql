@@ -1,4 +1,4 @@
--- desabilita broker 
+﻿-- desabilita broker 
 sql 'ALTER SYSTEM SET DG_BROKER_START=false';
 sql 'ALTER SYSTEM SET DG_BROKER_START=true';
 

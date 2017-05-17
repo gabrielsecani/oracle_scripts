@@ -1,4 +1,4 @@
---https://docs.oracle.com/cd/B10501_01/server.920/a96653/manage_ps.htm
+﻿--https://docs.oracle.com/cd/B10501_01/server.920/a96653/manage_ps.htm
 clear screen
 prompt # 8.5.3.1 Monitoring the Process Activities
 SELECT PROCESS, CLIENT_PROCESS, SEQUENCE#, STATUS FROM V$MANAGED_STANDBY;
