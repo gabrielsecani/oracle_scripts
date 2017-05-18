@@ -1,0 +1,15 @@
+﻿# RDBMS environment
+# @(#) $Id: //bas/721_REL/src/krn/tpls/ind/DBSRC.CSH#1 $ SAP
+if ( -e $HOME/.dbenv_`hostname`.csh ) then
+   source $HOME/.dbenv_`hostname`.csh
+else if ( -e $HOME/.dbenv.csh ) then
+   source $HOME/.dbenv.csh
+endif
+
+echo "######## asm"
+alias asm "source asm.sh"
+
+echo "######## eq0"
+alias eq0 "source eq0.sh"
+
+alias dg "dgmgrl SYS/drSAP"
