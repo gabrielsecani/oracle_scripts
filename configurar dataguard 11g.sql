@@ -81,7 +81,6 @@ grant dba to sum;
 
 restore controlfile to '+arch' from '/migracao/initED0B.ora';
 
-
 /migracao/standbyctrl.ctl
 /migracao/initED0B.ora
 
@@ -141,6 +140,7 @@ rman TARGET SYS/drSAP01ED0@ED0A AUXILIARY SYS/drSAP01ED0@ED0B
 CONNECT AUXILIARY SYS/drSAP01ED0@ED0
 CONNECT AUXILIARY SYS/drSAP01ED0@ED0B
 CONNECT TARGET SYS/drSAP01ED0@ED0A
+
 rman TARGET SYS/drSAP01ED0@ED0A AUXILIARY SYS/drSAP01ED0@ED0B
 
 run{
@@ -149,13 +149,14 @@ ALLOCATE CHANNEL ch2 DEVICE TYPE DISK;
 DUPLICATE TARGET DATABASE
   FOR STANDBY
   FROM ACTIVE DATABASE 
-  DORECOVER  
+  DORECOVER
   NOFILENAMECHECK;
 }
 
 
 
 duplicate target database from active database using COMPRESSED BACKUPSET;
+
 
 restore database;
 recover database;

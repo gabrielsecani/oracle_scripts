@@ -12,4 +12,4 @@ alias asm "source asm.sh"
 echo "######## eq0"
 alias eq0 "source eq0.sh"
 
-alias dg "dgmgrl SYS/drSAP"
+alias dg "dgmgrl SYS"
