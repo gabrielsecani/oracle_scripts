@@ -1,4 +1,7 @@
-﻿--backup
+﻿CONFIGURE DEVICE TYPE DISK PARALLELISM 8 BACKUP TYPE TO BACKUPSET;
+CONFIGURE ARCHIVELOG DELETION POLICY TO APPLIED ON ALL STANDBY BACKED UP 1 TIMES TO DISK;
+
+--backup
 run{
  --shutdown immediate;
  --startup mount;
@@ -58,4 +61,10 @@ run {
 run {
  set until time "to_date('2017-05-06:00:00:00', 'yyyy-mm-dd:hh24:mi:ss')";
  crosscheck archivelog all;
+}
+
+
+run {
+crosscheck archivelog all;
+backup as backupset archivelog all delete input;
 }

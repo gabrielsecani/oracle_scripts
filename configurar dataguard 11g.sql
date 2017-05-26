@@ -35,12 +35,19 @@ ALTER SYSTEM SET log_archive_dest_2='SERVICE=ED0B ASYNC VALID_FOR=(ONLINE_LOGFIL
 ed0B
 ALTER SYSTEM SET log_archive_config='DG_CONFIG=(ED0A,ED0B)' scope=both;
 ALTER SYSTEM SET log_archive_dest_1='LOCATION=+ARCH/ED0/oraarch VALID_FOR=(ALL_LOGFILES,ALL_ROLES) DB_UNIQUE_NAME=ED0B' scope=both;
-ALTER SYSTEM SET log_archive_dest_2='SERVICE=ED0A ASYNC VALID_FOR=(ONLINE_LOGFILES,PRIMARY_ROLE) DB_UNIQUE_NAME=ED0A' scope=both;
+ALTER SYSTEM SET log_archive_dest_2='SERVICE=EQ0A ASYNC VALID_FOR=(ONLINE_LOGFILES,PRIMARY_ROLE) DB_UNIQUE_NAME=EQ0A' scope=both;
+
+ALTER SYSTEM SET log_archive_dest_2='SERVICE=EQ0B ASYNC VALID_FOR=(ONLINE_LOGFILES,PRIMARY_ROLE) DB_UNIQUE_NAME=EQ0B' scope=both;
+
+ALTER SYSTEM SET log_archive_dest_state_2=reset;
+
 
 alter system set STANDBY_FILE_MANAGEMENT='AUTO'  scope=both;
 
 alter system set FAL_SERVER='ED0A'  scope=both;
 alter system set FAL_SERVER='ED0B'  scope=both;
+
+alter system set FAL_CLIENT='EQ0B'  scope=both;
 
 --Primary Database: Standby Role Initialization Parameters  
 FAL_SERVER=boston
@@ -221,8 +228,15 @@ ORA-01153: an incompatible media recovery is active
 
 
 
+
 run {
    set until scn  31494273;
+   recover
+   standby
+   clone database
+    delete archivelog;
+}
+run {
    recover
    standby
    clone database
@@ -233,14 +247,18 @@ run {
 archive log list;
 ALTER SESSION SET nls_date_format='DD-MON-YYYY HH24:MI:SS';
 SELECT SEQUENCE#, FIRST_TIME, NEXT_TIME, STANDBY_DEST, ARCHIVED, APPLIED, DELETED, STATUS FROM V$ARCHIVED_LOG ORDER BY SEQUENCE#;
+
 ALTER SYSTEM SWITCH LOGFILE;
+
 alter system checkpoint;
 
 alter system archive log current;
 
+set linesize 999
 col dest_name for a30
 col DESTINATION for a40
-SELECT dest_name, status, destination FROM v$archive_dest;
+SELECT dest_name, status, destination FROM v$archive_dest
+where status != 'INACTIVE';
 
 ALTER SYSTEM SET LOG_ARCHIVE_DEST_STATE_2=enable;
 
@@ -268,3 +286,7 @@ select file#, status, enabled, name from v$datafile;
 
 alter system disable restricted session;
 alter system enable restricted session;
+
+rman TARGET sys/drSAP01EQ0@eq0a auxiliary sys/drSAP01EQ0@eq0
+
+drop database
