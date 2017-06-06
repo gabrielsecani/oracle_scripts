@@ -28,7 +28,7 @@ REMOTE_LOGIN_PASSWORDFILE=EXCLUSIVE
 LOG_ARCHIVE_FORMAT=%t_%s_%r.arc
 
 ed0A
-ALTER SYSTEM SET log_archive_config='DG_CONFIG=(ED0A,ED0B)' scope=both;
+ALTER SYSTEM SET log_archive_config='DG_CONFIG=(EQ0A,EQ0B)' scope=both;
 ALTER SYSTEM SET log_archive_dest_1='LOCATION=+ARCH/ED0/oraarch VALID_FOR=(ALL_LOGFILES,ALL_ROLES) DB_UNIQUE_NAME=ED0A' scope=both;
 ALTER SYSTEM SET log_archive_dest_2='SERVICE=ED0B ASYNC VALID_FOR=(ONLINE_LOGFILES,PRIMARY_ROLE) DB_UNIQUE_NAME=ED0B' scope=both;
 
@@ -290,3 +290,4 @@ alter system enable restricted session;
 rman TARGET sys/drSAP01EQ0@eq0a auxiliary sys/drSAP01EQ0@eq0
 
 drop database
+
