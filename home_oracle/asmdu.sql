@@ -14,7 +14,7 @@ COLUMN used_mb                FORMAT 999,999,999   HEAD 'Used Size (MB)'
 COLUMN pct_used               FORMAT 999.99        HEAD 'Pct. Used'
  
 break on report on disk_group_name skip 1
- 
+
 compute sum label "Grand Total: " of total_mb used_mb on report
  
 SELECT

@@ -1,0 +1,17 @@
+set LINESIZE 999
+COL PATH for A18
+COL name for A12
+COL REQUIRED_MIRROR_FREE_MB for 999,999 HEAD 'Required'
+COL USABLE_FILE_MB for 999,999 HEAD 'Usable file'
+COL TOTAL_MB for 999,999,999
+COL FREE_MB for 999,999,999
+COL USED_MB for 999,999,999
+COL OS_GB for 9,999
+select name, STATE, TOTAL_MB, FREE_MB, TOTAL_MB-FREE_MB as USED_MB, REQUIRED_MIRROR_FREE_MB, USABLE_FILE_MB from V$ASM_DISKGROUP
+order by name;
+
+compute SUM LABEL "Grand Total: " of TOTAL_MB USED_MB on REPORT
+select name, HEADER_STATUS, STATE, PATH, OS_MB/1024 OS_GB, (TOTAL_MB-FREE_MB) as USED_MB, FREE_MB from V$ASM_DISK
+order by name;
+
+--alter diskgroup data add disk '/dev/rhdisk8ASM';
