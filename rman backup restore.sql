@@ -1,18 +1,23 @@
 ﻿CONFIGURE DEVICE TYPE DISK PARALLELISM 8 BACKUP TYPE TO BACKUPSET;
 CONFIGURE ARCHIVELOG DELETION POLICY TO APPLIED ON ALL STANDBY BACKED UP 1 TIMES TO DISK;
 
---backup
+sql 'alter system archive log current';
 run{
- --shutdown immediate;
- --startup mount;
- allocate channel a1 type disk;-- format '+DATA/backup/bkp_%Y%M%D_%n';
- --allocate channel a2 type disk;-- format '+DATA/backup/bkp_%Y%M%D_%n';
- backup as compressed backupset database;
- backup current controlfile; -- format '+DATA/backup/ctrl_%Y%M%D%n';
- release channel a1;
- --release channel a2;
- --alter database open;
+ configure controlfile autobackup on;
+
+ crosscheck archivelog all;
+ 
+ backup as compressed backupset 
+ format '/migracao/backup/%d_full_bk_u%u_s%s_p%p_t%t' 
+ INCREMENTAL LEVEL 0 
+ database plus archivelog;
+ 
+ backup current controlfile;
+ 
 }
+
+list archivelog all;
+delete archivelog all;
 
 sql 'alter system archive log current';
 sql "alter session set nls_date_format=''dd.mm.yyyy hh24:mi:ss''";
@@ -66,5 +71,6 @@ run {
 
 run {
 crosscheck archivelog all;
-backup as backupset archivelog all delete input;
+backup as backupset archivelog all delete input
+format '/migracao/backup/arc_%d_full_bk_u%u_s%s_p%p_t%t' ;
 }
