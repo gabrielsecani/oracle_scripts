@@ -1,19 +1,25 @@
 ﻿
-*DIRECTORY: dba_directories
- - verificar oq existe ou criar um para o destino 
-  create directory <name> as '/...';
-  
+set LINESIZE 999
+COL DIRECTORY_NAME for A30
+COL OWNER for A15
+COL DIRECTORY_PATH for A60
+
+select * from dba_directories;
+
+drop directory EXPOMIGRACAO;
+
 create directory EXPOMIGRACAO as '/mnt/migracao';
+
+create directory EXPOMIGRACAO as '/migracao/dmp';
 
 
 *PARALLEL num de cpus
   show parameter cpu
-  
-  
-nohup expdp system/admin360  DIRECTORY=EXPOMIGRACAO DUMPFILE=ARLAB_full%U.dmp LOGFILE=ARLAB_full.log FULL=Y PARALLEL=12 &
 
 expdp help=y
 
 
-impdp system/admin360 DIRECTORY=EXPOMIGRACAO DUMPFILE=ARLAB_full%U.dmp LOGFILE=ARLAB_full.log PARALLEL=10 TABLE_EXISTS_ACTION=ignore&
+nohup expdp system/DRSAP01EP0 DIRECTORY=EXPOMIGRACAO DUMPFILE=drsap_full%U.dmp LOGFILE=drsap_full.log FULL=Y PARALLEL=8 &
+
+nohup impdp system/DRSAP01EP01 DIRECTORY=EXPOMIGRACAO DUMPFILE=drsap_full%U.dmp LOGFILE=drsap_full.log PARALLEL=8 TABLE_EXISTS_ACTION=ignore&
 

@@ -1,4 +1,4 @@
-﻿-- verifica espaço usado do ASM
+-- verifica espaço usado do ASM
 SELECT name, free_mb, total_mb, free_mb/total_mb*100 "% free" FROM v$asm_diskgroup;
 
 
