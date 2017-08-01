@@ -1,5 +1,5 @@
 ﻿-- verifica espaço usado do ASM
-SELECT name, free_mb, total_mb, free_mb/total_mb*100 "%" FROM v$asm_diskgroup;
+SELECT name, free_mb, total_mb, free_mb/total_mb*100 "% free" FROM v$asm_diskgroup;
 
 
 SET LINESIZE  145

@@ -1,5 +1,6 @@
 ﻿
 clear columns
+
 column tablespace format a30
 column total_mb format 999,999,999.99
 column used_mb format 999,999,999,999.99
