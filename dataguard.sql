@@ -31,18 +31,17 @@ CREATE CONFIGURATION FSFOCONFIG AS
   PRIMARY DATABASE IS EQ0A
   CONNECT IDENTIFIER IS EQ0A;
 
-ADD DATABASE EQ0B as 
-  CONNECT IDENTIFIER IS EQ0B maintained as physical;
-
-  REMOVE DATABASE EQ0B
+ADD DATABASE EQ0B as  CONNECT IDENTIFIER IS EQ0B maintained as physical;
 
 
-SHOW CONFIGURATION; 
-show database EQ0A InconsistentProperties
-show database EQ0B InconsistentProperties
+SHOW CONFIGURATION
 
 
-[14:43:07] Diana: Disable the broker configuration using the DGMGRL DISABLE command. 
+show database Ed0A InconsistentProperties
+show database Ed0B InconsistentProperties
 
-Stop the Data Guard broker DMON process using the following SQL statement:
+lsnrctl stop
+lsnrctl start
+lsnrctl service
 
+exit

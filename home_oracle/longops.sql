@@ -4,4 +4,3 @@ select SID, START_TIME,TOTALWORK, sofar, (sofar/totalwork) * 100 done, sysdate +
 from v$session_longops
 where totalwork > sofar
 ;
-

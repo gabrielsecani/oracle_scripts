@@ -19,3 +19,17 @@ order by name;
 --ALTER DISKGROUP data DROP DISK DATA_0003;
 --ALTER DISKGROUP arch DROP DISK ARCH_0000;
 --alter diskgroup data add disk '/dev/rhdisk4ASM';
+
+
+cp +ARCH/eq0/oraarch/1_60200_940436451.dbf sys/DRSAP01EQ0@sapqa2.1521.+ASM:/
+
+DRSAP01EQ0
+
+
+cp +ARCH/eq0/oraarch/1_601* /migracao/arch/
+
+cp /migracao/arch/1_60157_940436451.dbf +ARCH/eq0/oraarch/
+
+alter database register logfile '+ARCH/eq0/oraarch/1_60158_940436451.dbf';
+
+alter database register logfile '';

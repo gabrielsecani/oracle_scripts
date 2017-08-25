@@ -1,6 +1,7 @@
 ﻿rman target / nocatalog
 CONFIGURE DEVICE TYPE DISK PARALLELISM 4 BACKUP TYPE TO BACKUPSET;
 CONFIGURE ARCHIVELOG DELETION POLICY TO APPLIED ON ALL STANDBY BACKED UP 1 TIMES TO DISK;
+configure controlfile autobackup on;
 
 sql 'alter system archive log current';
 run {
@@ -22,8 +23,7 @@ run{
  backup as compressed backupset 
  format '/backup/%d_full_bk_u%u_s%s_p%p_t%t' 
  INCREMENTAL LEVEL 0 
- database plus archivelog;
- 
+ database plus archivelog; 
  backup current controlfile;
 }
 
@@ -40,6 +40,8 @@ RUN
  allocate channel c5 type disk;
  allocate channel c6 type disk;
  allocate channel c7 type disk;
+ allocate channel c8 type disk;
+ crosscheck archivelog all;
  backup AS COMPRESSED BACKUPSET full database;
  sql 'alter system archive log current';
  backup archivelog all delete all input;
@@ -51,6 +53,17 @@ RUN
  release channel c5;
  release channel c6;
  release channel c7;
+ release channel c8;
+}
+RUN
+{
+ configure controlfile autobackup on;
+ set command id to 'ORCLOnlineBackupFull';
+ crosscheck archivelog all;
+ backup AS COMPRESSED BACKUPSET full database;
+ sql 'alter system archive log current';
+ backup archivelog all delete all input;
+ backup current controlfile;
 }
 
 --restore, recover

@@ -24,17 +24,17 @@ select  total.ts tablespace,
   '--------------------'))||']' 
          END as GRAPH
 from
- (select tablespace_name ts, sum(bytes)/1024/1024 mb from dba_data_files group by tablespace_name) total,
- (select tablespace_name ts, sum(bytes)/1024/1024 mb from dba_free_space group by tablespace_name) free,
+ (select tablespace_name ts, sum(bytes)/1024./1024. mb from dba_data_files group by tablespace_name) total,
+ (select tablespace_name ts, sum(bytes)/1024./1024. mb from dba_free_space group by tablespace_name) free,
         dba_tablespaces dbat
 where total.ts=free.ts(+) and
       total.ts=dbat.tablespace_name
 UNION ALL
 select  sh.tablespace_name, 
         'TEMP',
- SUM(sh.bytes_used+sh.bytes_free)/1024/1024 total_mb,
- SUM(sh.bytes_used)/1024/1024 used_mb,
- SUM(sh.bytes_free)/1024/1024 free_mb,
+ SUM(sh.bytes_used+sh.bytes_free)/1024./1024. total_mb,
+ SUM(sh.bytes_used)/1024./1024. used_mb,
+ SUM(sh.bytes_free)/1024./1024. free_mb,
         ROUND(SUM(sh.bytes_used)/SUM(sh.bytes_used+sh.bytes_free)*100,2) pct_used,
         '['||DECODE(SUM(sh.bytes_free),0,'XXXXXXXXXXXXXXXXXXXX',
               NVL(RPAD(LPAD('X',(TRUNC(ROUND((SUM(sh.bytes_used)/SUM(sh.bytes_used+sh.bytes_free))*100,2)/5)),'X'),20,'-'),
@@ -45,3 +45,32 @@ order by 6
 /
 ttitle off
 rem clear columns
+
+
+-- datafile size really used
+
+--Deve sempre ser executada antes de rodar a segunda
+--   - Prepara os tamanhos e formatos das colunas a serem exibidas no sqlplus
+--   - cria a variável blksize com o tamanho do db_block_size que será utilizado na query seguinte.
+
+set verify off
+column file_name format a50 word_wrapped
+column smallest format 999,990 heading "Smallest|Size|Poss."
+column currsize format 999,990 heading "Current|Size"
+column savings format 999,990 heading "Poss.|Savings"
+break on report
+compute sum of savings on report
+column value new_val blksize
+select value from v$parameter where name = 'db_block_size'
+/
+
+--Segundo Set:
+
+select file_name,
+  ceil( (nvl(hwm,1)*&&blksize)/1024/1024 ) smallest,
+  ceil( blocks*&&blksize/1024/1024) currsize,
+  ceil( blocks*&&blksize/1024/1024) - ceil( (nvl(hwm,1)*&&blksize)/1024/1024 ) savings
+from dba_data_files a, 
+     ( select file_id, max(block_id+blocks-1) hwm from dba_extents group by file_id ) b
+where a.file_id = b.file_id(+)
+/

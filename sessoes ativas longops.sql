@@ -11,4 +11,5 @@ select SID, START_TIME,TOTALWORK, sofar, (sofar/totalwork) * 100 done, sysdate +
 from v$session_longops
 where totalwork > sofar;
 
-select sid, username, command, machine, program, logon_time, event, status from v$session where username is not null;
+select sid, username, command, machine, program, logon_time, event, status from v$session where username is not null 
+and username <> 'SAPSR3';
