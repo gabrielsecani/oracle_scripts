@@ -4,7 +4,7 @@ spool gather.log
 select To_char(Sysdate, 'dd/mm/yyyy hh24:mi:ss') as "Iniciando Delete as " from dual;
 
 begin
-DBMS_STATS.DELETE_SCHEMA_STATS('DBUSR');
+DBMS_STATS.DELETE_SCHEMA_STATS('SAPSR3');
 end;
 /
 prompt #####  FIM Delete stats  #####
@@ -13,7 +13,7 @@ prompt #####  FIM Delete stats  #####
 select To_char(Sysdate, 'dd/mm/yyyy hh24:mi:ss') "Iniciando Gather as " from dual;
 
 begin
-DBMS_STATS.GATHER_SCHEMA_STATS('DBUSR');
+DBMS_STATS.GATHER_SCHEMA_STATS('SAPSR3');
 end;
 /
 prompt #####  FIM Gather stats  #####

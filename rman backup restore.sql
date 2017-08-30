@@ -1,6 +1,6 @@
 ﻿rman target / nocatalog
-CONFIGURE DEVICE TYPE DISK PARALLELISM 4 BACKUP TYPE TO BACKUPSET;
-CONFIGURE ARCHIVELOG DELETION POLICY TO APPLIED ON ALL STANDBY BACKED UP 1 TIMES TO DISK;
+CONFIGURE DEVICE TYPE DISK PARALLELISM 16 BACKUP TYPE TO BACKUPSET;
+CONFIGURE ARCHIVELOG DELETION POLICY TO APPLIED ON ALL STANDBY BACKED UP 2 TIMES TO DISK;
 configure controlfile autobackup on;
 
 sql 'alter system archive log current';
@@ -13,7 +13,7 @@ format '/backup/arc_%d_full_bk_u%u_s%s_p%p_t%t' ;
 list archivelog all;
 delete archivelog all;
 until time "to_date('2017-06-11:00:00:00', 'yyyy-mm-dd:hh24:mi:ss')";
-list archivelog a
+list archivelog all
 sql 'alter system archive log current';
 run{
  configure controlfile autobackup on;
@@ -41,10 +41,14 @@ RUN
  allocate channel c6 type disk;
  allocate channel c7 type disk;
  allocate channel c8 type disk;
+ allocate channel c9 type disk;
+ allocate channel c10 type disk;
  crosscheck archivelog all;
- backup AS COMPRESSED BACKUPSET full database;
+ backup AS COMPRESSED BACKUPSET full database
+   format '/backup/%d_full_bk_u%u_s%s_p%p_t%t';
  sql 'alter system archive log current';
- backup archivelog all delete all input;
+ backup archivelog all delete all input 
+   format '/backup/%d_arc_bk_u%u_s%s_p%p_t%t';
  backup current controlfile;
  release channel c1;
  release channel c2;
@@ -54,7 +58,10 @@ RUN
  release channel c6;
  release channel c7;
  release channel c8;
+ release channel c9;
+ release channel c10;
 }
+
 RUN
 {
  configure controlfile autobackup on;

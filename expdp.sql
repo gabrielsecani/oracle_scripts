@@ -18,6 +18,13 @@ create directory EXPOMIGRACAO as '/migracao/dmp';
 create user exportcast identified by DRSAP01EP0;
 grant dba to exportcast;
 grant sysoper to exportcast;
+grant sysdba to exportcast;
+
+drop user bkpusr;
+create user bkpusr identified by DRSAP01EP0;
+grant dba to bkpusr;
+grant sysdba to bkpusr;
+grant sysoper to bkpusr;
 
 *PARALLEL num de cpus
   show parameter cpu

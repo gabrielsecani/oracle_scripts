@@ -72,6 +72,11 @@ create pfile='/home/oracle/initeq0B.ora' from spfile;
 #criar arquivo de senha
 orapwd file=$ORACLE_HOME/dbs/orapwED0 password=DRSAP01ED0 entries=100 force=y ignorecase=Y
 
+select * from v$pwfile_users;
+orapwd file=$ORACLE_HOME/dbs/orapwEP0 password=DRSAP01EP0 entries=100 force=y ignorecase=Y
+scp orapwdED0 root@sapdev2:/oracle/eq011204/dbs/
+chown oracle:oinstall /oracle/eq011204/dbs/orapwdED0
+
 '/oracle/eq0/11204/dbs/stdby.ctl'
 *.control_files='+DATA/eq0/cntrleq0.ctl','+ARCH/eq0/cntrleq0.ctl'
 
@@ -298,6 +303,7 @@ SHUTDOWN IMMEDIATE;
 STARTUP MOUNT
 -- Change database to Noarchivelog mode 
 ALTER DATABASE NOARCHIVELOG;
+--ALTER DATABASE ARCHIVELOG;
 -- Open database
 ALTER DATABASE OPEN ;
 
