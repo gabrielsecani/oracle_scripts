@@ -19,6 +19,7 @@ PROMPT ## Database Status
 SELECT DB_UNIQUE_NAME, OPEN_MODE, DATABASE_ROLE, SWITCHOVER_STATUS
  FROM v$database;
 
-select DB_UNIQUE_NAME, FLASHBACK_ON, protection_mode, protection_level from v$database;
+select DB_UNIQUE_NAME, FLASHBACK_ON, protection_mode, protection_level 
+ from v$database;
 
 archive log list;

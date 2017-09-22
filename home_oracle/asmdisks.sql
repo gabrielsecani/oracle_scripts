@@ -20,6 +20,22 @@ order by name;
 --ALTER DISKGROUP arch DROP DISK ARCH_0000;
 --alter diskgroup data add disk '/dev/rhdisk4ASM';
 
+-- iniciar serviço asm.
+srvctl status asm
+srvctl start asm
+srvctl stop asm
+
+crsctl stop has
+crsctl start has
+crsctl status has
+
+-- verificar servicos do asm
+crsctl status resource -t -init
+crsctl status resource ora.cssd
+crsctl start resource ora.cssd
+
+crsctl start resource ora.diskmon
+
 
 cp +ARCH/eq0/oraarch/1_60200_940436451.dbf sys/DRSAP01EQ0@sapqa2.1521.+ASM:/
 

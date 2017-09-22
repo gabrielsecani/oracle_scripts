@@ -1,15 +1,16 @@
 ﻿-- begin dfn.csh
 #!/bin/csh
-@ i = 6
 ## How to use
 # ./dfn.csh initial_datafile end_datafile
 # ./dfn.csh 6 63
 
-while ($i <= 63)
+@ i = $1
+while ($i <= $2)
   echo $i
   rman target / cmdfile dfn.rman $i
   @ i += 1
 end
+
 -- end dfn.csh
 
 -- begin dfn.rman
@@ -63,14 +64,47 @@ delete noprompt copy of datafile 64;
 rman target / cmdfile dfn.rman 5
 
 
+./dfn.csh 10 15 >> log6_15.log &
+./dfn.csh 20 25 >> log16_25.log &
+./dfn.csh 29 31 >> log26_35.log &
+./dfn.csh 41 45 >> log36_45.log &
+./dfn.csh 49 55 >> log46_55.log &
+./dfn.csh 59 63 >> log56_63.log &
+
+./dfn.csh 32 32 >> log32_35.log &
+./dfn.csh 33 33 >> log32_35.log &
+./dfn.csh 34 34 >> log32_35.log &
+./dfn.csh 35 35 >> log32_35.log &
+
+tail -f  log6_15.log &
+tail -f log16_25.log &
+tail -f log26_35.log &
+tail -f log36_45.log &
+tail -f log46_55.log &
+tail -f log56_63.log &
 
 
-SQL "ALTER DATABASE DATAFILE &1 OFFLINE";
-backup as copy datafile &1 format '+DATA';
-switch datafile &1 to copy;
-recover DATAFILE &1;
-SQL "ALTER DATABASE DATAFILE &1 ONLINE";
-delete noprompt copy of datafile &1;
+CONFIGURE DEVICE TYPE DISK PARALLELISM 1 BACKUP TYPE TO BACKUPSET;
+SQL "ALTER SYSTEM CHECKPOINT";
+report schema;
+list datafilecopy all;
+
+
+backup as copy datafile 4 format '+DATA';
+SQL "ALTER DATABASE DATAFILE 4 OFFLINE";
+switch datafile 4 to copy;
+recover DATAFILE 4;
+SQL "ALTER DATABASE DATAFILE 4 ONLINE";
+delete noprompt copy of datafile 4;
+
+
+backup as copy datafile 5 format '+DATA';
+SQL "ALTER DATABASE DATAFILE 6 OFFLINE";
+switch datafile 6 to copy;
+recover DATAFILE 6;
+SQL "ALTER DATABASE DATAFILE 6 ONLINE";
+delete noprompt copy of datafile 5;
+
 
 dfn = 5;
 export dfn;

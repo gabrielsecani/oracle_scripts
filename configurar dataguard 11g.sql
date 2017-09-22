@@ -122,15 +122,15 @@ alter database backup controlfile to trace as '/migracao/ctrlfilea.txt';
 alter database backup controlfile to trace as '/migracao/ctrlfilea.txt';
 
 
-sqlplus sys/drSAP01eq0@eq0A as sysdba
-sqlplus sys/drSAP01eq0@eq0B as sysdba
+sqlplus sys/DRSAP01Eq0@eq0A as sysdba
+sqlplus sys/DRSAP01Eq0@eq0B as sysdba
 
 STARTUP NOMOUNT
 
-sqlplus sys/drSAP01eq0@eq0B as sysdba
+sqlplus sys/DRSAP01Eq0@eq0B as sysdba
 
-rman target sys/drSAP01eq0@eq0A nocatalog
-connect target sys/drSAP01eq0@eq0A
+rman target sys/DRSAP01Eq0@eq0A nocatalog
+connect target sys/DRSAP01Eq0@eq0A
 connect auxiliary /
 
 STARTUP CLONE NOMOUNT FORCE;
@@ -140,28 +140,31 @@ DUPLICATE TARGET DATABASE TO AUX;
  lsnrctl status
 
 
-sqlplus SYS/drSAP01eq0@eq0 as sysdba
-sqlplus SYS/drSAP01eq0@eq0A as sysdba 
-sqlplus SYS/drSAP01eq0@eq0B as sysdba 
+sqlplus SYS/DRSAP01Eq0@eq0 as sysdba
+sqlplus SYS/DRSAP01Eq0@eq0A as sysdba 
+sqlplus SYS/DRSAP01Eq0@eq0B as sysdba 
 
 shutdown immediate;
 
 startup nomount;
 
-rman TARGET SYS/drSAP01eq0@eq0A AUXILIARY SYS/drSAP01eq0@eq0B
+rman TARGET SYS/DRSAP01Eq0@eq0A AUXILIARY SYS/DRSAP01Eq0@eq0B
 
-CONNECT AUXILIARY SYS/drSAP01eq0@eq0
-CONNECT AUXILIARY SYS/drSAP01eq0@eq0B
-CONNECT TARGET SYS/drSAP01eq0@eq0A
+CONNECT AUXILIARY SYS/DRSAP01Eq0@eq0
+CONNECT AUXILIARY SYS/DRSAP01Eq0@eq0B
+CONNECT TARGET SYS/DRSAP01Eq0@eq0A
 
-rman TARGET SYS/drSAP01EQ0@EQ0B AUXILIARY SYS/drSAP01EQ0@EQ0A
+rman TARGET SYS/DRSAP01EQ0@EQ0B AUXILIARY SYS/DRSAP01EQ0@EQ0A
 
-rman TARGET SYS/drSAP01EQ0@EQ0A AUXILIARY SYS/drSAP01EQ0@EQ0B
-rman TARGET SYS/drSAP01ED0@ED0A AUXILIARY / SYS/drSAP01ED0@ED0B
+rman TARGET SYS/DRSAP01EQ0@EQ0A AUXILIARY SYS/DRSAP01EQ0@EQ0B
+rman TARGET SYS/DRSAP01ED0@ED0A AUXILIARY / SYS/DRSAP01ED0@ED0B
 
+rman TARGET SYS/DRSAP01EP0@EP0B AUXILIARY SYS/DRSAP01EP0@EP0A
 run{
 ALLOCATE AUXILIARY CHANNEL cb1 DEVICE TYPE DISK;
 ALLOCATE CHANNEL ca1 DEVICE TYPE DISK;
+ALLOCATE AUXILIARY CHANNEL cb2 DEVICE TYPE DISK;
+ALLOCATE CHANNEL ca2 DEVICE TYPE DISK;
 DUPLICATE TARGET DATABASE
   FOR STANDBY
   FROM ACTIVE DATABASE 
@@ -185,16 +188,17 @@ alter system set LOCAL_LISTENER='(ADDRESS = (PROTOCOL = TCP)(HOST = sapdev2)(POR
 criar no eq0 B os mesmos logfiles
 
 
+ALTER DATABASE CLEAR LOGFILE GROUP 2;
+ALTER DATABASE DROP  LOGFILE GROUP 2;
+ALTER DATABASE ADD   LOGFILE group 2 ('+ARCH', '+DATA') SIZE 200M reuse;
+
 ALTER SYSTEM SET STANDBY_FILE_MANAGEMENT=MANUAL;
 
-ALTER DATABASE ADD LOGFILE GROUP 1 ('+ARCH/eq0/onlinelog/group_1B.dbf', '+DATA/eq0/onlinelog/group_1A.dbf') size 200M REUSE;
-ALTER DATABASE ADD LOGFILE GROUP 2 ('+ARCH/eq0/onlinelog/group_2B.dbf', '+DATA/eq0/onlinelog/group_2A.dbf') SIZE 200M reuse;
-ALTER DATABASE ADD LOGFILE GROUP 3 ('+ARCH/eq0/onlinelog/group_3B.dbf', '+DATA/eq0/onlinelog/group_3A.dbf') SIZE 200M reuse;
-ALTER DATABASE ADD LOGFILE GROUP 4 ('+ARCH/eq0/onlinelog/group_4B.dbf', '+DATA/eq0/onlinelog/group_4A.dbf') SIZE 200M reuse;
-
-ALTER DATABASE ADD LOGFILE shu 4 ('+ARCH', '+DATA') SIZE 200M reuse;
-
+ALTER DATABASE CLEAR LOGFILE GROUP 5;
+ALTER DATABASE DROP  LOGFILE GROUP 5;
 alter database add STANDBY LOGFILE GROUP 5 ('+DATA', '+ARCH') SIZE 200M BLOCKSIZE 512 reuse;
+ALTER DATABASE CLEAR LOGFILE GROUP 6;
+ALTER DATABASE DROP  LOGFILE GROUP 6;
 alter database add STANDBY LOGFILE GROUP 6 ('+DATA', '+ARCH') SIZE 200M BLOCKSIZE 512 reuse;
 alter database add STANDBY LOGFILE GROUP 6 ('+DATA/eq0/standbylog/standby_redo6A.dbf', '+ARCH/eq0/standbylog/standby_redo6B.dbf') SIZE 200M BLOCKSIZE 512 reuse;
 
@@ -217,7 +221,7 @@ col member for a42
 select * from v$logfile order by 1,4;
 SELECT GROUP#, ARCHIVED, STATUS FROM V$LOG;
 
-ALTER DATABASE DROP LOGFILE GROUP 1;
+ALTER DATABASE DROP LOGFILE GROUP &groupNum;
 ALTER DATABASE DROP LOGFILE GROUP 2;
 ALTER DATABASE DROP LOGFILE GROUP 3;
 ALTER DATABASE DROP LOGFILE GROUP 4;
@@ -237,6 +241,7 @@ ALTER DATABASE CLEAR LOGFILE GROUP 2;
 ALTER DATABASE CLEAR LOGFILE GROUP 3;
 ALTER DATABASE CLEAR LOGFILE GROUP 4;
 ALTER DATABASE CLEAR LOGFILE GROUP 5;
+ALTER DATABASE CLEAR LOGFILE GROUP 6;
 
 
 
@@ -309,14 +314,12 @@ ALTER DATABASE OPEN ;
 
 alter database flashback ON;
 
-rman TARGET sys/drSAP01ED0@ED0a auxiliary sys/drSAP01EQ0@ED0
-rman TARGET sys/drSAP01EQ0@eq0a auxiliary sys/drSAP01EQ0@eq0
-rman TARGET sys/drSAP01EQ0@eq0a auxiliary sys/drSAP01EQ0@eq0
-
-sql "alter system disable restricted session";
+rman TARGET sys/DRSAP01ED0@ED0a auxiliary sys/DRSAP01EQ0@ED0
+rman TARGET sys/DRSAP01EQ0@eq0a auxiliary sys/DRSAP01EQ0@eq0
+rman TARGET sys/DRSAP01EQ0@eq0a auxiliary sys/DRSAP01EQ0@eq0
 
 rman TARGET  /
 sql "alter system enable restricted session";
 drop database including backups;
-
+sql "alter system disable restricted session";
 

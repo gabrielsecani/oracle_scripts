@@ -16,6 +16,7 @@ select  total.ts tablespace,
  total.mb total_mb,
  NVL(total.mb - free.mb,total.mb) used_mb,
  NVL(free.mb,0) free_mb,
+ free.q free_part,
         DECODE(total.mb,NULL,0,NVL(ROUND((total.mb - free.mb)/(total.mb)*100,2),100)) pct_used,
  CASE WHEN (total.mb IS NULL) THEN '['||RPAD(LPAD('OFFLINE',13,'-'),20,'-')||']'
  ELSE '['|| DECODE(free.mb,
@@ -25,7 +26,7 @@ select  total.ts tablespace,
          END as GRAPH
 from
  (select tablespace_name ts, sum(bytes)/1024./1024. mb from dba_data_files group by tablespace_name) total,
- (select tablespace_name ts, sum(bytes)/1024./1024. mb from dba_free_space group by tablespace_name) free,
+ (select tablespace_name ts, sum(bytes)/1024./1024. mb, count(1) q from dba_free_space group by tablespace_name) free,
         dba_tablespaces dbat
 where total.ts=free.ts(+) and
       total.ts=dbat.tablespace_name
@@ -35,6 +36,7 @@ select  sh.tablespace_name,
  SUM(sh.bytes_used+sh.bytes_free)/1024./1024. total_mb,
  SUM(sh.bytes_used)/1024./1024. used_mb,
  SUM(sh.bytes_free)/1024./1024. free_mb,
+ 0 free_part,
         ROUND(SUM(sh.bytes_used)/SUM(sh.bytes_used+sh.bytes_free)*100,2) pct_used,
         '['||DECODE(SUM(sh.bytes_free),0,'XXXXXXXXXXXXXXXXXXXX',
               NVL(RPAD(LPAD('X',(TRUNC(ROUND((SUM(sh.bytes_used)/SUM(sh.bytes_used+sh.bytes_free))*100,2)/5)),'X'),20,'-'),
@@ -74,3 +76,49 @@ from dba_data_files a,
      ( select file_id, max(block_id+blocks-1) hwm from dba_extents group by file_id ) b
 where a.file_id = b.file_id(+)
 /
+
+select * from v$loghist;
+select * from v$log;
+
+alter session set nls_date_format = 'YYYY-MM-DD';
+alter session set nls_date_format = 'YYYY-MM-DD HH24';
+COLUMN SIZE_IN_MB FOR 999,990.000
+
+select sum(bytes)/1024/1024 SIZE_IN_MB from v$log where sequence# in (select sequence# from v$loghist where first_time>='2017-08-01');
+
+select lh.first_time, sum(l.bytes)/1024/1024 SIZE_IN_MB
+from v$log l
+join v$loghist lh on lh.sequence# = l.sequence#
+group by (lh.first_time);
+
+select lh.first_time, sum(l.BLOCKS * l.BLOCK_SIZE)/1024/1024 SIZE_IN_MB
+from v$ARCHIVED_LOG l
+join v$loghist lh on lh.sequence# = l.sequence#
+group by cube(lh.first_time);
+order by 1;
+
+
+select decode(grouping (trunc(COMPLETION_TIME)),1,'TOTAL',TRUNC(COMPLETION_TIME)) TIME
+       --, sum(BACKUP_COUNT) BACKUP_COUNT,
+       , avg(BACKUP_COUNT) BACKUP_COUNT,
+       SUM(BLOCKS * BLOCK_SIZE) / 1024 / 1024 SIZE_IN_MB
+  from V$ARCHIVED_LOG
+ group by cube (trunc(COMPLETION_TIME)) 
+ order by 1;
+
+select  avg(size_in_mb) size_in_mb, max(size_in_mb), min(size_in_mb)
+from (select trunc(COMPLETION_TIME) time
+       , sum(BLOCKS * BLOCK_SIZE) / 1024 / 1024 SIZE_IN_MB
+  from V$ARCHIVED_LOG
+ group by (trunc(COMPLETION_TIME))
+ )
+ --where size_in_mb >= 6000
+ order by 1;
+
+select decode(grouping (trunc(COMPLETION_TIME,'MM')),1,'TOTAL',TRUNC(COMPLETION_TIME,'MM')) TIME, sum(BACKUP_COUNT) BACKUP_COUNT,
+       SUM(BLOCKS * BLOCK_SIZE) / 1024 / 1024/1024 SIZE_IN_MB
+  from V$ARCHIVED_LOG
+ group by cube (trunc(COMPLETION_TIME,'MM')) 
+ order by 1;
+
+ 
