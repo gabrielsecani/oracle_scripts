@@ -7,7 +7,7 @@ select s.sid, s.serial#, s.username, s.status, s.state, q.SQL_TEXT
  join v$sql q on q.hash_Value=s.sql_hash_value
 where username is not null
 ;
-
+col SQL_TEXT for a200
 --check active sessions
 select s.sid, s.serial#, s.username, s.osuser, to_char(logon_time,'mm/dd/rrrr hh24:mi') logon_time, 
  s.lockwait, p.spid, q.hash_Value, q.SQL_TEXT

@@ -1,4 +1,4 @@
-﻿SET LINESIZE 200
+﻿SET LINESIZE 999
 SET PAGESIZE 1000
 COLUMN username FORMAT A20
 COLUMN event FORMAT A35
@@ -16,4 +16,4 @@ WHERE  s.sid = sw.sid
 --and s.username='REPORT'
 and s.username is not null
 and sw.EVENT <> 'SQL*Net message from client'
-ORDER BY sw.seconds_in_wait DESC;
+ORDER BY sw.seconds_in_wait DESC, s.sid;

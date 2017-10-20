@@ -86,7 +86,7 @@ select s.osuser, s.process, s.username, s.serial#,
 from   sys.v_$session s, sys.v_$sort_usage u, sys.v_$parameter vp
 where  s.saddr = u.session_addr
   and  vp.name = 'db_block_size'
-  and  s.osuser like '&1'
+  --and  s.osuser like '&1'
 group  by s.osuser, s.process, s.username, s.serial#, vp.value
 /
 
@@ -273,6 +273,9 @@ ALTER DATABASE TEMPFILE '+DATA/ep0/tempfile/psaptemp.264.950826139' resize 3G;
 ALTER DATABASE TEMPFILE '+DATA/ep0b/tempfile/psaptemp.317.952968631' resize 31G;
 ALTER DATABASE TEMPFILE '+DATA/ep0b/tempfile/psaptemp.329.952955257' resize 31G;
 ALTER tablespace PSAPTEMP ADD TEMPFILE '+DATA' size 31G;
+
+ALTER DATABASE TEMPFILE '/oracle/EP0/sapdata1/temp_1/temp.data1' resize 15G;
+ALTER tablespace PSAPTEMP ADD TEMPFILE '/oracle/EP0/sapdata2/temp_2/temp.data2' size 10G;
 
 ALTER tablespace PSAPTEMP drop tempfile '+DATA/ed0a/tempfile/psaptemp.335.952796805';
 

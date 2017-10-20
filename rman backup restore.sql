@@ -56,6 +56,13 @@ delete archivelog all until time 'sysdate-5';
 list backup summary;
 list archivelog all;
 
+
+delete backupset completed after "to_date('2017-09-26:00:00:00', 'yyyy-mm-dd:hh24:mi:ss')";
+
+
+delete backupset until time "to_date('2017-09-26:12:00:00', 'yyyy-mm-dd:hh24:mi:ss')";
+tag TAG20170927T084003
+
 crosscheck backupset;
 crosscheck archivelog all;
 list expired backupset summary;
@@ -178,15 +185,58 @@ run {
 run{
  shutdown immediate;
  startup mount;
- restore database from tag 'TAG20170411T135927';
+ ALLOCATE CHANNEL chan1 DEVICE TYPE DISK;
+ ALLOCATE CHANNEL chan2 DEVICE TYPE DISK;
+ ALLOCATE CHANNEL chan3 DEVICE TYPE DISK;
+ ALLOCATE CHANNEL chan4 DEVICE TYPE DISK;
+ ALLOCATE CHANNEL chan5 DEVICE TYPE DISK;
+ ALLOCATE CHANNEL chan6 DEVICE TYPE DISK;
+ set until time "to_date('2017-09-26:12:00:00', 'yyyy-mm-dd:hh24:mi:ss')";
+ restore database;
  switch datafile all;
+ recover database;
+}
+
+list backupset completed before 'sysdate-1';
+alter database backup controlfile to trace as 'controlfile.ctl';
+
+run{
+ ALLOCATE CHANNEL chan1 DEVICE TYPE DISK;
+ ALLOCATE CHANNEL chan2 DEVICE TYPE DISK;
+ ALLOCATE CHANNEL chan3 DEVICE TYPE DISK;
+ ALLOCATE CHANNEL chan4 DEVICE TYPE DISK;
+ ALLOCATE CHANNEL chan5 DEVICE TYPE DISK;
+ ALLOCATE CHANNEL chan6 DEVICE TYPE DISK;
+ set until time "to_date('2017-09-26:12:00:00', 'yyyy-mm-dd:hh24:mi:ss')";
+ restore database using backup controlfile;
+}
+
+set until time "to_date('2017-09-26:12:00:00', 'yyyy-mm-dd:hh24:mi:ss')";
+
+set until restore point "to_date('2017-09-26:12:00:00', 'yyyy-mm-dd:hh24:mi:ss')";
+
+restore controlfile from autobackup until time "to_date('2017-09-26:12:00:00', 'yyyy-mm-dd:hh24:mi:ss')";
+
+run{
+ set until time "to_date('2017-09-26:12:00:00', 'yyyy-mm-dd:hh24:mi:ss')";
+ restore controlfile;
+}
+
+ 
+run{
+ ALLOCATE CHANNEL chan1 DEVICE TYPE DISK;
+ ALLOCATE CHANNEL chan2 DEVICE TYPE DISK;
+ ALLOCATE CHANNEL chan3 DEVICE TYPE DISK;
+ ALLOCATE CHANNEL chan4 DEVICE TYPE DISK;
+ set until time "to_date('2017-09-26:12:00:00', 'yyyy-mm-dd:hh24:mi:ss')";
+ restore datafile;
  recover database;
 }
 
 run{
  shutdown immediate;
  startup mount;
- set until time "to_date('2017-06-16:00:00:00', 'yyyy-mm-dd:hh24:mi:ss')";
+ set until time "to_date('2017-09-26:12:00:00', 'yyyy-mm-dd:hh24:mi:ss')";
  restore database;
  recover database;
  alter database open resetlogs;
@@ -194,7 +244,6 @@ run{
 
 run {
  ALLOCATE CHANNEL chan1 DEVICE TYPE DISK;
- set until time "to_date('2017-09-05:00:00:00', 'yyyy-mm-dd:hh24:mi:ss')";
  crosscheck archivelog all;
 }
 
