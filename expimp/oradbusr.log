@@ -1,0 +1,30 @@
+old   6:    if length('&&1') = 5 then
+new   6:    if length('SAPSR3') = 5 then
+old   7: 	   if substr(upper('&&1'),1,5) = 'SAPR3' then
+new   7: 	   if substr(upper('SAPSR3'),1,5) = 'SAPR3' then
+old  10: 		if upper('&&2') = 'NT' then
+new  10: 		if upper('UNIX') = 'NT' then
+old  17: 			:sDomain := upper('&&3');
+new  17: 			:sDomain := upper('EP0');
+old  18:                         :sSapSid := upper('&&4');
+new  18:                         :sSapSid := upper('X');
+old  20:                         :sSapSid := upper('&&3');
+new  20:                         :sSapSid := upper('EP0');
+old  36: 		:sSchema := upper('&&1');
+new  36: 		:sSchema := upper('SAPSR3');
+old  37: 		if upper('&&2') = 'NT' then
+new  37: 		if upper('UNIX') = 'NT' then
+old  44: 			:sDomain := upper('&&3');
+new  44: 			:sDomain := upper('EP0');
+old  45:                         :sSapSid := upper('&&4');
+new  45:                         :sSapSid := upper('X');
+old  47:                         :sSapSid := upper('&&3');
+new  47:                         :sSapSid := upper('EP0');
+using following Parameters:                                                     
+.                                                                               
+.  Oracle Version:                     11.2.0.4.0                               
+.  Parametervalue os_authent_prefix:   OPS$                                     
+.  Schema Id:                          SR3                                      
+.  Database User (Schema):             SAPSR3                                   
+.  SAP R/3 Administrator:              OPS$EP0ADM                               
+.                                                                               

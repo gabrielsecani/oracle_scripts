@@ -1,0 +1,1 @@
+impdp system/DRSAP01EP0 ATTACH=IMPORT_FULL

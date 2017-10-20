@@ -1,0 +1,6 @@
+expdp exportcast/DRSAP01EP0 \
+  JOB_NAME=EXPORT_SAPSR3 DIRECTORY=EXPOMIGRACAO \
+  DUMPFILE=drsapsr3_%U.dmp LOGFILE=drsapr3_export.log filesize=16G\
+  FULL=N SCHEMAS=SAPSR3 \
+  PARALLEL=10
+

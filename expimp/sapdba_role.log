@@ -1,0 +1,338 @@
+Connected.
+
+PL/SQL procedure successfully completed.
+
+
+no rows selected
+
+old  24: if '&&2' is not null and length('&&2') >= 3 then
+new  24: if '' is not null and length('') >= 3 then
+old  35: if '&&2' is not null and length('&&2') >= 3 and '&&2' <> 'ROOT' then
+new  35: if '' is not null and length('') >= 3 and '' <> 'ROOT' then
+old  37:   Statement := 'alter session set container = "&2"';
+new  37:   Statement := 'alter session set container = ""';
+old  43: if '&&2' is null or length('&&2') >= 3 and '&&2' <> 'ROOT' then
+new  43: if '' is null or length('') >= 3 and '' <> 'ROOT' then
+old  59:   if '&&2' is null or length('&&2') >= 3 and '&&2' <> 'ROOT' then
+new  59:   if '' is null or length('') >= 3 and '' <> 'ROOT' then
+old  66:   if '&&2' is not null and length('&&2') >= 3 and '&&2' = 'ROOT' then
+new  66:   if '' is not null and length('') >= 3 and '' = 'ROOT' then
+old 122: if '&&2' is not null and length('&&2') >= 3 and '&&2' <> 'ROOT' then
+new 122: if '' is not null and length('') >= 3 and '' <> 'ROOT' then
+
+PL/SQL procedure successfully completed.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                          
+
+old   1: grant ALL on &User..SDBAH to sapdba
+new   1: grant ALL on SAPSR3.SDBAH to sapdba
+
+Grant succeeded.
+
+old   1: grant ALL on &User..SDBAD to sapdba
+new   1: grant ALL on SAPSR3.SDBAD to sapdba
+
+Grant succeeded.
+
+old   1: grant ALL on &User..DBAML to sapdba
+new   1: grant ALL on SAPSR3.DBAML to sapdba
+
+Grant succeeded.
+
+old   1: grant ALL on &User..DBARCL to sapdba
+new   1: grant ALL on SAPSR3.DBARCL to sapdba
+
+Grant succeeded.
+
+old   1: grant ALL on &User..DBAFID to sapdba
+new   1: grant ALL on SAPSR3.DBAFID to sapdba
+
+Grant succeeded.
+
+old   1: grant ALL on &User..DBAEXTL to sapdba
+new   1: grant ALL on SAPSR3.DBAEXTL to sapdba
+
+Grant succeeded.
+
+old   1: grant ALL on &User..DBAREOL to sapdba
+new   1: grant ALL on SAPSR3.DBAREOL to sapdba
+
+Grant succeeded.
+
+old   1: grant ALL on &User..DBABARL to sapdba
+new   1: grant ALL on SAPSR3.DBABARL to sapdba
+
+Grant succeeded.
+
+old   1: grant ALL on &User..DBADFL to sapdba
+new   1: grant ALL on SAPSR3.DBADFL to sapdba
+
+Grant succeeded.
+
+old   1: grant ALL on &User..DBAOPTL to sapdba
+new   1: grant ALL on SAPSR3.DBAOPTL to sapdba
+
+Grant succeeded.
+
+old   1: grant ALL on &User..DBASPAL to sapdba
+new   1: grant ALL on SAPSR3.DBASPAL to sapdba
+
+Grant succeeded.
+
+old   1: grant ALL on &User..DBABD to sapdba
+new   1: grant ALL on SAPSR3.DBABD to sapdba
+
+Grant succeeded.
+
+old   1: grant ALL on &User..DBABL to sapdba
+new   1: grant ALL on SAPSR3.DBABL to sapdba
+
+Grant succeeded.
+
+old   1: grant ALL on &User..DBATL to sapdba
+new   1: grant ALL on SAPSR3.DBATL to sapdba
+
+Grant succeeded.
+
+old   1: grant ALL on &User..DBAOBJL to sapdba
+new   1: grant ALL on SAPSR3.DBAOBJL to sapdba
+
+Grant succeeded.
+
+old   1: grant ALL on &User..DBAPHAL to sapdba
+new   1: grant ALL on SAPSR3.DBAPHAL to sapdba
+
+Grant succeeded.
+
+old   1: grant ALL on &User..DBAGRP to sapdba
+new   1: grant ALL on SAPSR3.DBAGRP to sapdba
+
+Grant succeeded.
+
+old   1: grant ALL on &User..DBAERR to sapdba
+new   1: grant ALL on SAPSR3.DBAERR to sapdba
+
+Grant succeeded.
+
+old   1: grant ALL on &User..DBATRIAL to sapdba
+new   1: grant ALL on SAPSR3.DBATRIAL to sapdba
+
+Grant succeeded.
+
+old   1: grant ALL on &User..DBSTATC to sapdba
+new   1: grant ALL on SAPSR3.DBSTATC to sapdba
+
+Grant succeeded.
+
+old   1: grant ALL on &User..DBSTATTORA to sapdba
+new   1: grant ALL on SAPSR3.DBSTATTORA to sapdba
+
+Grant succeeded.
+
+old   1: grant ALL on &User..DBSTATIORA to sapdba
+new   1: grant ALL on SAPSR3.DBSTATIORA to sapdba
+
+Grant succeeded.
+
+old   1: grant ALL on &User..DBSTATHORA to sapdba
+new   1: grant ALL on SAPSR3.DBSTATHORA to sapdba
+
+Grant succeeded.
+
+old   1: grant ALL on &User..DBSTAIHORA to sapdba
+new   1: grant ALL on SAPSR3.DBSTAIHORA to sapdba
+
+Grant succeeded.
+
+old   1: grant ALL on &User..DBMSGORA to sapdba
+new   1: grant ALL on SAPSR3.DBMSGORA to sapdba
+
+Grant succeeded.
+
+old   1: grant ALL on &User..DBCHECKORA to sapdba
+new   1: grant ALL on SAPSR3.DBCHECKORA to sapdba
+
+Grant succeeded.
+
+old   1: grant ALL on &User..MLICHECK to sapdba
+new   1: grant ALL on SAPSR3.MLICHECK to sapdba
+
+Grant succeeded.
+
+old   1: grant SELECT on &User..TGORA to sapdba
+new   1: grant SELECT on SAPSR3.TGORA to sapdba
+
+Grant succeeded.
+
+old   1: grant SELECT on &User..IGORA to sapdba
+new   1: grant SELECT on SAPSR3.IGORA to sapdba
+
+Grant succeeded.
+
+old   1: grant SELECT on &User..TSORA to sapdba
+new   1: grant SELECT on SAPSR3.TSORA to sapdba
+
+Grant succeeded.
+
+old   1: grant SELECT on &User..TAORA to sapdba
+new   1: grant SELECT on SAPSR3.TAORA to sapdba
+
+Grant succeeded.
+
+old   1: grant SELECT on &User..IAORA to sapdba
+new   1: grant SELECT on SAPSR3.IAORA to sapdba
+
+Grant succeeded.
+
+old   1: grant SELECT on &User..SVERS to sapdba
+new   1: grant SELECT on SAPSR3.SVERS to sapdba
+
+Grant succeeded.
+
+old   1: grant SELECT on &User..CVERS to sapdba
+new   1: grant SELECT on SAPSR3.CVERS to sapdba
+
+Grant succeeded.
+
+old   1: grant SELECT on &User..DD02L to sapdba
+new   1: grant SELECT on SAPSR3.DD02L to sapdba
+
+Grant succeeded.
+
+old   1: grant SELECT on &User..DD09L to sapdba
+new   1: grant SELECT on SAPSR3.DD09L to sapdba
+
+Grant succeeded.
+
+old   1: grant SELECT on &User..DDNTT to sapdba
+new   1: grant SELECT on SAPSR3.DDNTT to sapdba
+
+Grant succeeded.
+
+old   1: grant SELECT on &User..DDART to sapdba
+new   1: grant SELECT on SAPSR3.DDART to sapdba
+
+Grant succeeded.
+
+old   1: grant SELECT on &User..DARTT to sapdba
+new   1: grant SELECT on SAPSR3.DARTT to sapdba
+
+Grant succeeded.
+
+old   1: grant SELECT on &User..DBCHK to sapdba
+new   1: grant SELECT on SAPSR3.DBCHK to sapdba
+
+Grant succeeded.
+
+old   1: grant SELECT on &User..DBDIFF to sapdba
+new   1: grant SELECT on SAPSR3.DBDIFF to sapdba
+
+Grant succeeded.
+
+old  15:  Statement := 'grant ALL on &User..SAPLIKEY to sapdba';
+new  15:  Statement := 'grant ALL on SAPSR3.SAPLIKEY to sapdba';
+old  24:  Statement := 'grant SELECT on &User..RSNSPACE to sapdba';
+new  24:  Statement := 'grant SELECT on SAPSR3.RSNSPACE to sapdba';
+old  33:  Statement := 'grant SELECT on &User..RSPSPACE to sapdba';
+new  33:  Statement := 'grant SELECT on SAPSR3.RSPSPACE to sapdba';
+
+PL/SQL procedure successfully completed.
+
