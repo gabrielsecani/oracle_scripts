@@ -278,3 +278,12 @@ select file#, incremental_level, completion_time, blocks, datafile_blocks
   from v$backup_datafile
   --where incremental_level > 0 and blocks / datafile_blocks > .5
   order by completion_time, file#;
+
+
+--- erro com control file
+-- ORA-19606: Cannot copy or restore to snapshot control file
+show snapshot controlfile name
+crosscheck controlfilecopy '/oracle/EQ0/11204/dbs/snapcf_EQ0.f';
+delete expired controlfilecopy '/oracle/EQ0/11204/dbs/snapcf_EQ0.f';
+delete obsolete;
+configure snapshot controlfile name to clear;
