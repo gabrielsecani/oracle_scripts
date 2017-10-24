@@ -1,11 +1,12 @@
 #rman target / append log=backup_full.log cmdfile=backup.rman 
+
+host 'echo "BACKUP INCREMENTAL START" >> backup_incr.log';
 host 'date >> backup_incr.log';
 
 #connect target /
 
 #sql 'alter system archive log current';
 sql "alter session set nls_date_format=''dd.mm.yyyy hh24:mi:ss''";
-
 
 RUN 
 {
@@ -25,7 +26,10 @@ RUN
 
 }
 
+host 'echo "BACKUP INCREMENTAL END" >> backup_incr.log';
 host 'date >> backup_incr.log';
+
 host 'du -g /backup/data/* >> backup_incr.log';
+host 'df -g . >> backup_incr.log';
 
 exit

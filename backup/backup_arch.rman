@@ -1,7 +1,7 @@
 #rman target / append log=backup.log cmdfile=backup_arch.rman 
 
+host 'echo "BACKUP ARCHIVELOG START" >> backup_arch.log';
 host 'date >> backup_arch.log';
-host 'echo "backup archivelog " >> backup_arch.log';
 
 sql "alter session set nls_date_format=''dd.mm.yyyy hh24:mi:ss''";
 
@@ -22,7 +22,10 @@ RUN
 
 }
 
+host 'echo "BACKUP ARCHIVELOG END" >> backup_arch.log';
 host 'date >> backup_arch.log';
+
 host 'du -g /backup/arch/* >> backup_arch.log';
+host 'df -g . >> backup_arch.log';
 
 exit
