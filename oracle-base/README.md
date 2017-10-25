@@ -1,0 +1,1 @@
+# All this scripts come from oracle-base.com (https://oracle-base.com/dba/script)No changes were made, and should kept the original file if any other change must be made you must send it to the script owner.https://oracle-base.com/dba/scripts
