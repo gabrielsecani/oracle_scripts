@@ -283,7 +283,10 @@ select file#, incremental_level, completion_time, blocks, datafile_blocks
 --- erro com control file
 -- ORA-19606: Cannot copy or restore to snapshot control file
 show snapshot controlfile name
-crosscheck controlfilecopy '/oracle/EQ0/11204/dbs/snapcf_EQ0.f';
-delete expired controlfilecopy '/oracle/EQ0/11204/dbs/snapcf_EQ0.f';
+configure snapshot controlfile name to '/oracle/ED0/11204/dbs/snapcf_EQ0.cpy';
+crosscheck copy;
+crosscheck controlfilecopy '/oracle/ED0/11204/dbs/snapcf_EQ0.cpy';
+delete expired controlfilecopy '/oracle/ED0/11204/dbs/snapcf_EQ0.f';
 delete obsolete;
-configure snapshot controlfile name to clear;
+configure snapshot controlfile name clear;
+
