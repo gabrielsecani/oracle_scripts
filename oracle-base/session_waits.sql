@@ -10,7 +10,7 @@ SET LINESIZE 200
 SET PAGESIZE 1000
 
 COLUMN username FORMAT A20
-COLUMN event FORMAT A30
+COLUMN event FORMAT A32
 COLUMN wait_class FORMAT A15
 
 SELECT NVL(s.username, '(oracle)') AS username,
@@ -24,4 +24,5 @@ SELECT NVL(s.username, '(oracle)') AS username,
 FROM   v$session_wait sw,
        v$session s
 WHERE  s.sid = sw.sid
+  and s.username = nvl('&1', a.username)
 ORDER BY sw.seconds_in_wait DESC;
