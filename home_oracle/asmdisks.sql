@@ -14,13 +14,14 @@ compute SUM LABEL "Grand Total: " of TOTAL_MB USED_MB on REPORT
 select name, HEADER_STATUS, STATE, PATH, OS_MB/1024 OS_GB, (TOTAL_MB-FREE_MB) as USED_MB, FREE_MB from V$ASM_DISK
 order by name;
 
-
+/*
 --alter diskgroup arch add disk '/dev/rhdisk5ASM';
 --ALTER DISKGROUP data DROP DISK DATA_0003;
 --ALTER DISKGROUP arch DROP DISK ARCH_0000;
 --alter diskgroup data add disk '/dev/rhdisk4ASM';
 
 -- iniciar serviço asm.
+
 srvctl status asm
 srvctl start asm
 srvctl stop asm
@@ -49,3 +50,4 @@ cp /migracao/arch/1_60157_940436451.dbf +ARCH/eq0/oraarch/
 alter database register logfile '+ARCH/eq0/oraarch/1_60158_940436451.dbf';
 
 alter database register logfile '';
+*/

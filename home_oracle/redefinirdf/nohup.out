@@ -1,0 +1,2900 @@
+6
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 17:55:01 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 6 OFFLINE";
+2> backup as copy datafile 6 format '+DATA';
+3> switch datafile 6 to copy;
+4> recover DATAFILE 6;
+5> SQL "ALTER DATABASE DATAFILE 6 ONLINE";
+6> delete noprompt copy of datafile 6;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 6 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=447 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00006 name=+DATA/ep0/datafile/psapsr3.268.950552573
+output file name=+DATA/ep0a/datafile/psapsr3.267.953402105 tag=TAG20170830T175504 RECID=14 STAMP=953402239
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:02:15
+Finished backup at 30-AUG-17
+
+datafile 6 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.267.953402105"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:01
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 6 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=447 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.268.950552573 RECID=15 STAMP=953402240
+Deleted 1 objects
+
+
+Recovery Manager complete.
+7
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 17:57:25 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 7 OFFLINE";
+2> backup as copy datafile 7 format '+DATA';
+3> switch datafile 7 to copy;
+4> recover DATAFILE 7;
+5> SQL "ALTER DATABASE DATAFILE 7 ONLINE";
+6> delete noprompt copy of datafile 7;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 7 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=447 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00007 name=+DATA/ep0/datafile/psapsr3731.269.950552575
+output file name=+DATA/ep0a/datafile/psapsr3701.268.953402247 tag=TAG20170830T175727 RECID=16 STAMP=953402289
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:00:45
+Finished backup at 30-AUG-17
+
+datafile 7 switched to datafile copy "+DATA/ep0a/datafile/psapsr3701.268.953402247"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 7 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=447 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3731.269.950552575 RECID=17 STAMP=953402293
+Deleted 1 objects
+
+
+Recovery Manager complete.
+8
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 17:58:16 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 8 OFFLINE";
+2> backup as copy datafile 8 format '+DATA';
+3> switch datafile 8 to copy;
+4> recover DATAFILE 8;
+5> SQL "ALTER DATABASE DATAFILE 8 ONLINE";
+6> delete noprompt copy of datafile 8;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 8 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=447 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00008 name=+DATA/ep0/datafile/psapsr3701.270.952166727
+output file name=+DATA/ep0a/datafile/psapsr3701.269.953402299 tag=TAG20170830T175818 RECID=18 STAMP=953402343
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:00:45
+Finished backup at 30-AUG-17
+
+datafile 8 switched to datafile copy "+DATA/ep0a/datafile/psapsr3701.269.953402299"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 8 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=447 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3701.270.952166727 RECID=19 STAMP=953402345
+Deleted 1 objects
+
+
+Recovery Manager complete.
+9
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 17:59:08 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 9 OFFLINE";
+2> backup as copy datafile 9 format '+DATA';
+3> switch datafile 9 to copy;
+4> recover DATAFILE 9;
+5> SQL "ALTER DATABASE DATAFILE 9 ONLINE";
+6> delete noprompt copy of datafile 9;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 9 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=447 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00009 name=+DATA/ep0/datafile/psapsr3usr.271.950552589
+output file name=+DATA/ep0a/datafile/psapsr3usr.270.953402351 tag=TAG20170830T175910 RECID=20 STAMP=953402352
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:00:03
+Finished backup at 30-AUG-17
+
+datafile 9 switched to datafile copy "+DATA/ep0a/datafile/psapsr3usr.270.953402351"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:01
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 9 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=447 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3usr.271.950552589 RECID=21 STAMP=953402354
+Deleted 1 objects
+
+
+Recovery Manager complete.
+10
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 17:59:16 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 10 OFFLINE";
+2> backup as copy datafile 10 format '+DATA';
+3> switch datafile 10 to copy;
+4> recover DATAFILE 10;
+5> SQL "ALTER DATABASE DATAFILE 10 ONLINE";
+6> delete noprompt copy of datafile 10;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 10 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=447 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00010 name=+DATA/ep0/datafile/psapsr3.288.952014875
+output file name=+DATA/ep0a/datafile/psapsr3.271.953402359 tag=TAG20170830T175918 RECID=22 STAMP=953402477
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:02:05
+Finished backup at 30-AUG-17
+
+datafile 10 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.271.953402359"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 10 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=447 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.288.952014875 RECID=23 STAMP=953402484
+Deleted 1 objects
+
+
+Recovery Manager complete.
+11
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:01:28 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 11 OFFLINE";
+2> backup as copy datafile 11 format '+DATA';
+3> switch datafile 11 to copy;
+4> recover DATAFILE 11;
+5> SQL "ALTER DATABASE DATAFILE 11 ONLINE";
+6> delete noprompt copy of datafile 11;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 11 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=447 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00011 name=+DATA/ep0/datafile/psapsr3.287.952014919
+output file name=+DATA/ep0a/datafile/psapsr3.288.953402491 tag=TAG20170830T180130 RECID=24 STAMP=953402607
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:02:05
+Finished backup at 30-AUG-17
+
+datafile 11 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.288.953402491"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 11 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=447 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.287.952014919 RECID=25 STAMP=953402616
+Deleted 1 objects
+
+
+Recovery Manager complete.
+12
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:03:40 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 12 OFFLINE";
+2> backup as copy datafile 12 format '+DATA';
+3> switch datafile 12 to copy;
+4> recover DATAFILE 12;
+5> SQL "ALTER DATABASE DATAFILE 12 ONLINE";
+6> delete noprompt copy of datafile 12;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 12 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=447 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00012 name=+DATA/ep0/datafile/psapsr3.286.952014961
+output file name=+DATA/ep0a/datafile/psapsr3.287.953402623 tag=TAG20170830T180342 RECID=26 STAMP=953402746
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:02:05
+Finished backup at 30-AUG-17
+
+datafile 12 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.287.953402623"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 12 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=447 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.286.952014961 RECID=27 STAMP=953402748
+Deleted 1 objects
+
+
+Recovery Manager complete.
+13
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:05:53 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 13 OFFLINE";
+2> backup as copy datafile 13 format '+DATA';
+3> switch datafile 13 to copy;
+4> recover DATAFILE 13;
+5> SQL "ALTER DATABASE DATAFILE 13 ONLINE";
+6> delete noprompt copy of datafile 13;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 13 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=447 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00013 name=+DATA/ep0/datafile/psapsr3.285.952015003
+output file name=+DATA/ep0a/datafile/psapsr3.286.953402755 tag=TAG20170830T180555 RECID=28 STAMP=953402876
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:02:05
+Finished backup at 30-AUG-17
+
+datafile 13 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.286.953402755"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 13 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=447 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.285.952015003 RECID=29 STAMP=953402881
+Deleted 1 objects
+
+
+Recovery Manager complete.
+14
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:08:05 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 14 OFFLINE";
+2> backup as copy datafile 14 format '+DATA';
+3> switch datafile 14 to copy;
+4> recover DATAFILE 14;
+5> SQL "ALTER DATABASE DATAFILE 14 ONLINE";
+6> delete noprompt copy of datafile 14;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 14 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=447 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00014 name=+DATA/ep0/datafile/psapsr3.284.952015047
+output file name=+DATA/ep0a/datafile/psapsr3.285.953402887 tag=TAG20170830T180807 RECID=30 STAMP=953403019
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:02:15
+Finished backup at 30-AUG-17
+
+datafile 14 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.285.953402887"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 14 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=447 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.284.952015047 RECID=31 STAMP=953403023
+Deleted 1 objects
+
+
+Recovery Manager complete.
+15
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:10:27 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 15 OFFLINE";
+2> backup as copy datafile 15 format '+DATA';
+3> switch datafile 15 to copy;
+4> recover DATAFILE 15;
+5> SQL "ALTER DATABASE DATAFILE 15 ONLINE";
+6> delete noprompt copy of datafile 15;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 15 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=447 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00015 name=+DATA/ep0/datafile/psapsr3.283.952015091
+output file name=+DATA/ep0a/datafile/psapsr3.284.953403031 tag=TAG20170830T181029 RECID=32 STAMP=953403157
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:02:15
+Finished backup at 30-AUG-17
+
+datafile 15 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.284.953403031"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:01
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 15 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=447 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.283.952015091 RECID=33 STAMP=953403166
+Deleted 1 objects
+
+
+Recovery Manager complete.
+16
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:12:49 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 16 OFFLINE";
+2> backup as copy datafile 16 format '+DATA';
+3> switch datafile 16 to copy;
+4> recover DATAFILE 16;
+5> SQL "ALTER DATABASE DATAFILE 16 ONLINE";
+6> delete noprompt copy of datafile 16;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 16 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=447 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00016 name=+DATA/ep0/datafile/psapsr3.282.952015133
+output file name=+DATA/ep0a/datafile/psapsr3.283.953403173 tag=TAG20170830T181251 RECID=34 STAMP=953403300
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:02:15
+Finished backup at 30-AUG-17
+
+datafile 16 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.283.953403173"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 16 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=447 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.282.952015133 RECID=35 STAMP=953403308
+Deleted 1 objects
+
+
+Recovery Manager complete.
+17
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:15:12 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 17 OFFLINE";
+2> backup as copy datafile 17 format '+DATA';
+3> switch datafile 17 to copy;
+4> recover DATAFILE 17;
+5> SQL "ALTER DATABASE DATAFILE 17 ONLINE";
+6> delete noprompt copy of datafile 17;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 17 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=447 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00017 name=+DATA/ep0/datafile/psapsr3.281.952015177
+output file name=+DATA/ep0a/datafile/psapsr3.282.953403315 tag=TAG20170830T181514 RECID=36 STAMP=953403444
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:02:15
+Finished backup at 30-AUG-17
+
+datafile 17 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.282.953403315"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 17 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=447 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.281.952015177 RECID=37 STAMP=953403450
+Deleted 1 objects
+
+
+Recovery Manager complete.
+18
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:17:34 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 18 OFFLINE";
+2> backup as copy datafile 18 format '+DATA';
+3> switch datafile 18 to copy;
+4> recover DATAFILE 18;
+5> SQL "ALTER DATABASE DATAFILE 18 ONLINE";
+6> delete noprompt copy of datafile 18;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 18 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00018 name=+DATA/ep0/datafile/psapsr3.280.952015221
+output file name=+DATA/ep0a/datafile/psapsr3.281.953403457 tag=TAG20170830T181736 RECID=38 STAMP=953403570
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:55
+Finished backup at 30-AUG-17
+
+datafile 18 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.281.953403457"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:01
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 18 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.280.952015221 RECID=39 STAMP=953403573
+Deleted 1 objects
+
+
+Recovery Manager complete.
+19
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:19:36 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 19 OFFLINE";
+2> backup as copy datafile 19 format '+DATA';
+3> switch datafile 19 to copy;
+4> recover DATAFILE 19;
+5> SQL "ALTER DATABASE DATAFILE 19 ONLINE";
+6> delete noprompt copy of datafile 19;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 19 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00019 name=+DATA/ep0/datafile/psapsr3.279.952015265
+output file name=+DATA/ep0a/datafile/psapsr3.280.953403579 tag=TAG20170830T181939 RECID=40 STAMP=953403706
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:02:15
+Finished backup at 30-AUG-17
+
+datafile 19 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.280.953403579"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 19 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.279.952015265 RECID=41 STAMP=953403715
+Deleted 1 objects
+
+
+Recovery Manager complete.
+20
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:21:59 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 20 OFFLINE";
+2> backup as copy datafile 20 format '+DATA';
+3> switch datafile 20 to copy;
+4> recover DATAFILE 20;
+5> SQL "ALTER DATABASE DATAFILE 20 ONLINE";
+6> delete noprompt copy of datafile 20;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 20 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00020 name=+DATA/ep0/datafile/psapsr3.278.952015305
+output file name=+DATA/ep0a/datafile/psapsr3.279.953403721 tag=TAG20170830T182201 RECID=42 STAMP=953403833
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:55
+Finished backup at 30-AUG-17
+
+datafile 20 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.279.953403721"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 20 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.278.952015305 RECID=43 STAMP=953403837
+Deleted 1 objects
+
+
+Recovery Manager complete.
+21
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:24:01 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 21 OFFLINE";
+2> backup as copy datafile 21 format '+DATA';
+3> switch datafile 21 to copy;
+4> recover DATAFILE 21;
+5> SQL "ALTER DATABASE DATAFILE 21 ONLINE";
+6> delete noprompt copy of datafile 21;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 21 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00021 name=+DATA/ep0/datafile/psapsr3.277.952015349
+output file name=+DATA/ep0a/datafile/psapsr3.278.953403843 tag=TAG20170830T182403 RECID=44 STAMP=953403950
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:55
+Finished backup at 30-AUG-17
+
+datafile 21 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.278.953403843"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 21 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.277.952015349 RECID=45 STAMP=953403959
+Deleted 1 objects
+
+
+Recovery Manager complete.
+22
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:26:02 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 22 OFFLINE";
+2> backup as copy datafile 22 format '+DATA';
+3> switch datafile 22 to copy;
+4> recover DATAFILE 22;
+5> SQL "ALTER DATABASE DATAFILE 22 ONLINE";
+6> delete noprompt copy of datafile 22;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 22 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00022 name=+DATA/ep0/datafile/psapsr3.276.952015395
+output file name=+DATA/ep0a/datafile/psapsr3.277.953403965 tag=TAG20170830T182604 RECID=46 STAMP=953404071
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:55
+Finished backup at 30-AUG-17
+
+datafile 22 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.277.953403965"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 22 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.276.952015395 RECID=47 STAMP=953404080
+Deleted 1 objects
+
+
+Recovery Manager complete.
+23
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:28:04 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 23 OFFLINE";
+2> backup as copy datafile 23 format '+DATA';
+3> switch datafile 23 to copy;
+4> recover DATAFILE 23;
+5> SQL "ALTER DATABASE DATAFILE 23 ONLINE";
+6> delete noprompt copy of datafile 23;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 23 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00023 name=+DATA/ep0/datafile/psapsr3.275.952015441
+output file name=+DATA/ep0a/datafile/psapsr3.276.953404087 tag=TAG20170830T182806 RECID=48 STAMP=953404194
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:55
+Finished backup at 30-AUG-17
+
+datafile 23 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.276.953404087"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 23 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.275.952015441 RECID=49 STAMP=953404202
+Deleted 1 objects
+
+
+Recovery Manager complete.
+24
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:30:06 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 24 OFFLINE";
+2> backup as copy datafile 24 format '+DATA';
+3> switch datafile 24 to copy;
+4> recover DATAFILE 24;
+5> SQL "ALTER DATABASE DATAFILE 24 ONLINE";
+6> delete noprompt copy of datafile 24;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 24 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00024 name=+DATA/ep0/datafile/psapsr3.274.952015489
+output file name=+DATA/ep0a/datafile/psapsr3.275.953404209 tag=TAG20170830T183008 RECID=50 STAMP=953404306
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:45
+Finished backup at 30-AUG-17
+
+datafile 24 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.275.953404209"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 24 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.274.952015489 RECID=51 STAMP=953404314
+Deleted 1 objects
+
+
+Recovery Manager complete.
+25
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:31:58 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 25 OFFLINE";
+2> backup as copy datafile 25 format '+DATA';
+3> switch datafile 25 to copy;
+4> recover DATAFILE 25;
+5> SQL "ALTER DATABASE DATAFILE 25 ONLINE";
+6> delete noprompt copy of datafile 25;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 25 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00025 name=+DATA/ep0/datafile/psapsr3.273.952015535
+output file name=+DATA/ep0a/datafile/psapsr3.274.953404321 tag=TAG20170830T183200 RECID=52 STAMP=953404428
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:55
+Finished backup at 30-AUG-17
+
+datafile 25 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.274.953404321"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 25 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.273.952015535 RECID=53 STAMP=953404436
+Deleted 1 objects
+
+
+Recovery Manager complete.
+26
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:34:00 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 26 OFFLINE";
+2> backup as copy datafile 26 format '+DATA';
+3> switch datafile 26 to copy;
+4> recover DATAFILE 26;
+5> SQL "ALTER DATABASE DATAFILE 26 ONLINE";
+6> delete noprompt copy of datafile 26;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 26 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00026 name=+DATA/ep0/datafile/psapsr3.272.952015581
+output file name=+DATA/ep0a/datafile/psapsr3.273.953404443 tag=TAG20170830T183402 RECID=54 STAMP=953404551
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:55
+Finished backup at 30-AUG-17
+
+datafile 26 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.273.953404443"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 26 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.272.952015581 RECID=55 STAMP=953404558
+Deleted 1 objects
+
+
+Recovery Manager complete.
+27
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:36:01 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 27 OFFLINE";
+2> backup as copy datafile 27 format '+DATA';
+3> switch datafile 27 to copy;
+4> recover DATAFILE 27;
+5> SQL "ALTER DATABASE DATAFILE 27 ONLINE";
+6> delete noprompt copy of datafile 27;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 27 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00027 name=+DATA/ep0/datafile/psapsr3.289.952015625
+output file name=+DATA/ep0a/datafile/psapsr3.272.953404565 tag=TAG20170830T183604 RECID=56 STAMP=953404674
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:55
+Finished backup at 30-AUG-17
+
+datafile 27 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.272.953404565"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 27 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.289.952015625 RECID=57 STAMP=953404680
+Deleted 1 objects
+
+
+Recovery Manager complete.
+28
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:38:03 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 28 OFFLINE";
+2> backup as copy datafile 28 format '+DATA';
+3> switch datafile 28 to copy;
+4> recover DATAFILE 28;
+5> SQL "ALTER DATABASE DATAFILE 28 ONLINE";
+6> delete noprompt copy of datafile 28;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 28 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00028 name=+DATA/ep0/datafile/psapsr3.290.952015669
+output file name=+DATA/ep0a/datafile/psapsr3.289.953404687 tag=TAG20170830T183806 RECID=58 STAMP=953404797
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:55
+Finished backup at 30-AUG-17
+
+datafile 28 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.289.953404687"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 28 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.290.952015669 RECID=59 STAMP=953404802
+Deleted 1 objects
+
+
+Recovery Manager complete.
+29
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:40:06 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 29 OFFLINE";
+2> backup as copy datafile 29 format '+DATA';
+3> switch datafile 29 to copy;
+4> recover DATAFILE 29;
+5> SQL "ALTER DATABASE DATAFILE 29 ONLINE";
+6> delete noprompt copy of datafile 29;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 29 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00029 name=+DATA/ep0/datafile/psapsr3.291.952015715
+output file name=+DATA/ep0a/datafile/psapsr3.290.953404809 tag=TAG20170830T184008 RECID=60 STAMP=953404924
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:02:05
+Finished backup at 30-AUG-17
+
+datafile 29 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.290.953404809"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 29 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.291.952015715 RECID=61 STAMP=953404935
+Deleted 1 objects
+
+
+Recovery Manager complete.
+30
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:42:19 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 30 OFFLINE";
+2> backup as copy datafile 30 format '+DATA';
+3> switch datafile 30 to copy;
+4> recover DATAFILE 30;
+5> SQL "ALTER DATABASE DATAFILE 30 ONLINE";
+6> delete noprompt copy of datafile 30;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 30 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00030 name=+DATA/ep0/datafile/psapsr3.292.952015761
+output file name=+DATA/ep0a/datafile/psapsr3.291.953404941 tag=TAG20170830T184221 RECID=62 STAMP=953405054
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:55
+Finished backup at 30-AUG-17
+
+datafile 30 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.291.953404941"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 30 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.292.952015761 RECID=63 STAMP=953405058
+Deleted 1 objects
+
+
+Recovery Manager complete.
+31
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:44:22 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 31 OFFLINE";
+2> backup as copy datafile 31 format '+DATA';
+3> switch datafile 31 to copy;
+4> recover DATAFILE 31;
+5> SQL "ALTER DATABASE DATAFILE 31 ONLINE";
+6> delete noprompt copy of datafile 31;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 31 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00031 name=+DATA/ep0/datafile/psapsr3.293.952015807
+output file name=+DATA/ep0a/datafile/psapsr3.292.953405065 tag=TAG20170830T184424 RECID=64 STAMP=953405176
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:55
+Finished backup at 30-AUG-17
+
+datafile 31 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.292.953405065"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 31 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.293.952015807 RECID=65 STAMP=953405180
+Deleted 1 objects
+
+
+Recovery Manager complete.
+32
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:46:24 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 32 OFFLINE";
+2> backup as copy datafile 32 format '+DATA';
+3> switch datafile 32 to copy;
+4> recover DATAFILE 32;
+5> SQL "ALTER DATABASE DATAFILE 32 ONLINE";
+6> delete noprompt copy of datafile 32;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 32 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00032 name=+DATA/ep0/datafile/psapsr3.294.952015853
+output file name=+DATA/ep0a/datafile/psapsr3.293.953405187 tag=TAG20170830T184626 RECID=66 STAMP=953405299
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:55
+Finished backup at 30-AUG-17
+
+datafile 32 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.293.953405187"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 32 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.294.952015853 RECID=67 STAMP=953405303
+Deleted 1 objects
+
+
+Recovery Manager complete.
+33
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:48:26 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 33 OFFLINE";
+2> backup as copy datafile 33 format '+DATA';
+3> switch datafile 33 to copy;
+4> recover DATAFILE 33;
+5> SQL "ALTER DATABASE DATAFILE 33 ONLINE";
+6> delete noprompt copy of datafile 33;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 33 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00033 name=+DATA/ep0/datafile/psapsr3.295.952015899
+output file name=+DATA/ep0a/datafile/psapsr3.294.953405309 tag=TAG20170830T184829 RECID=68 STAMP=953405425
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:02:05
+Finished backup at 30-AUG-17
+
+datafile 33 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.294.953405309"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 33 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.295.952015899 RECID=69 STAMP=953405435
+Deleted 1 objects
+
+
+Recovery Manager complete.
+34
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:50:39 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 34 OFFLINE";
+2> backup as copy datafile 34 format '+DATA';
+3> switch datafile 34 to copy;
+4> recover DATAFILE 34;
+5> SQL "ALTER DATABASE DATAFILE 34 ONLINE";
+6> delete noprompt copy of datafile 34;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 34 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00034 name=+DATA/ep0/datafile/psapsr3.296.952015947
+output file name=+DATA/ep0a/datafile/psapsr3.295.953405441 tag=TAG20170830T185041 RECID=70 STAMP=953405558
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:02:05
+Finished backup at 30-AUG-17
+
+datafile 34 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.295.953405441"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:01
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 34 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.296.952015947 RECID=71 STAMP=953405568
+Deleted 1 objects
+
+
+Recovery Manager complete.
+35
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:52:52 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 35 OFFLINE";
+2> backup as copy datafile 35 format '+DATA';
+3> switch datafile 35 to copy;
+4> recover DATAFILE 35;
+5> SQL "ALTER DATABASE DATAFILE 35 ONLINE";
+6> delete noprompt copy of datafile 35;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 35 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00035 name=+DATA/ep0/datafile/psapsr3.297.952015993
+output file name=+DATA/ep0a/datafile/psapsr3.296.953405575 tag=TAG20170830T185254 RECID=72 STAMP=953405687
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:55
+Finished backup at 30-AUG-17
+
+datafile 35 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.296.953405575"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 35 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.297.952015993 RECID=73 STAMP=953405691
+Deleted 1 objects
+
+
+Recovery Manager complete.
+36
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:54:54 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 36 OFFLINE";
+2> backup as copy datafile 36 format '+DATA';
+3> switch datafile 36 to copy;
+4> recover DATAFILE 36;
+5> SQL "ALTER DATABASE DATAFILE 36 ONLINE";
+6> delete noprompt copy of datafile 36;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 36 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00036 name=+DATA/ep0/datafile/psapsr3.298.952016037
+output file name=+DATA/ep0a/datafile/psapsr3.297.953405697 tag=TAG20170830T185457 RECID=74 STAMP=953405808
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:55
+Finished backup at 30-AUG-17
+
+datafile 36 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.297.953405697"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 36 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.298.952016037 RECID=75 STAMP=953405813
+Deleted 1 objects
+
+
+Recovery Manager complete.
+37
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:56:57 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 37 OFFLINE";
+2> backup as copy datafile 37 format '+DATA';
+3> switch datafile 37 to copy;
+4> recover DATAFILE 37;
+5> SQL "ALTER DATABASE DATAFILE 37 ONLINE";
+6> delete noprompt copy of datafile 37;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 37 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00037 name=+DATA/ep0/datafile/psapsr3.299.952016083
+output file name=+DATA/ep0a/datafile/psapsr3.298.953405821 tag=TAG20170830T185659 RECID=76 STAMP=953405926
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:55
+Finished backup at 30-AUG-17
+
+datafile 37 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.298.953405821"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 37 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.299.952016083 RECID=77 STAMP=953405936
+Deleted 1 objects
+
+
+Recovery Manager complete.
+38
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 18:59:00 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 38 OFFLINE";
+2> backup as copy datafile 38 format '+DATA';
+3> switch datafile 38 to copy;
+4> recover DATAFILE 38;
+5> SQL "ALTER DATABASE DATAFILE 38 ONLINE";
+6> delete noprompt copy of datafile 38;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 38 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00038 name=+DATA/ep0/datafile/psapsr3.300.952016131
+output file name=+DATA/ep0a/datafile/psapsr3.299.953405943 tag=TAG20170830T185902 RECID=78 STAMP=953406045
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:45
+Finished backup at 30-AUG-17
+
+datafile 38 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.299.953405943"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 38 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.300.952016131 RECID=79 STAMP=953406049
+Deleted 1 objects
+
+
+Recovery Manager complete.
+39
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 19:00:53 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 39 OFFLINE";
+2> backup as copy datafile 39 format '+DATA';
+3> switch datafile 39 to copy;
+4> recover DATAFILE 39;
+5> SQL "ALTER DATABASE DATAFILE 39 ONLINE";
+6> delete noprompt copy of datafile 39;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 39 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=447 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00039 name=+DATA/ep0/datafile/psapsr3.301.952016177
+output file name=+DATA/ep0a/datafile/psapsr3.300.953406057 tag=TAG20170830T190055 RECID=80 STAMP=953406162
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:55
+Finished backup at 30-AUG-17
+
+datafile 39 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.300.953406057"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 39 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=447 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.301.952016177 RECID=81 STAMP=953406172
+Deleted 1 objects
+
+
+Recovery Manager complete.
+40
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 19:02:56 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 40 OFFLINE";
+2> backup as copy datafile 40 format '+DATA';
+3> switch datafile 40 to copy;
+4> recover DATAFILE 40;
+5> SQL "ALTER DATABASE DATAFILE 40 ONLINE";
+6> delete noprompt copy of datafile 40;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 40 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00040 name=+DATA/ep0/datafile/psapsr3.302.952016221
+output file name=+DATA/ep0a/datafile/psapsr3.301.953406179 tag=TAG20170830T190258 RECID=82 STAMP=953406294
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:02:05
+Finished backup at 30-AUG-17
+
+datafile 40 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.301.953406179"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:01
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 40 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.302.952016221 RECID=83 STAMP=953406305
+Deleted 1 objects
+
+
+Recovery Manager complete.
+41
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 19:05:08 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 41 OFFLINE";
+2> backup as copy datafile 41 format '+DATA';
+3> switch datafile 41 to copy;
+4> recover DATAFILE 41;
+5> SQL "ALTER DATABASE DATAFILE 41 ONLINE";
+6> delete noprompt copy of datafile 41;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 41 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00041 name=+DATA/ep0/datafile/psapsr3.303.952016267
+output file name=+DATA/ep0a/datafile/psapsr3.302.953406311 tag=TAG20170830T190510 RECID=84 STAMP=953406420
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:55
+Finished backup at 30-AUG-17
+
+datafile 41 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.302.953406311"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 41 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.303.952016267 RECID=85 STAMP=953406427
+Deleted 1 objects
+
+
+Recovery Manager complete.
+42
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 19:07:11 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 42 OFFLINE";
+2> backup as copy datafile 42 format '+DATA';
+3> switch datafile 42 to copy;
+4> recover DATAFILE 42;
+5> SQL "ALTER DATABASE DATAFILE 42 ONLINE";
+6> delete noprompt copy of datafile 42;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 42 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00042 name=+DATA/ep0/datafile/psapsr3.304.952016315
+output file name=+DATA/ep0a/datafile/psapsr3.303.953406433 tag=TAG20170830T190713 RECID=86 STAMP=953406546
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:55
+Finished backup at 30-AUG-17
+
+datafile 42 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.303.953406433"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 42 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.304.952016315 RECID=87 STAMP=953406549
+Deleted 1 objects
+
+
+Recovery Manager complete.
+43
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 19:09:13 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 43 OFFLINE";
+2> backup as copy datafile 43 format '+DATA';
+3> switch datafile 43 to copy;
+4> recover DATAFILE 43;
+5> SQL "ALTER DATABASE DATAFILE 43 ONLINE";
+6> delete noprompt copy of datafile 43;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 43 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00043 name=+DATA/ep0/datafile/psapsr3.305.952016361
+output file name=+DATA/ep0a/datafile/psapsr3.304.953406555 tag=TAG20170830T190915 RECID=88 STAMP=953406671
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:02:05
+Finished backup at 30-AUG-17
+
+datafile 43 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.304.953406555"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 43 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.305.952016361 RECID=89 STAMP=953406681
+Deleted 1 objects
+
+
+Recovery Manager complete.
+44
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 19:11:25 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 44 OFFLINE";
+2> backup as copy datafile 44 format '+DATA';
+3> switch datafile 44 to copy;
+4> recover DATAFILE 44;
+5> SQL "ALTER DATABASE DATAFILE 44 ONLINE";
+6> delete noprompt copy of datafile 44;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 44 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00044 name=+DATA/ep0/datafile/psapsr3.306.952016411
+output file name=+DATA/ep0a/datafile/psapsr3.305.953406687 tag=TAG20170830T191127 RECID=90 STAMP=953406797
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:55
+Finished backup at 30-AUG-17
+
+datafile 44 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.305.953406687"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:01
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 44 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.306.952016411 RECID=91 STAMP=953406804
+Deleted 1 objects
+
+
+Recovery Manager complete.
+45
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 19:13:28 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 45 OFFLINE";
+2> backup as copy datafile 45 format '+DATA';
+3> switch datafile 45 to copy;
+4> recover DATAFILE 45;
+5> SQL "ALTER DATABASE DATAFILE 45 ONLINE";
+6> delete noprompt copy of datafile 45;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 45 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00045 name=+DATA/ep0/datafile/psapsr3.307.952016457
+output file name=+DATA/ep0a/datafile/psapsr3.306.953406811 tag=TAG20170830T191330 RECID=92 STAMP=953406909
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:45
+Finished backup at 30-AUG-17
+
+datafile 45 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.306.953406811"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 45 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.307.952016457 RECID=93 STAMP=953406916
+Deleted 1 objects
+
+
+Recovery Manager complete.
+46
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 19:15:20 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 46 OFFLINE";
+2> backup as copy datafile 46 format '+DATA';
+3> switch datafile 46 to copy;
+4> recover DATAFILE 46;
+5> SQL "ALTER DATABASE DATAFILE 46 ONLINE";
+6> delete noprompt copy of datafile 46;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 46 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00046 name=+DATA/ep0/datafile/psapsr3.308.952016503
+output file name=+DATA/ep0a/datafile/psapsr3.307.953406923 tag=TAG20170830T191522 RECID=94 STAMP=953407025
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:45
+Finished backup at 30-AUG-17
+
+datafile 46 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.307.953406923"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 46 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.308.952016503 RECID=95 STAMP=953407028
+Deleted 1 objects
+
+
+Recovery Manager complete.
+47
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 19:17:12 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 47 OFFLINE";
+2> backup as copy datafile 47 format '+DATA';
+3> switch datafile 47 to copy;
+4> recover DATAFILE 47;
+5> SQL "ALTER DATABASE DATAFILE 47 ONLINE";
+6> delete noprompt copy of datafile 47;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 47 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00047 name=+DATA/ep0/datafile/psapsr3.309.952016549
+output file name=+DATA/ep0a/datafile/psapsr3.308.953407035 tag=TAG20170830T191714 RECID=96 STAMP=953407143
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:55
+Finished backup at 30-AUG-17
+
+datafile 47 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.308.953407035"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 47 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.309.952016549 RECID=97 STAMP=953407151
+Deleted 1 objects
+
+
+Recovery Manager complete.
+48
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 19:19:15 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 48 OFFLINE";
+2> backup as copy datafile 48 format '+DATA';
+3> switch datafile 48 to copy;
+4> recover DATAFILE 48;
+5> SQL "ALTER DATABASE DATAFILE 48 ONLINE";
+6> delete noprompt copy of datafile 48;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 48 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00048 name=+DATA/ep0/datafile/psapsr3.310.952016595
+output file name=+DATA/ep0a/datafile/psapsr3.309.953407157 tag=TAG20170830T191917 RECID=98 STAMP=953407259
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:45
+Finished backup at 30-AUG-17
+
+datafile 48 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.309.953407157"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 48 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.310.952016595 RECID=99 STAMP=953407263
+Deleted 1 objects
+
+
+Recovery Manager complete.
+49
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 19:21:07 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 49 OFFLINE";
+2> backup as copy datafile 49 format '+DATA';
+3> switch datafile 49 to copy;
+4> recover DATAFILE 49;
+5> SQL "ALTER DATABASE DATAFILE 49 ONLINE";
+6> delete noprompt copy of datafile 49;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 49 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00049 name=+DATA/ep0/datafile/psapsr3.311.952016643
+output file name=+DATA/ep0a/datafile/psapsr3.310.953407269 tag=TAG20170830T192109 RECID=100 STAMP=953407366
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:45
+Finished backup at 30-AUG-17
+
+datafile 49 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.310.953407269"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 49 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.311.952016643 RECID=101 STAMP=953407375
+Deleted 1 objects
+
+
+Recovery Manager complete.
+50
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 19:22:59 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 50 OFFLINE";
+2> backup as copy datafile 50 format '+DATA';
+3> switch datafile 50 to copy;
+4> recover DATAFILE 50;
+5> SQL "ALTER DATABASE DATAFILE 50 ONLINE";
+6> delete noprompt copy of datafile 50;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 50 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00050 name=+DATA/ep0/datafile/psapsr3.312.952016691
+output file name=+DATA/ep0a/datafile/psapsr3.311.953407381 tag=TAG20170830T192301 RECID=102 STAMP=953407496
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:55
+Finished backup at 30-AUG-17
+
+datafile 50 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.311.953407381"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 50 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.312.952016691 RECID=103 STAMP=953407498
+Deleted 1 objects
+
+
+Recovery Manager complete.
+51
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 19:25:02 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 51 OFFLINE";
+2> backup as copy datafile 51 format '+DATA';
+3> switch datafile 51 to copy;
+4> recover DATAFILE 51;
+5> SQL "ALTER DATABASE DATAFILE 51 ONLINE";
+6> delete noprompt copy of datafile 51;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 51 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00051 name=+DATA/ep0/datafile/psapsr3.313.952016739
+output file name=+DATA/ep0a/datafile/psapsr3.312.953407505 tag=TAG20170830T192504 RECID=104 STAMP=953407619
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:55
+Finished backup at 30-AUG-17
+
+datafile 51 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.312.953407505"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:01
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 51 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.313.952016739 RECID=105 STAMP=953407620
+Deleted 1 objects
+
+
+Recovery Manager complete.
+52
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 19:27:04 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 52 OFFLINE";
+2> backup as copy datafile 52 format '+DATA';
+3> switch datafile 52 to copy;
+4> recover DATAFILE 52;
+5> SQL "ALTER DATABASE DATAFILE 52 ONLINE";
+6> delete noprompt copy of datafile 52;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 52 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00052 name=+DATA/ep0/datafile/psapsr3.314.952016787
+output file name=+DATA/ep0a/datafile/psapsr3.313.953407627 tag=TAG20170830T192707 RECID=106 STAMP=953407729
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:45
+Finished backup at 30-AUG-17
+
+datafile 52 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.313.953407627"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 52 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.314.952016787 RECID=107 STAMP=953407733
+Deleted 1 objects
+
+
+Recovery Manager complete.
+53
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 19:28:57 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 53 OFFLINE";
+2> backup as copy datafile 53 format '+DATA';
+3> switch datafile 53 to copy;
+4> recover DATAFILE 53;
+5> SQL "ALTER DATABASE DATAFILE 53 ONLINE";
+6> delete noprompt copy of datafile 53;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 53 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00053 name=+DATA/ep0/datafile/psapsr3.315.952016833
+output file name=+DATA/ep0a/datafile/psapsr3.314.953407739 tag=TAG20170830T192859 RECID=108 STAMP=953407853
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:55
+Finished backup at 30-AUG-17
+
+datafile 53 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.314.953407739"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:01
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 53 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.315.952016833 RECID=109 STAMP=953407856
+Deleted 1 objects
+
+
+Recovery Manager complete.
+54
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 19:30:59 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 54 OFFLINE";
+2> backup as copy datafile 54 format '+DATA';
+3> switch datafile 54 to copy;
+4> recover DATAFILE 54;
+5> SQL "ALTER DATABASE DATAFILE 54 ONLINE";
+6> delete noprompt copy of datafile 54;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 54 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00054 name=+DATA/ep0/datafile/psapsr3.316.952016881
+output file name=+DATA/ep0a/datafile/psapsr3.315.953407863 tag=TAG20170830T193102 RECID=110 STAMP=953407973
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:55
+Finished backup at 30-AUG-17
+
+datafile 54 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.315.953407863"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 54 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.316.952016881 RECID=111 STAMP=953407978
+Deleted 1 objects
+
+
+Recovery Manager complete.
+55
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 19:33:02 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 55 OFFLINE";
+2> backup as copy datafile 55 format '+DATA';
+3> switch datafile 55 to copy;
+4> recover DATAFILE 55;
+5> SQL "ALTER DATABASE DATAFILE 55 ONLINE";
+6> delete noprompt copy of datafile 55;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 55 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00055 name=+DATA/ep0/datafile/psapsr3.317.952016929
+output file name=+DATA/ep0a/datafile/psapsr3.316.953407985 tag=TAG20170830T193304 RECID=112 STAMP=953408095
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:55
+Finished backup at 30-AUG-17
+
+datafile 55 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.316.953407985"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 55 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.317.952016929 RECID=113 STAMP=953408101
+Deleted 1 objects
+
+
+Recovery Manager complete.
+56
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 19:35:05 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 56 OFFLINE";
+2> backup as copy datafile 56 format '+DATA';
+3> switch datafile 56 to copy;
+4> recover DATAFILE 56;
+5> SQL "ALTER DATABASE DATAFILE 56 ONLINE";
+6> delete noprompt copy of datafile 56;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 56 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00056 name=+DATA/ep0/datafile/psapsr3.318.952016979
+output file name=+DATA/ep0a/datafile/psapsr3.317.953408107 tag=TAG20170830T193507 RECID=114 STAMP=953408212
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:01:55
+Finished backup at 30-AUG-17
+
+datafile 56 switched to datafile copy "+DATA/ep0a/datafile/psapsr3.317.953408107"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:01
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 56 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3.318.952016979 RECID=115 STAMP=953408224
+Deleted 1 objects
+
+
+Recovery Manager complete.
+57
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 19:37:08 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 57 OFFLINE";
+2> backup as copy datafile 57 format '+DATA';
+3> switch datafile 57 to copy;
+4> recover DATAFILE 57;
+5> SQL "ALTER DATABASE DATAFILE 57 ONLINE";
+6> delete noprompt copy of datafile 57;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 57 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00057 name=+DATA/ep0/datafile/psapsr3701.319.952166771
+output file name=+DATA/ep0a/datafile/psapsr3701.318.953408231 tag=TAG20170830T193710 RECID=116 STAMP=953408270
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:00:45
+Finished backup at 30-AUG-17
+
+datafile 57 switched to datafile copy "+DATA/ep0a/datafile/psapsr3701.318.953408231"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 57 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3701.319.952166771 RECID=117 STAMP=953408276
+Deleted 1 objects
+
+
+Recovery Manager complete.
+58
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 19:38:00 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 58 OFFLINE";
+2> backup as copy datafile 58 format '+DATA';
+3> switch datafile 58 to copy;
+4> recover DATAFILE 58;
+5> SQL "ALTER DATABASE DATAFILE 58 ONLINE";
+6> delete noprompt copy of datafile 58;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 58 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00058 name=+DATA/ep0/datafile/psapsr3701.320.952166399
+output file name=+DATA/ep0a/datafile/psapsr3701.319.953408283 tag=TAG20170830T193802 RECID=118 STAMP=953408321
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:00:45
+Finished backup at 30-AUG-17
+
+datafile 58 switched to datafile copy "+DATA/ep0a/datafile/psapsr3701.319.953408283"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 58 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3701.320.952166399 RECID=119 STAMP=953408329
+Deleted 1 objects
+
+
+Recovery Manager complete.
+59
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 19:38:52 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 59 OFFLINE";
+2> backup as copy datafile 59 format '+DATA';
+3> switch datafile 59 to copy;
+4> recover DATAFILE 59;
+5> SQL "ALTER DATABASE DATAFILE 59 ONLINE";
+6> delete noprompt copy of datafile 59;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 59 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00059 name=+DATA/ep0/datafile/psapsr3701.321.952166805
+output file name=+DATA/ep0a/datafile/psapsr3701.320.953408335 tag=TAG20170830T193854 RECID=120 STAMP=953408374
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:00:45
+Finished backup at 30-AUG-17
+
+datafile 59 switched to datafile copy "+DATA/ep0a/datafile/psapsr3701.320.953408335"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 59 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3701.321.952166805 RECID=121 STAMP=953408381
+Deleted 1 objects
+
+
+Recovery Manager complete.
+60
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 19:39:44 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 60 OFFLINE";
+2> backup as copy datafile 60 format '+DATA';
+3> switch datafile 60 to copy;
+4> recover DATAFILE 60;
+5> SQL "ALTER DATABASE DATAFILE 60 ONLINE";
+6> delete noprompt copy of datafile 60;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 60 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00060 name=+DATA/ep0/datafile/psapsr3701.322.952168109
+output file name=+DATA/ep0a/datafile/psapsr3701.321.953408387 tag=TAG20170830T193947 RECID=122 STAMP=953408428
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:00:45
+Finished backup at 30-AUG-17
+
+datafile 60 switched to datafile copy "+DATA/ep0a/datafile/psapsr3701.321.953408387"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 60 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3701.322.952168109 RECID=123 STAMP=953408433
+Deleted 1 objects
+
+
+Recovery Manager complete.
+61
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 19:40:37 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 61 OFFLINE";
+2> backup as copy datafile 61 format '+DATA';
+3> switch datafile 61 to copy;
+4> recover DATAFILE 61;
+5> SQL "ALTER DATABASE DATAFILE 61 ONLINE";
+6> delete noprompt copy of datafile 61;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 61 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00061 name=+DATA/ep0/datafile/psapsr3701.323.952168125
+output file name=+DATA/ep0a/datafile/psapsr3701.322.953408439 tag=TAG20170830T194039 RECID=124 STAMP=953408481
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:00:45
+Finished backup at 30-AUG-17
+
+datafile 61 switched to datafile copy "+DATA/ep0a/datafile/psapsr3701.322.953408439"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 61 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3701.323.952168125 RECID=125 STAMP=953408486
+Deleted 1 objects
+
+
+Recovery Manager complete.
+62
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 19:41:29 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 62 OFFLINE";
+2> backup as copy datafile 62 format '+DATA';
+3> switch datafile 62 to copy;
+4> recover DATAFILE 62;
+5> SQL "ALTER DATABASE DATAFILE 62 ONLINE";
+6> delete noprompt copy of datafile 62;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 62 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00062 name=+DATA/ep0/datafile/psapsr3701.324.952168141
+output file name=+DATA/ep0a/datafile/psapsr3701.323.953408493 tag=TAG20170830T194132 RECID=126 STAMP=953408532
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:00:45
+Finished backup at 30-AUG-17
+
+datafile 62 switched to datafile copy "+DATA/ep0a/datafile/psapsr3701.323.953408493"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 62 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3701.324.952168141 RECID=127 STAMP=953408538
+Deleted 1 objects
+
+
+Recovery Manager complete.
+63
+
+Recovery Manager: Release 11.2.0.4.0 - Production on Wed Aug 30 19:42:22 2017
+
+Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: EP0 (DBID=3096804762)
+
+RMAN> SQL "ALTER DATABASE DATAFILE 63 OFFLINE";
+2> backup as copy datafile 63 format '+DATA';
+3> switch datafile 63 to copy;
+4> recover DATAFILE 63;
+5> SQL "ALTER DATABASE DATAFILE 63 ONLINE";
+6> delete noprompt copy of datafile 63;
+7> 
+8> 
+9> 
+using target database control file instead of recovery catalog
+sql statement: ALTER DATABASE DATAFILE 63 OFFLINE
+
+Starting backup at 30-AUG-17
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+channel ORA_DISK_1: starting datafile copy
+input datafile file number=00063 name=+DATA/ep0/datafile/psapsr3701.325.952168155
+output file name=+DATA/ep0a/datafile/psapsr3701.324.953408545 tag=TAG20170830T194224 RECID=128 STAMP=953408584
+channel ORA_DISK_1: datafile copy complete, elapsed time: 00:00:45
+Finished backup at 30-AUG-17
+
+datafile 63 switched to datafile copy "+DATA/ep0a/datafile/psapsr3701.324.953408545"
+
+Starting recover at 30-AUG-17
+using channel ORA_DISK_1
+
+starting media recovery
+media recovery complete, elapsed time: 00:00:00
+
+Finished recover at 30-AUG-17
+
+sql statement: ALTER DATABASE DATAFILE 63 ONLINE
+
+released channel: ORA_DISK_1
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=414 device type=DISK
+deleted datafile copy
+datafile copy file name=+DATA/ep0/datafile/psapsr3701.325.952168155 RECID=129 STAMP=953408591
+Deleted 1 objects
+
+
+Recovery Manager complete.

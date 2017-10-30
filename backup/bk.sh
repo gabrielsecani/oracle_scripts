@@ -20,3 +20,8 @@ find backup*.log -mtime +30 -exec rm -f {} \;
 
 echo "Fim $1"
 date
+
+setenv mailTO "gabriel.ribeiro@castgroup.com.br"
+
+cat backup_$1.log $BKLOG | mail -s "[RAIA] - Monitoramento de backup $1 `uname -a`" $mailTO 
+

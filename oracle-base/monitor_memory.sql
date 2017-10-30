@@ -6,11 +6,15 @@
 -- Call Syntax  : @monitor_memory
 -- Last Modified: 15-JUL-2000
 -- -----------------------------------------------------------------------------------
-SET LINESIZE 200
+SET LINESIZE 300
 
 COLUMN username FORMAT A20
 COLUMN module FORMAT A20
 
+break on report on username skip 1
+ 
+compute sum label "Grand Total: " of total_kb memory_kb on report
+ 
 SELECT NVL(a.username,'(oracle)') AS username,
        a.module,
        a.program,

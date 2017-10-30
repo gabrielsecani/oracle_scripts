@@ -1,0 +1,8 @@
+SQL "ALTER DATABASE DATAFILE &1 OFFLINE";
+backup as copy datafile &1 format '+DATA';
+switch datafile &1 to copy;
+recover DATAFILE &1;
+SQL "ALTER DATABASE DATAFILE &1 ONLINE";
+delete noprompt copy of datafile &1;
+
+

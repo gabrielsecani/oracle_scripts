@@ -26,15 +26,15 @@ group by DDF.TABLESPACE_NAME, ddf.file_id, DDF.FILE_NAME, ddf.AUTOEXTENSIBLE, dd
 union all
 select a.ts,a.file_id,a.file_name, a.ONLINE_STATUS, a.STATUS, a.totalmb "Total(GB)", a.totalmb - (f.freemb/1024) "Used(GB)", f.freemb "Free(GB)", a.maxgb "Max(GB)", a.AUTOEXTENSIBLE "AutoExt", a.incby "IncBy(GB)"
 from (select DDF.TABLESPACE_NAME TS
-		 , listagg(to_char(FILE_ID), ' ') within group (order by FILE_ID) FILE_ID
-		 , listagg(FILE_NAME||' ('||DDF.BYTES/1024/1024/1024||'G)', ' ') within group (order by file_name) FILE_NAME
-		 , '' ONLINE_STATUS, DDF.STATUS
-		 , SUM(DDF.BYTES)/1024/1024/1024 totalmb
-		 , round(sum(nvl(MAXBYTES,0)/1024/1024/1024),1) maxgb
-		 , ddf.AUTOEXTENSIBLE
-		 , round(sum(nvl(INCREMENT_BY,0)/1024/1024),1) incby
-	from DBA_TEMP_FILES DDF
-	group by DDF.TABLESPACE_NAME, ddf.AUTOEXTENSIBLE, DDF.STATUS) a,
-	(select ROUND(SUM(NVL(DFS.FREE_SPACE,0))/1024/1024,1) freemb from SYS.DBA_TEMP_FREE_SPACE DFS) f
+     , listagg(to_char(FILE_ID), ' ') within group (order by FILE_ID) FILE_ID
+     , listagg(FILE_NAME||' ('||DDF.BYTES/1024/1024/1024||'G)', ' ') within group (order by file_name) FILE_NAME
+     , '' ONLINE_STATUS, DDF.STATUS
+     , SUM(DDF.BYTES)/1024/1024/1024 totalmb
+     , round(sum(nvl(MAXBYTES,0)/1024/1024/1024),1) maxgb
+     , ddf.AUTOEXTENSIBLE
+     , round(sum(nvl(INCREMENT_BY,0)/1024/1024),1) incby
+  from DBA_TEMP_FILES DDF
+  group by DDF.TABLESPACE_NAME, ddf.AUTOEXTENSIBLE, DDF.STATUS) a,
+  (select ROUND(SUM(NVL(DFS.FREE_SPACE,0))/1024/1024,1) freemb from SYS.DBA_TEMP_FREE_SPACE DFS) f
 order by ts, FILE_ID, FILE_NAME;
 
