@@ -1,8 +1,3 @@
-#rman target / append log=backup.log cmdfile=backup_arch.rman 
-
-host 'echo "BACKUP ARCHIVELOG START" >> backup_arch.log';
-host 'date >> backup_arch.log';
-
 sql "alter session set nls_date_format=''dd.mm.yyyy hh24:mi:ss''";
 
 RUN
@@ -10,22 +5,11 @@ RUN
  ALLOCATE CHANNEL chan1 DEVICE TYPE DISK;
  ALLOCATE CHANNEL chan2 DEVICE TYPE DISK;
 
- set command id to 'ORCLOnlineBackupArchLog';
-
- #sql 'alter system archive log current';
  backup as compressed backupset 
    archivelog all not backed up 
    delete all input
    format '/backup/arch/arc_%d_e%e_s%s_p%p_c%c_u%u_t%t';
 
- crosscheck archivelog all;
-
 }
-
-host 'echo "BACKUP ARCHIVELOG END" >> backup_arch.log';
-host 'date >> backup_arch.log';
-
-host 'du -g /backup/arch/* >> backup_arch.log';
-host 'df -g . >> backup_arch.log';
 
 exit

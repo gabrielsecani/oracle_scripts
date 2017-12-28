@@ -1,11 +1,3 @@
-#rman target / append log=backup_full.log cmdfile=backup.rman 
-
-host 'echo "BACKUP FULL START" >> backup_full.log';
-host 'date >> backup_full.log';
-
-#connect target /
-
-#sql 'alter system archive log current';
 sql "alter session set nls_date_format=''dd.mm.yyyy hh24:mi:ss''";
 
 RUN 
@@ -14,38 +6,18 @@ RUN
  ALLOCATE CHANNEL chan2 DEVICE TYPE DISK;
  ALLOCATE CHANNEL chan3 DEVICE TYPE DISK;
  ALLOCATE CHANNEL chan4 DEVICE TYPE DISK;
- ALLOCATE CHANNEL chan5 DEVICE TYPE DISK;
- ALLOCATE CHANNEL chan6 DEVICE TYPE DISK;
 
- configure controlfile autobackup on;
- set command id to 'ORCLOnlineBackupIncremental';
-
- CROSSCHECK BACKUPSET;
- 
  backup AS COMPRESSED BACKUPSET full database 
    format '/backup/data/%d_full_c%c_u%u_s%s_p%p_t%t'; 
 }
 
-host 'echo "BACKUP FULL END" >> backup_full.log';
-host 'date >> backup_full.log';
-host 'echo "backup control file and spfile (server parameter file)" >> backup_full.log';
-
 run {
  ALLOCATE CHANNEL cfspf DEVICE TYPE DISK;
+
  backup as compressed backupset 
    current controlfile spfile
    format '/backup/cf/%d_controlspfile_u%u_s%s_p%p_t%t';
 
- CROSSCHECK BACKUPSET;
- CROSSCHECK ARCHIVELOG ALL;
- CROSSCHECK DATAFILECOPY ALL;
-
- delete obsolete until time 'sysdate-15';
 }
-host 'echo "BACKUP CONTROL FILE & SPFILE END" >> backup_full.log';
-host 'date >> backup_full.log';
-
-host 'du -g /backup/data/* >> backup_full.log';
-host 'df -g . >> backup_full.log';
 
 exit
