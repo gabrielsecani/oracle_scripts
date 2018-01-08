@@ -6,7 +6,7 @@ RUN
  ALLOCATE CHANNEL chan2 DEVICE TYPE DISK;
 
  backup AS COMPRESSED BACKUPSET incremental level 1 database
-   format '/backup/data/%d_incr_u%u_s%s_p%p_t%t';
+   format '/backup/data/incr_%d_u%u_s%s_p%p_t%t';
 
 }
 

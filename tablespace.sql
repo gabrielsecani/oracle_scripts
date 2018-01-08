@@ -142,8 +142,8 @@ where a.file_id = b.file_id(+)
 
 create pfile from spfile=/oracle/ED0/11204/dbs/spfileED0.2.ora;
 
-alter system set control_files = '+DATA/ED0A/cntrlED0.dbf, +ARCH/ED0A/cntrled0.dbf' scope=spfile;
-alter system set control_files = '+DATA/ed0a/cntrled0.dbf, +ARCH/ed0a/cntrled0.dbf' scope=spfile;
+alter system set control_files = '+DATA/ED0A/cntrlED0.dbf', '+ARCH/ED0A/cntrled0.dbf' scope=spfile;
+alter system set control_files = '+DATA/ed0a/cntrled0.dbf', '+ARCH/ed0a/cntrled0.dbf' scope=spfile;
 
 rmalias +data/ED0/cntrlED0.dbf
 mkalias +DATA/ED0/CONTROLFILE/Current.256.936114003 +data/ED0A/cntrlED0.dbf
@@ -161,11 +161,15 @@ ALTER TABLESPACE PSAPSR3701 drop datafile '+DATA/ep0/datafile/psapsr3731.270.950
 
 ALTER TABLESPACE PSAPSR3USR ONLINE;
 ALTER TABLESPACE PSAPSR3USR OFFLINE NORMAL;
-ALTER TABLESPACE PSAPSR3USR ADD DATAFILE '+DATA' SIZE 1G AUTOEXTEND OFF NEXT;
+ALTER TABLESPACE PSAPSR3USR ADD DATAFILE '+DATA' SIZE 10G AUTOEXTEND OFF;
 ALTER TABLESPACE PSAPSR3USR RENAME DATAFILE '+DATA/ep0/datafile/psapsr3usr.271.950826809' to '+DATA/EP0B/datafile/psapsr3usr.271.950826809';
 ALTER DATABASE RENAME FILE '+DATA/ep0/datafile/psapsr3usr.271.950826809' to '+DATA/EP0B/datafile/psapsr3usr';
 
 CREATE TABLESPACE PSAPSR3USR DATAFILE '+DATA' size 1G AUTOEXTEND ON NEXT 200M;
+alter database DATAFILE '+DATA/ep0a/datafile/psapsr3usr.269.953582649' resize 15G;
+alter database DATAFILE '+DATA/ep0b/datafile/psapsr3usr.339.958629175' resize 15G;
+
+alter database DATAFILE '+DATA/ep0a/datafile/sysaux.270.953582641' resize 5G;
 
 
 cp /mnt_hades/dump/psapsr3usr.271.950826809 +DATA/ep0b/datafile/psapsr3usr
@@ -191,8 +195,9 @@ ALTER DATABASE DATAFILE '+DATA/ep0/datafile/psapsr3701.320.952166399' resize 10G
 ALTER DATABASE DATAFILE '+DATA/ep0/datafile/psapsr3701.321.952166805' resize 10G;
 ALTER DATABASE DATAFILE '+DATA/ep0/datafile/psapsr3731.269.950552575' resize 10G;
 ALTER DATABASE DATAFILE '+DATA/ep0/datafile/psapsr3731.269.950552575' resize 10G;
-ALTER TABLESPACE SYSAUX ADD DATAFILE '+DATA' size 10G;
 
+ALTER TABLESPACE SYSAUX ADD DATAFILE '+DATA' size 10G;
+ALTER TABLESPACE SYSAUX AUTOEXTEND ON NEXT 200M;
 
 DROP TABLESPACE PSAPSR3701 including contents;
 CREATE TABLESPACE PSAPSR3701 DATAFILE '+DATA' size 10G AUTOEXTEND ON NEXT 200M;
@@ -266,7 +271,7 @@ ALTER TABLESPACE PSAPSR3 ADD DATAFILE '+DATA' SIZE 30G AUTOEXTEND OFF,
 ;
 
 drop TABLESPACE PSAPTEMP;
-CREATE TABLESPACE PSAPTEMP DATAFILE '+DATA' size 20G;
+CREATE TABLESPACE PSAPTEMP DATAFILE '+DATA' size 32760M;
 
 ALTER DATABASE TEMPFILE '+DATA/ep0/tempfile/psaptemp.264.950826139' resize 3G;
 ALTER DATABASE TEMPFILE '+DATA/ep0b/tempfile/psaptemp.317.952968631' resize 31G;
@@ -276,7 +281,8 @@ ALTER tablespace PSAPTEMP ADD TEMPFILE '+DATA' size 31G;
 ALTER DATABASE TEMPFILE '/oracle/EP0/sapdata1/temp_1/temp.data1' resize 15G;
 ALTER tablespace PSAPTEMP ADD TEMPFILE '/oracle/EP0/sapdata2/temp_2/temp.data2' size 10G;
 
-ALTER tablespace PSAPTEMP drop tempfile '+DATA/ed0a/tempfile/psaptemp.335.952796805';
+ALTER tablespace PSAPTEMP drop tempfile '+DATA/ep0a/tempfile/psaptemp.338.958918095';
+ALTER tablespace PSAPTEMP drop TEMPFILE '+DATA/ep0a/tempfile/psaptemp.335.958907717';
 
 ALTER TABLESPACE undotbs_01
      ADD DATAFILE '/u01/oracle/rbdb1/undo0102.dbf' AUTOEXTEND ON NEXT 100M
@@ -289,6 +295,10 @@ CREATE UNDO TABLESPACE PSAPUNDO DATAFILE '+DATA' SIZE 2G REUSE AUTOEXTEND ON MAX
 ALTER SYSTEM SET UNDO_TABLESPACE = PSAPUNDO;
 DROP TABLESPACE PSAPUNDO2;
 
-ALTER TABLESPACE PSAPUNDO DROP DATAFILE '+DATA/ep0b/datafile/psapundo.258.952955257';
-ALTER TABLESPACE PSAPUNDO ADD DATAFILE '+DATA' SIZE 6G REUSE AUTOEXTEND ON;
+ALTER TABLESPACE PSAPUNDO DROP DATAFILE '+DATA/ep0a/datafile/psapundo.337.958915703';
+ALTER database DATAFILE '+DATA/ep0a/datafile/psapundo.337.958915703' resize 1G;
+ALTER TABLESPACE PSAPUNDO ADD DATAFILE '+DATA' SIZE 30G AUTOEXTEND OFF;
+
+ALTER DATABASE DATAFILE '+DATA/ep0a/datafile/psapundo.271.953582537' resize 20G;
+
 

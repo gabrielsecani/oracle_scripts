@@ -181,6 +181,14 @@ run {
  crosscheck archivelog all;
 }
 
+ crosscheck archivelog all;
+ crosscheck backupset;
+ crosscheck copy;
+
+ delete expired archivelog until time 'sysdate-15';
+ delete obsolete until time 'sysdate-15';
+ delete backup completed before 'sysdate-91';
+
 ----- restore, recover
 run{
  shutdown immediate;
@@ -280,13 +288,16 @@ select file#, incremental_level, completion_time, blocks, datafile_blocks
   order by completion_time, file#;
 
 
---- erro com control file
+--- erro com control filee
 -- ORA-19606: Cannot copy or restore to snapshot control file
-show snapshot controlfile name
-configure snapshot controlfile name to '/oracle/ED0/11204/dbs/snapcf_EQ0.cpy';
+show snapshot controlfile name;
+configure snapshot controlfile name to '/tmp/snapcf.cpy';
 crosscheck copy;
-crosscheck controlfilecopy '/oracle/ED0/11204/dbs/snapcf_EQ0.cpy';
-delete expired controlfilecopy '/oracle/ED0/11204/dbs/snapcf_EQ0.f';
+crosscheck controlfilecopy '/tmp/snapcf.cpy';
+delete expired controlfilecopy '/oracle/ED0/11204/dbs/snapcf_ED0.f';
+delete controlfilecopy '/oracle/ED0/11204/dbs/snapcf_ED0.f';
 delete obsolete;
 configure snapshot controlfile name clear;
 
+-- verificação logica dos datafiles
+backup validate check logical database;

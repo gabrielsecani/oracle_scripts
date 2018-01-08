@@ -8,7 +8,7 @@ RUN
  ALLOCATE CHANNEL chan4 DEVICE TYPE DISK;
 
  backup AS COMPRESSED BACKUPSET full database 
-   format '/backup/data/%d_full_c%c_u%u_s%s_p%p_t%t'; 
+   format '/backup/data/full_%d_c%c_u%u_s%s_p%p_t%t'; 
 }
 
 run {
@@ -16,7 +16,7 @@ run {
 
  backup as compressed backupset 
    current controlfile spfile
-   format '/backup/cf/%d_controlspfile_u%u_s%s_p%p_t%t';
+   format '/backup/cf/controlspfile_%d_u%u_s%s_p%p_t%t';
 
 }
 

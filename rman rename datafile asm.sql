@@ -90,6 +90,27 @@ report schema;
 list datafilecopy all;
 
 
+backup as copy datafile 1 format '+DATA';
+SQL "ALTER DATABASE DATAFILE 1 OFFLINE";
+switch datafile 1 to copy;
+recover DATAFILE 1;
+SQL "ALTER DATABASE DATAFILE 1 ONLINE";
+delete noprompt copy of datafile 1;
+
+backup as copy datafile 2 format '+DATA';
+SQL "ALTER DATABASE DATAFILE 2 OFFLINE";
+switch datafile 2 to copy;
+recover DATAFILE 2;
+SQL "ALTER DATABASE DATAFILE 2 ONLINE";
+delete noprompt copy of datafile 2;
+
+backup as copy datafile 3 format '+DATA';
+SQL "ALTER DATABASE DATAFILE 3 OFFLINE";
+switch datafile 3 to copy;
+recover DATAFILE 3;
+SQL "ALTER DATABASE DATAFILE 3 ONLINE";
+delete noprompt copy of datafile 3;
+
 backup as copy datafile 4 format '+DATA';
 SQL "ALTER DATABASE DATAFILE 4 OFFLINE";
 switch datafile 4 to copy;
@@ -98,15 +119,7 @@ SQL "ALTER DATABASE DATAFILE 4 ONLINE";
 delete noprompt copy of datafile 4;
 
 
-backup as copy datafile 5 format '+DATA';
-SQL "ALTER DATABASE DATAFILE 6 OFFLINE";
-switch datafile 6 to copy;
-recover DATAFILE 6;
-SQL "ALTER DATABASE DATAFILE 6 ONLINE";
-delete noprompt copy of datafile 5;
-
-
-dfn = 5;
+dfn = 1;
 export dfn;
 
 SQL "ALTER DATABASE DATAFILE $dfn OFFLINE";

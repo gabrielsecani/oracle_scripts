@@ -3,8 +3,8 @@
 echo "Executando $1"
 date
 
-setenv ORACLE_HOME /oracle/EP0/11204 
 setenv ORACLE_SID EP0
+setenv ORACLE_HOME /oracle/EP0/11204 
 setenv ORACLE_BIN /oracle/EP0/11204/bin
 setenv ORAPWD sys/DRSAP01$ORACLE_SID@$ORACLE_SID
 
