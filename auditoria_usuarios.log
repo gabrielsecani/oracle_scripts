@@ -1,0 +1,139 @@
+SQL> select instance_name, host_name from v$instance;
+
+INSTANCE_NAME    HOST_NAME                                                                                                                                                                                                  
+---------------- ----------------------------------------------------------------                                                                                                                                           
+EP0              drsap01                                                                                                                                                                                                    
+
+SQL> select * from dba_profiles;
+
+PROFILE              RESOURCE_NAME                    RESOURCE LIMIT                                                                                                                                                        
+-------------------- -------------------------------- -------- ----------------------------------------                                                                                                                     
+DEFAULT              COMPOSITE_LIMIT                  KERNEL   UNLIMITED                                                                                                                                                    
+DEFAULT              SESSIONS_PER_USER                KERNEL   UNLIMITED                                                                                                                                                    
+DEFAULT              CPU_PER_SESSION                  KERNEL   UNLIMITED                                                                                                                                                    
+DEFAULT              CPU_PER_CALL                     KERNEL   UNLIMITED                                                                                                                                                    
+DEFAULT              LOGICAL_READS_PER_SESSION        KERNEL   UNLIMITED                                                                                                                                                    
+DEFAULT              LOGICAL_READS_PER_CALL           KERNEL   UNLIMITED                                                                                                                                                    
+DEFAULT              IDLE_TIME                        KERNEL   UNLIMITED                                                                                                                                                    
+DEFAULT              CONNECT_TIME                     KERNEL   UNLIMITED                                                                                                                                                    
+DEFAULT              PRIVATE_SGA                      KERNEL   UNLIMITED                                                                                                                                                    
+DEFAULT              FAILED_LOGIN_ATTEMPTS            PASSWORD 10                                                                                                                                                           
+DEFAULT              PASSWORD_LIFE_TIME               PASSWORD UNLIMITED                                                                                                                                                    
+DEFAULT              PASSWORD_REUSE_TIME              PASSWORD UNLIMITED                                                                                                                                                    
+DEFAULT              PASSWORD_REUSE_MAX               PASSWORD UNLIMITED                                                                                                                                                    
+DEFAULT              PASSWORD_VERIFY_FUNCTION         PASSWORD NULL                                                                                                                                                         
+DEFAULT              PASSWORD_LOCK_TIME               PASSWORD UNLIMITED                                                                                                                                                    
+DEFAULT              PASSWORD_GRACE_TIME              PASSWORD UNLIMITED                                                                                                                                                    
+
+16 rows selected.
+
+SQL> select username, ACCOUNT_STATUS, LOCK_DATE, EXPIRY_DATE, PROFILE,  INITIAL_RSRC_CONSUMER_GROUP from dba_users;
+
+USERNAME                  ACCOUNT_STATUS            LOCK_DATE       EXPIRY_DATE     PROFILE              INITIAL_RSRC_CONSUMER_GROUP                                                                                        
+------------------------- ------------------------- --------------- --------------- -------------------- ------------------------------                                                                                     
+SYSTEM                    OPEN                                                      DEFAULT              SYS_GROUP                                                                                                          
+SYS                       OPEN                                                      DEFAULT              SYS_GROUP                                                                                                          
+OPS$ORAEP0                OPEN                                                      DEFAULT              DEFAULT_CONSUMER_GROUP                                                                                             
+OPS$EP0ADM                OPEN                                                      DEFAULT              DEFAULT_CONSUMER_GROUP                                                                                             
+ORACLE_OCM                EXPIRED & LOCKED          17-DEC-10                       DEFAULT              DEFAULT_CONSUMER_GROUP                                                                                             
+DIP                       EXPIRED & LOCKED          17-DEC-10                       DEFAULT              DEFAULT_CONSUMER_GROUP                                                                                             
+SAPSR3                    OPEN                                                      DEFAULT              DEFAULT_CONSUMER_GROUP                                                                                             
+TSMSYS                    EXPIRED & LOCKED          17-DEC-10                       DEFAULT              DEFAULT_CONSUMER_GROUP                                                                                             
+DBSNMP                    EXPIRED & LOCKED          18-DEC-10       17-DEC-10       DEFAULT              DEFAULT_CONSUMER_GROUP                                                                                             
+OPS$SAPSERVICEEP0         OPEN                                                      DEFAULT              DEFAULT_CONSUMER_GROUP                                                                                             
+OUTLN                     LOCKED                    18-DEC-10                       DEFAULT              DEFAULT_CONSUMER_GROUP                                                                                             
+
+11 rows selected.
+
+SQL>  select * from dba_sys_privs
+  2   where grantee not in ('SYS', 'SYSTEM', 'DBA', 'SYSMAN', 'RESOURCE', 'IMP_FULL_DATABASE', 'DATAPUMP_IMP_FULL_DATABASE', 'RECOVERY_CATALOG_OWNER',
+  3   'EXP_FULL_DATABASE', 'DATAPUMP_EXP_FULL_DATABASE', 'WMSYS', 'SCHEDULER_ADMIN', 'CONNECT', 'DBSNMP', 'OEM_MONITOR', 'OEM_ADVISOR', 'DIP', 'OUTLN',
+  4   'EXFSYS', 'APPQOSSYS', 'AQ_ADMINISTRATOR_ROLE', 'ORACLE_OCM') order by 1;
+
+GRANTEE                        PRIVILEGE                                ADM                                                                                                                                                 
+------------------------------ ---------------------------------------- ---                                                                                                                                                 
+OPS$EP0ADM                     CREATE SESSION                           NO                                                                                                                                                  
+OPS$EP0ADM                     UNLIMITED TABLESPACE                     NO                                                                                                                                                  
+OPS$ORAEP0                     UNLIMITED TABLESPACE                     NO                                                                                                                                                  
+OPS$SAPSERVICEEP0              UNLIMITED TABLESPACE                     NO                                                                                                                                                  
+SAPCONN                        ADVISOR                                  NO                                                                                                                                                  
+SAPCONN                        ALTER SESSION                            NO                                                                                                                                                  
+SAPCONN                        ANALYZE ANY                              NO                                                                                                                                                  
+SAPCONN                        CREATE CLUSTER                           NO                                                                                                                                                  
+SAPCONN                        CREATE INDEXTYPE                         NO                                                                                                                                                  
+SAPCONN                        CREATE OPERATOR                          NO                                                                                                                                                  
+SAPCONN                        CREATE PROCEDURE                         NO                                                                                                                                                  
+SAPCONN                        CREATE SEQUENCE                          NO                                                                                                                                                  
+SAPCONN                        CREATE SESSION                           NO                                                                                                                                                  
+SAPCONN                        CREATE SYNONYM                           NO                                                                                                                                                  
+SAPCONN                        CREATE TABLE                             NO                                                                                                                                                  
+SAPCONN                        CREATE TRIGGER                           NO                                                                                                                                                  
+SAPCONN                        CREATE TYPE                              NO                                                                                                                                                  
+SAPCONN                        CREATE VIEW                              NO                                                                                                                                                  
+SAPDBA                         ALTER ANY INDEX                          NO                                                                                                                                                  
+SAPDBA                         ALTER ANY TABLE                          NO                                                                                                                                                  
+SAPDBA                         ALTER DATABASE                           NO                                                                                                                                                  
+SAPDBA                         ALTER SESSION                            NO                                                                                                                                                  
+SAPDBA                         ALTER SYSTEM                             NO                                                                                                                                                  
+SAPDBA                         ALTER TABLESPACE                         NO                                                                                                                                                  
+SAPDBA                         ANALYZE ANY                              NO                                                                                                                                                  
+SAPDBA                         ANALYZE ANY DICTIONARY                   NO                                                                                                                                                  
+SAPDBA                         CREATE PUBLIC SYNONYM                    NO                                                                                                                                                  
+SAPDBA                         CREATE SESSION                           NO                                                                                                                                                  
+SAPDBA                         CREATE SYNONYM                           NO                                                                                                                                                  
+SAPDBA                         CREATE VIEW                              NO                                                                                                                                                  
+SAPDBA                         DROP PUBLIC SYNONYM                      NO                                                                                                                                                  
+SAPSR3                         UNLIMITED TABLESPACE                     NO                                                                                                                                                  
+TSMSYS                         UNLIMITED TABLESPACE                     NO                                                                                                                                                  
+
+33 rows selected.
+
+SQL> select * from dba_roles ;
+
+ROLE                           PASSWORD                                                                                                                                                                                     
+------------------------------ --------                                                                                                                                                                                     
+CONNECT                        NO                                                                                                                                                                                           
+RESOURCE                       NO                                                                                                                                                                                           
+DBA                            NO                                                                                                                                                                                           
+SELECT_CATALOG_ROLE            NO                                                                                                                                                                                           
+EXECUTE_CATALOG_ROLE           NO                                                                                                                                                                                           
+DELETE_CATALOG_ROLE            NO                                                                                                                                                                                           
+EXP_FULL_DATABASE              NO                                                                                                                                                                                           
+IMP_FULL_DATABASE              NO                                                                                                                                                                                           
+RECOVERY_CATALOG_OWNER         NO                                                                                                                                                                                           
+GATHER_SYSTEM_STATISTICS       NO                                                                                                                                                                                           
+LOGSTDBY_ADMINISTRATOR         NO                                                                                                                                                                                           
+AQ_ADMINISTRATOR_ROLE          NO                                                                                                                                                                                           
+AQ_USER_ROLE                   NO                                                                                                                                                                                           
+GLOBAL_AQ_USER_ROLE            GLOBAL                                                                                                                                                                                       
+SCHEDULER_ADMIN                NO                                                                                                                                                                                           
+HS_ADMIN_ROLE                  NO                                                                                                                                                                                           
+OEM_ADVISOR                    NO                                                                                                                                                                                           
+OEM_MONITOR                    NO                                                                                                                                                                                           
+SAPDBA                         NO                                                                                                                                                                                           
+SAPCONN                        NO                                                                                                                                                                                           
+
+20 rows selected.
+
+SQL>  select * from dba_role_privs
+  2   where grantee not in ('SYS', 'SYSTEM', 'DBA', 'SYSMAN', 'RESOURCE', 'IMP_FULL_DATABASE', 'DATAPUMP_IMP_FULL_DATABASE', 'RECOVERY_CATALOG_OWNER',
+  3   'EXP_FULL_DATABASE', 'DATAPUMP_EXP_FULL_DATABASE', 'WMSYS', 'SCHEDULER_ADMIN', 'CONNECT', 'DBSNMP', 'OEM_MONITOR', 'OEM_ADVISOR', 'DIP', 'OUTLN',
+  4   'EXFSYS', 'APPQOSSYS', 'AQ_ADMINISTRATOR_ROLE', 'ORACLE_OCM') order by 1;
+
+GRANTEE                        GRANTED_ROLE                   ADM DEF                                                                                                                                                       
+------------------------------ ------------------------------ --- ---                                                                                                                                                       
+EXECUTE_CATALOG_ROLE           HS_ADMIN_ROLE                  NO  YES                                                                                                                                                       
+LOGSTDBY_ADMINISTRATOR         RESOURCE                       NO  YES                                                                                                                                                       
+OPS$EP0ADM                     SAPDBA                         NO  YES                                                                                                                                                       
+OPS$ORAEP0                     SAPDBA                         NO  YES                                                                                                                                                       
+OPS$SAPSERVICEEP0              SAPDBA                         NO  YES                                                                                                                                                       
+SAPCONN                        SELECT_CATALOG_ROLE            NO  YES                                                                                                                                                       
+SAPDBA                         GATHER_SYSTEM_STATISTICS       NO  YES                                                                                                                                                       
+SAPDBA                         SELECT_CATALOG_ROLE            NO  YES                                                                                                                                                       
+SAPSR3                         SAPCONN                        NO  YES                                                                                                                                                       
+SELECT_CATALOG_ROLE            HS_ADMIN_ROLE                  NO  YES                                                                                                                                                       
+TSMSYS                         RESOURCE                       NO  YES                                                                                                                                                       
+
+11 rows selected.
+
+SQL>  spool off

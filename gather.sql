@@ -37,3 +37,19 @@ exit
 
 -- exec DBMS_STATS.GATHER_TABLE_STATS('SYS', 'DBA_FREE_SPACE');
 
+nohup sqlplus / as sysdba <<EOF
+spool galan.log
+set time on
+set SERVEROUTPUT on;
+select To_char(Sysdate, 'dd/mm/yyyy hh24:mi:ss') "Iniciando Gather as " from dual;
+exec DBMS_STATS.GATHER_TABLE_STATS('SAPSR3', 'BSIS', method_opt => 'FOR ALL COLUMNS SIZE AUTO', cascade=>true);
+exec DBMS_STATS.GATHER_TABLE_STATS('SAPSR3', 'BSIK', method_opt => 'FOR ALL COLUMNS SIZE AUTO', cascade=>true);
+exec DBMS_STATS.GATHER_TABLE_STATS('SAPSR3', 'BSID', method_opt => 'FOR ALL COLUMNS SIZE AUTO', cascade=>true);
+exec DBMS_STATS.GATHER_TABLE_STATS('SAPSR3', 'BSAS', method_opt => 'FOR ALL COLUMNS SIZE AUTO', cascade=>true);
+exec DBMS_STATS.GATHER_TABLE_STATS('SAPSR3', 'BSAK', method_opt => 'FOR ALL COLUMNS SIZE AUTO', cascade=>true);
+exec DBMS_STATS.GATHER_TABLE_STATS('SAPSR3', 'BSAD', method_opt => 'FOR ALL COLUMNS SIZE AUTO', cascade=>true);
+select To_char(Sysdate, 'dd/mm/yyyy hh24:mi:ss') "Finalizando Gather as " from dual;
+spool off
+exit
+EOF
+
