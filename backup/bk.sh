@@ -3,12 +3,10 @@
 echo "Executando $1"
 date
 
-setenv ORACLE_SID EP0
-setenv ORACLE_HOME /oracle/EP0/11204 
-setenv ORACLE_BIN /oracle/EP0/11204/bin
-setenv ORAPWD sys/DRSAP01$ORACLE_SID@$ORACLE_SID
-
 cd /backup
+
+source ./env.sh
+
 rm -f backup_$1.log
 
 echo "BACKUP $1 START" >> backup_$1.log
@@ -43,7 +41,12 @@ find backup*.log -mtime +30 -exec rm -f {} \;
 echo "Fim $1"
 date
 
-setenv mailTO "gabriel.ribeiro@castgroup.com.br"
+## check for error or warning on log
+set DATE_SUFFIX=`date +"%Y-%m-%d.%H:%M"`
+set TEMERRWARN="OK"
 
-cat backup_$1.log | mail -s "[RAIA] - Monitoramento de backup $1 `uname -a`" $mailTO
+if `grep -i -c -E 'warn' backup_$1.log` != 0 set TEMERRWARN="WARN"
+if `grep -i -c -E 'err' backup_$1.log` != 0 set TEMERRWARN="*ERRO*"
 
+echo "sending mail with log to '$MAILTO'"
+cat backup_$1.log | mail -s "[RAIA] - Monitoramento de backup $1 $DATE_SUFFIX $TEMERRWARN `uname -a`" $MAILTO
