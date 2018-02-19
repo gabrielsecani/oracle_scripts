@@ -74,8 +74,8 @@ SELECT A.TABLESPACE_NAME, A.BYTES/1024/1024 AMBYTES, (A.BYTES - F.BYTES)/1024/10
 
 
 prompt === Table space UNDO ===
-SELECT d.undo_size/(1024*1024) "ACTUAL UNDO SIZE [MByte]",
-       SUBSTR(e.value,1,25) "UNDO RETENTION [Sec]",
+SELECT d.undo_size/1024/1024 "ACTUAL UNDO SIZE [MByte]",
+       SUBSTR(e.value,1,15) "UNDO RETENTION [Sec]",
        (TO_NUMBER(e.value) * TO_NUMBER(f.value) * g.undo_block_per_sec) / (1024*1024) 
       "NEEDED UNDO SIZE [MByte]"
   FROM (
