@@ -1,0 +1,23 @@
+sql "alter session set nls_date_format=''dd.mm.yyyy hh24:mi:ss''";
+
+RUN{
+ ALLOCATE CHANNEL chan1 DEVICE TYPE DISK;
+ ALLOCATE CHANNEL chan2 DEVICE TYPE DISK;
+
+ crosscheck archivelog all;
+ crosscheck backupset;
+ crosscheck copy;
+
+ delete expired archivelog until time 'sysdate-15';
+ delete expired copy;
+ 
+ delete backupset of database completed before 'sysdate-4';
+ #delete obsolete;
+
+}
+
+list backup summary;
+
+report need backup;
+
+exit

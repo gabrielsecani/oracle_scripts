@@ -1,0 +1,23 @@
+sql "alter session set nls_date_format=''dd.mm.yyyy hh24:mi:ss''";
+
+RUN 
+{
+ ALLOCATE CHANNEL chan1 DEVICE TYPE DISK;
+ ALLOCATE CHANNEL chan2 DEVICE TYPE DISK;
+ ALLOCATE CHANNEL chan3 DEVICE TYPE DISK;
+ ALLOCATE CHANNEL chan4 DEVICE TYPE DISK;
+
+ backup AS COMPRESSED BACKUPSET incremental level 1 database filesperset 2
+   tag='INCR_&1'
+    format '/backup/incr/incr_%d_%T_c%c_u%u_s%s_p%p';
+
+ backup AS COMPRESSED BACKUPSET
+   tag='CF_&1'
+   current controlfile spfile
+   format '/backup/cf/cf_spf_%T_%U';
+
+ sql "create pfile=/backup/cf/pfile_&1.ora from spfile";
+
+}
+
+exit

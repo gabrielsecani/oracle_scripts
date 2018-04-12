@@ -1,0 +1,31 @@
+
+host 'date >> restore.log';
+
+run{
+
+ shutdown immediate;
+ startup mount;
+
+ CROSSCHECK BACKUPSET;
+ CROSSCHECK ARCHIVELOG ALL;
+ CROSSCHECK DATAFILECOPY ALL;
+
+ ALLOCATE CHANNEL chan1 DEVICE TYPE DISK;
+ ALLOCATE CHANNEL chan2 DEVICE TYPE DISK;
+ ALLOCATE CHANNEL chan3 DEVICE TYPE DISK;
+ ALLOCATE CHANNEL chan4 DEVICE TYPE DISK;
+ ALLOCATE CHANNEL chan5 DEVICE TYPE DISK;
+ ALLOCATE CHANNEL chan6 DEVICE TYPE DISK;
+ restore database;
+ switch datafile all;
+ recover database;
+
+ shutdown immediate;
+ startup;
+}
+
+host 'date >> restore.log';
+
+exit
+
+
