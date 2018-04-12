@@ -1,4 +1,4 @@
-﻿setenv ORACLE_HOME /oracle/EQ0/11204
+setenv ORACLE_HOME /oracle/EQ0/11204
 setenv ORACLE_SID EQ0
 setenv ORACLE_BIN $ORACLE_HOME/bin
 

@@ -1,4 +1,4 @@
-ÔªøDEV1:
+DEV1:
 sga_max_size                         big integer 9504M
 sga_target                           big integer 9504M
 ED0.__pga_aggregate_target=1316487168
@@ -43,7 +43,7 @@ A) How To Relink The Oracle Grid Infrastructure Standalone (Restart) Installatio
 
 In order to relink the Oracle Grid Infrastructure Standalone (Restart) Installation (Non-RAC), please follow the next steps:
 
-1) Stop the OHAS stack (as ‚Äúgrid‚Äù OS user):
+1) Stop the OHAS stack (as ìgridî OS user):
  grid@dbaasm ~]$ id
 uid=1100(grid) gid=1000(oinstall) groups=1000(oinstall),1100(asmadmin),1200(dba),1300(asmdba),1301(asmoper)
 

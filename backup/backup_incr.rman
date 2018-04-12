@@ -4,9 +4,17 @@ RUN
 {
  ALLOCATE CHANNEL chan1 DEVICE TYPE DISK;
  ALLOCATE CHANNEL chan2 DEVICE TYPE DISK;
+ ALLOCATE CHANNEL chan3 DEVICE TYPE DISK;
+ ALLOCATE CHANNEL chan4 DEVICE TYPE DISK;
 
- backup AS COMPRESSED BACKUPSET incremental level 1 database
-   format '/backup/data/incr_%d_u%u_s%s_p%p_t%t';
+ backup AS COMPRESSED BACKUPSET incremental level 1 database filesperset 2
+   tag='INCR_&1'
+    format '/backup/incr/incr_%d_%T_c%c_u%u_s%s_p%p';
+
+ backup AS COMPRESSED BACKUPSET
+   tag='CF_&1'
+   current controlfile spfile
+   format '/backup/cf/cf_spf_%T_%U';
 
 }
 

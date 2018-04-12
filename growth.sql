@@ -103,30 +103,31 @@ SELECT TO_CHAR(FIRST_TIME,'YYYY-MM-DD') DAY, TO_CHAR(SUM(DECODE(TO_CHAR(FIRST_TI
   ORDER BY 1;
 ----
 
-COL "d_0" FOR A5
-COL "d_1" FOR A5
-COL "d_2" FOR A5
-COL "d_3" FOR A5
-COL "d_4" FOR A5
-COL "d_5" FOR A5
-COL "d_6" FOR A5
-COL "d_7" FOR A5
-COL "d_8" FOR A5
-COL "d_9" FOR A5
-COL "d_10" FOR A5
-COL "d_11" FOR A5
-COL "d_12" FOR A5
-COL "d_13" FOR A5
-COL "d_14" FOR A5
-COL "d_15" FOR A5
-COL "d_16" FOR A5
-COL "d_17" FOR A5
-COL "d_18" FOR A5
-COL "d_19" FOR A5
-COL "d_20" FOR A5
-COL "d_21" FOR A5
-COL "d_22" FOR A5
-COL "d_23" FOR A5
+COL "day" FOR A17
+COL "d_0" FOR  A4
+COL "d_1" FOR  A4
+COL "d_2" FOR  A4
+COL "d_3" FOR  A4
+COL "d_4" FOR  A4
+COL "d_5" FOR  A4
+COL "d_6" FOR  A4
+COL "d_7" FOR  A4
+COL "d_8" FOR  A4
+COL "d_9" FOR  A4
+COL "d_10" FOR A4
+COL "d_11" FOR A4
+COL "d_12" FOR A4
+COL "d_13" FOR A4
+COL "d_14" FOR A4
+COL "d_15" FOR A4
+COL "d_16" FOR A4
+COL "d_17" FOR A4
+COL "d_18" FOR A4
+COL "d_19" FOR A4
+COL "d_20" FOR A4
+COL "d_21" FOR A4
+COL "d_22" FOR A4
+COL "d_23" FOR A4
 select to_char(FIRST_TIME,'DY, DD-MON-YYYY') day,
        decode(sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'00',1,0)),0,'-',sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'00',1,0))) d_0,
        decode(sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'01',1,0)),0,'-',sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'01',1,0))) d_1,

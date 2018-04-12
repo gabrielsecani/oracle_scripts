@@ -3,13 +3,13 @@ sql "alter session set nls_date_format=''dd.mm.yyyy hh24:mi:ss''";
 RUN
 {
  ALLOCATE CHANNEL chan1 DEVICE TYPE DISK;
- ALLOCATE CHANNEL chan2 DEVICE TYPE DISK;
 
  backup as compressed backupset 
-   archivelog all not backed up 
+   archivelog all 
+   not backed up 2 times
    delete all input
-   format '/backup/arch/arc_%d_e%e_s%s_p%p_c%c_u%u_t%t';
-
+   tag='ARCH_&1'
+   format '/backup/arch/arc_%d_%T_e%e_s%s_p%p_c%c_u%u';
 }
 
 exit

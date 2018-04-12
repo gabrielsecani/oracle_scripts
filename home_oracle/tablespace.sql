@@ -1,4 +1,3 @@
-﻿
 clear columns
 
 column tablespace format a30
@@ -31,16 +30,17 @@ from
         dba_tablespaces dbat
 where total.ts=free.ts(+) and
       total.ts=dbat.tablespace_name
-UNION ALL
-select  sh.tablespace_name, 
-        'TEMP',
+order by 1
+;
+select  sh.tablespace_name tablespace, 
+        'TEMP' status,
  SUM(sh.bytes_used+sh.bytes_free)/1024/1024 total_mb,
  SUM(sh.bytes_used)/1024/1024 used_mb,
  SUM(sh.bytes_free)/1024/1024 free_mb,
         ROUND(SUM(sh.bytes_used)/SUM(sh.bytes_used+sh.bytes_free)*100,2) pct_used,
         '['||DECODE(SUM(sh.bytes_free),0,'XXXXXXXXXXXXXXXXXXXX',
               NVL(RPAD(LPAD('X',(TRUNC(ROUND((SUM(sh.bytes_used)/SUM(sh.bytes_used+sh.bytes_free))*100,2)/5)),'X'),20,'-'),
-                '--------------------'))||']'
+                '--------------------'))||']' GRAPH
 FROM v$temp_space_header sh
 GROUP BY tablespace_name
 order by 6 
@@ -98,3 +98,10 @@ SELECT d.undo_size/1024/1024 "ACTUAL UNDO SIZE [MByte]",
  WHERE e.name = 'undo_retention'
   AND f.name = 'db_block_size'
 /
+
+
+-----
+select file_name, tablespace_name, AUTOEXTENSIBLE, USER_BYTES/1024/1024/1024 USER_GBYTES,
+	INCREMENT_BY*8192/1024/1024 INCREMENT_BY_MB, 
+	MAXBYTES/1024/1024/1024 MAXBYTES_GB 
+ from dba_data_files order by 2,1;

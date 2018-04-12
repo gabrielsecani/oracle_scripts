@@ -1,4 +1,4 @@
-﻿set LINESIZE 999
+set LINESIZE 999
 COL PATH for A18
 COL name for A12
 COL REQUIRED_MIRROR_FREE_MB for 999,999 HEAD 'Required'
@@ -20,7 +20,7 @@ order by name;
 --ALTER DISKGROUP arch DROP DISK ARCH_0000;
 --alter diskgroup data add disk '/dev/rhdisk4ASM';
 
--- iniciar serviço asm.
+-- iniciar servi�o asm.
 
 srvctl status asm
 srvctl start asm

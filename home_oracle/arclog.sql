@@ -1,4 +1,4 @@
-﻿set linesize 400
+set linesize 400
 set pagesize 9999
 
 archive log list;

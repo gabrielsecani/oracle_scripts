@@ -70,11 +70,11 @@ create pfile='/migracao/backup/initeq0B.ora' from spfile;
 create pfile='/home/oracle/initeq0B.ora' from spfile;
 
 #criar arquivo de senha
-orapwd file=$ORACLE_HOME/dbs/orapwED0 password=DRSAP01ED0 entries=100 force=y ignorecase=Y
+orapwd file=$ORACLE_HOME/dbs/orapwEQ0 password=DRSAP01EQ0 entries=100 force=y ignorecase=Y
 
 select * from v$pwfile_users;
-orapwd file=$ORACLE_HOME/dbs/orapwEP0 password=DRSAP01EP0 entries=100 force=y ignorecase=Y
-scp orapwdED0 root@sapdev2:/oracle/eq011204/dbs/
+orapwd file=$ORACLE_HOME/dbs/orapwEQ0 password=DRSAP01EQ0 entries=100 force=y ignorecase=Y
+scp orapwEQ0 oracle@sapqa1:$ORACLE_HOME/dbs/
 chown oracle:oinstall /oracle/eq011204/dbs/orapwdED0
 
 '/oracle/eq0/11204/dbs/stdby.ctl'
@@ -190,7 +190,8 @@ criar no eq0 B os mesmos logfiles
 
 ALTER DATABASE CLEAR LOGFILE GROUP 2;
 ALTER DATABASE DROP  LOGFILE GROUP 2;
-ALTER DATABASE ADD   LOGFILE group &gn ('+ARCH', '+DATA') SIZE 400M reuse;
+ALTER DATABASE ADD   LOGFILE group 3 ('+ARCH', '+DATA') SIZE 400M reuse;
+ALTER DATABASE ADD   LOGFILE group 4 ('+ARCH', '+DATA') SIZE 400M reuse;
 
 ALTER SYSTEM SET STANDBY_FILE_MANAGEMENT=MANUAL;
 
@@ -198,7 +199,7 @@ ALTER DATABASE CLEAR LOGFILE GROUP 5;
 ALTER DATABASE DROP  LOGFILE GROUP 5;
 alter database add STANDBY LOGFILE GROUP 5 ('+DATA', '+ARCH') SIZE 200M BLOCKSIZE 512 reuse;
 ALTER DATABASE CLEAR LOGFILE GROUP 10;
-ALTER DATABASE DROP  LOGFILE GROUP 10;
+ALTER DATABASE DROP  LOGFILE GROUP 14;
 alter database add STANDBY LOGFILE GROUP 11 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
 alter database add STANDBY LOGFILE GROUP 12 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
 alter database add STANDBY LOGFILE GROUP 13 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
@@ -235,7 +236,7 @@ ALTER DATABASE DROP LOGFILE GROUP 6;
 
 ALTER DATABASE ADD LOGFILE GROUP 11 ('+ARCH/eq0/onlinelog/online11.dbf') size 200M REUSE;
 ALTER DATABASE ADD LOGFILE GROUP 12 ('+ARCH/eq0/onlinelog/online12.dbf') size 200M REUSE;
-ALTER DATABASE DROP LOGFILE GROUP 11;
+ALTER DATABASE DROP LOGFILE GROUP 10;
 ALTER DATABASE DROP LOGFILE GROUP 12;
 
 
@@ -252,11 +253,10 @@ ALTER DATABASE CLEAR LOGFILE GROUP 6;
 
 run {
    set until scn  31494273;
-   recover
-   standby
-   clone database
+   recover standby clone database
     delete archivelog;
 }
+
 run {
    recover
    standby
@@ -321,10 +321,32 @@ alter database flashback ON;
 
 rman TARGET sys/DRSAP01ED0@ED0a auxiliary sys/DRSAP01EQ0@ED0
 rman TARGET sys/DRSAP01EQ0@eq0a auxiliary sys/DRSAP01EQ0@eq0
-rman TARGET sys/DRSAP01EQ0@eq0a auxiliary sys/DRSAP01EQ0@eq0
+rman TARGET sys/DRSAP01EP0@ep0a auxiliary sys/DRSAP01EP0@ep0b
 
 rman TARGET  /
 sql "alter system enable restricted session";
 drop database including backups;
 sql "alter system disable restricted session";
+
+
+---------------------- dg
+show DATABASE verbose eq0a;
+
+edit database ed0a set property RedoCompression=ENABLE;
+edit database ed0b set property RedoCompression=ENABLE;
+
+alter system set log_archive_dest_state_2=DEFER scope=both;
+alter system set log_archive_dest_state_2=ENABLE scope=both;
+show parameter cpu
+alter system set cpu_count=8 scope=both;
+conn sys/DRSAP01EQ0@eq0a as sysdba
+@status
+
+SELECT to_char(TIMESTAMP, 'dd/mm/yy hh24:mi:ss') as TIMESTAMP, MESSAGE FROM V$DATAGUARD_STATUS
+order by MESSAGE_NUM;
+
+ALTER SYSTEM SET log_archive_start=true SCOPE=spfile;
+
+ALTER SYSTEM ARCHIVE LOG START;
+!ps -ef | grep arc
 

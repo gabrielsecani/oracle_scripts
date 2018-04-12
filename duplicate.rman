@@ -1,0 +1,45 @@
+﻿rm nohup.out dup.log
+nohup rman TARGET SYS/DRSAP01EP0@EP0A AUXILIARY SYS/DRSAP01EP0@EP0B @backup_rstr.rman log=dup.log; cat dup.log | mail -s "RAIA - Duplicate" gabrielltr84@gmail.com &
+
+
+#connect TARGET SYS/DRSAP01EP0@EP0A
+#connect AUXILIARY SYS/DRSAP01EP0@EP0B
+
+
+run {
+ allocate channel prmy1 type disk;
+ allocate channel prmy2 type disk;
+ allocate channel prmy3 type disk;
+ allocate channel prmy4 type disk;
+ allocate auxiliary channel stby1 type disk;
+ allocate auxiliary channel stby2 type disk;
+ allocate auxiliary channel stby3 type disk;
+ allocate auxiliary channel stby4 type disk;
+ DUPLICATE DATABASE 
+  FOR STANDBY
+  FROM ACTIVE DATABASE
+  DORECOVER;
+}
+
+target eq0b - primary
+auxili eq0a - stdby
+
+rman TARGET SYS/DRSAP01EQ0@EQ0B AUXILIARY SYS/DRSAP01EQ0@EQ0A
+:
+sql 'alter database datafile 64 offline';
+RUN {
+ allocate channel prmy1 type disk;
+ allocate auxiliary channel stby1 type disk;
+ backup as copy reuse 
+   datafile 64 auxiliary format '+DATA/eq0/datafile/teste.337.970915651';
+ switch datafile 64 to datafilecopy '+DATA/eq0/datafile/teste.337.970915651';
+ }
+ 
+ switch clone datafile all;
+
+ switch copy datafile 64 to datafilecopy '+DATA/eq0/datafile/teste.337.970915651';
+ recover standby clone database;
+}
+sql 'alter database datafile 64 online';
+
+list datafilecopy all;

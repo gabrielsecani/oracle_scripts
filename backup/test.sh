@@ -20,5 +20,5 @@ echo $output > status.log
 
 mailTO="gabriel.ribeiro@cast.com.br"
 
-mail -s "[RAIA] - Monitoramento de Status `uname -a`" $mailTO < status.log
+mail -s "[RAIA] - Monitoramento de Status `uname -n`" $mailTO < status.log
 

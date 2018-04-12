@@ -1,6 +1,6 @@
 ﻿-- http://snapshottooold.blogspot.com.br/2017/09/oracle-script-to-monitor-rman-running.html?m=0
 col Timestarted format a16
-set linesize 160
+set linesize 160 pagesize 40
 col opname for a18
 
 select sid,opname,trunc((totalwork*8192)/1024/1024) "Total work(MB)",

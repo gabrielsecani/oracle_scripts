@@ -8,6 +8,8 @@ endif
 
 alias ls "ls -a"
 alias ll "ls -ltra"
+alias df "df -g"
+alias du "du -g"
 
 set hostname=`uname -n`
 if (! $?ORACLE_SID ) then

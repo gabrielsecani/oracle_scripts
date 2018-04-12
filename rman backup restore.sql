@@ -258,7 +258,7 @@ run {
 
 -- check estimated backup size
 
-select ctime "Date"
+select to_char(ctime, 'dd-mm-yy hh24:mi:ss') "Date"
  , decode(backup_type, 'L', 'Archive Log', 'D', 'Full', 'Incremental') backup_type
  , bsize "Size MB"
 from (select bp.completion_time as ctime
@@ -272,14 +272,19 @@ from (select bp.completion_time as ctime
 order by 1, 2;
 
 
-COL in_size  FORMAT a10
-COL out_size FORMAT a10
-SELECT SESSION_KEY, 
-       INPUT_TYPE,
-       COMPRESSION_RATIO,       
-       OUTPUT_BYTES_DISPLAY out_size
-FROM   V$RMAN_BACKUP_JOB_DETAILS
-ORDER BY SESSION_KEY;
+COL TIME_TAKEN_DISPLAY format a10
+select 
+	JD.SESSION_KEY,
+	JD.STATUS,
+	JD.INPUT_TYPE,
+	JD.TIME_TAKEN_DISPLAY,
+	TO_CHAR(JD.START_TIME, 'dd-mm-yy hh24:mi:ss') as START_TIME,
+	TO_CHAR(JD.END_TIME, 'dd-mm-yy hh24:mi:ss') as END_TIME,
+	JD.INPUT_BYTES / 1024 / 1024 / 1024 as INPUT_GBYTES,
+	JD.OUTPUT_BYTES / 1024 / 1024 / 1024 as OUTPUT_GBYTES
+from   V$RMAN_BACKUP_JOB_DETAILS JD
+--where INPUT_TYPE != 'DB FULL'
+order by SESSION_KEY ;
 
 -- blocks writeen to a cabkup set
 select file#, incremental_level, completion_time, blocks, datafile_blocks
@@ -293,11 +298,18 @@ select file#, incremental_level, completion_time, blocks, datafile_blocks
 show snapshot controlfile name;
 configure snapshot controlfile name to '/tmp/snapcf.cpy';
 crosscheck copy;
-crosscheck controlfilecopy '/tmp/snapcf.cpy';
-delete expired controlfilecopy '/oracle/ED0/11204/dbs/snapcf_ED0.f';
-delete controlfilecopy '/oracle/ED0/11204/dbs/snapcf_ED0.f';
+crosscheck controlfilecopy '/tmp/it.f';
+delete expired controlfilecopy '/oracle/EP0/11204/dbs/snapcf_EP0.f';
+delete controlfilecopy '/oracle/EP0/11204/dbs/snapcf_EP0.f';
 delete obsolete;
 configure snapshot controlfile name clear;
 
 -- verificação logica dos datafiles
 backup validate check logical database;
+
+/oracle/EP0/11204/dbs/snapcf_EP0.f
+configure snapshot controlfile name to '/tmp/it.f';
+crosscheck controlfilecopy '/oracle/EP0/11204/dbs/snapcf_EP0.f';
+delete noprompt expired controlfilecopy '/oracle/EP0/11204/dbs/snapcf_EP0.f';
+delete noprompt obsolete;
+configure snapshot controlfile name clear;

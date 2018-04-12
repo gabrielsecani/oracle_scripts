@@ -1,4 +1,4 @@
-﻿#!/bin/csh
+#!/bin/csh
 
 setenv ORACLE_HOME /oracle/grid
 setenv ORACLE_SID +ASM

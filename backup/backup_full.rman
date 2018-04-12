@@ -7,17 +7,15 @@ RUN
  ALLOCATE CHANNEL chan3 DEVICE TYPE DISK;
  ALLOCATE CHANNEL chan4 DEVICE TYPE DISK;
 
- backup AS COMPRESSED BACKUPSET full database 
-   format '/backup/data/full_%d_c%c_u%u_s%s_p%p_t%t'; 
-}
-
-run {
- ALLOCATE CHANNEL cfspf DEVICE TYPE DISK;
-
- backup as compressed backupset 
+ backup AS COMPRESSED BACKUPSET full database filesperset 2
+  tag='FULL_&1'
+  format '/backup/data/full_%d_%T_c%c_u%u_s%s_p%p'; 
+   
+ backup AS COMPRESSED BACKUPSET
+   tag='CF_&1'
    current controlfile spfile
-   format '/backup/cf/controlspfile_%d_u%u_s%s_p%p_t%t';
-
+   format '/backup/cf/cf_spf_%T_%U';
+   
 }
 
 exit

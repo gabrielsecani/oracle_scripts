@@ -1,4 +1,4 @@
-﻿set linesize 999
+set linesize 999
 SET PAGESIZE  9999
 
 col "type" for a7
