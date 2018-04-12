@@ -20,6 +20,7 @@ alias sp "$ORACLE_BIN/sqlplus / as sysdba"
 alias dg "dgmgrl SYS/drSAP01EP0"
 alias cdoh "cd $ORACLE_HOME"
 alias cdon "cd $ORACLE_HOME/network/admin"
+alias cdt "cd /oracle/EP0/saptrace/diag/rdbms/ep0b/EP0/trace"
 
 alias sp0 "sqlplus SYS/drSAP01EP0@EP0 as sysdba"
 alias spa "sqlplus SYS/drSAP01EP0@EP0A as sysdba"

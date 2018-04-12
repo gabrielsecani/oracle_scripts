@@ -1,5 +1,4 @@
 clear columns
-
 column tablespace format a30
 column total_mb format 999,999,999.99
 column used_mb format 999,999,999,999.99
@@ -31,9 +30,12 @@ from
 where total.ts=free.ts(+) and
       total.ts=dbat.tablespace_name
 order by 1
-;
+/
 select  sh.tablespace_name tablespace, 
         'TEMP' status,
+--UNION ALL
+select  sh.tablespace_name, 
+        'TEMP',
  SUM(sh.bytes_used+sh.bytes_free)/1024/1024 total_mb,
  SUM(sh.bytes_used)/1024/1024 used_mb,
  SUM(sh.bytes_free)/1024/1024 free_mb,
@@ -43,7 +45,6 @@ select  sh.tablespace_name tablespace,
                 '--------------------'))||']' GRAPH
 FROM v$temp_space_header sh
 GROUP BY tablespace_name
-order by 6 
 /
 ttitle off
 rem clear columns

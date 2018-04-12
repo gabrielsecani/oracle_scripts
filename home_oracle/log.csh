@@ -1,5 +1,7 @@
 #!/bin/csh
-tail -f -500 /oracle/EQ0/saptrace/diag/rdbms/eq0a/EQ0/trace/alert_EQ0.log&
-tail -f -400 /oracle/EQ0/saptrace/diag/rdbms/eq0a/EQ0/trace/drcEQ0.log&
+set T="/oracle/EP0/saptrace/diag/rdbms/ep0b/EP0/trace"
+
+tail -f -500 $T/alert_EP0.log&
+tail -f -400 $T/drcEP0.log&
 
 
