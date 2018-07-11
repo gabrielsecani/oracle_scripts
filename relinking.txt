@@ -1,0 +1,7 @@
+﻿# relink grid
+
+# as grid owner & settings
+cd $ORACLE_HOME/crs/install
+sudo $ORACLE_HOME/perl/bin/perl rootcrs.pl -unlock
+$ORACLE_HOME/bin/relink
+sudo $ORACLE_HOME/perl/bin/perl rootcrs.pl -lock
