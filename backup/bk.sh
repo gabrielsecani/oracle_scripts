@@ -10,28 +10,28 @@ source ./env.sh
 rm -f backup_$1.log
 
 setenv BACKUP_TAG `date +"%Y%m%d%H%M%S"`
-echo $BACKUP_TAG
-
-echo "BACKUP $1 START $BACKUP_TAG" >> backup_$1.log
-date >> backup_$1.log
-$ORACLE_BIN/rman target $ORAPWD cmdfile=backup_$1.rman using $BACKUP_TAG append log=backup_$1.log
-echo "BACKUP $1 END" >> backup_$1.log
+echo "backuping TAG: ${BACKUP_TAG} in destination: ${BACKUP_DEST}"
 
 echo "BACKUP CROSSCHECK START" >> backup_$1.log
 date >> backup_$1.log
-$ORACLE_BIN/rman target $ORAPWD cmdfile=backup_xchk.rman append log=backup_$1.log
+$ORACLE_BIN/rman target $ORAPWD cmdfile=backup_xchk.rman using $KEEP_DATABASE $KEEP_ARCHIVELOG append log=backup_$1.log
 echo "BACKUP CROSSCHECK END" >> backup_$1.log
 
-if ( -f "$1.sql" ) then
-  echo "EXECUTING BEGIN SQL $1.sql" >> backup_$1.log
-  $ORACLE_BIN/sqlplus -S $ORAPWD as sysdba @$1.sql >> backup_$1.log
-  echo "EXECUTING END SQL $1.sql" >> backup_$1.log
-endif
+echo "BACKUP $1 START $BACKUP_TAG" >> backup_$1.log
+date >> backup_$1.log
+$ORACLE_BIN/rman target $ORAPWD cmdfile=backup_$1.rman using $BACKUP_TAG \'$BACKUP_DEST\' append log=backup_$1.log
+echo "BACKUP $1 END" >> backup_$1.log
 
 if ( -f "xchk.sql" ) then
   echo "EXECUTING BEGIN SQL xchk.sql" >> backup_$1.log
   $ORACLE_BIN/sqlplus -S $ORAPWD as sysdba @xchk.sql >> backup_$1.log
   echo "EXECUTING END SQL xchk.sql" >> backup_$1.log
+endif
+
+if ( -f "$1.sql" ) then
+  echo "EXECUTING BEGIN SQL $1.sql" >> backup_$1.log
+  $ORACLE_BIN/sqlplus -S $ORAPWD as sysdba @$1.sql >> backup_$1.log
+  echo "EXECUTING END SQL $1.sql" >> backup_$1.log
 endif
 
 date >> backup_$1.log
@@ -51,8 +51,8 @@ setenv BKLOG "backup_$1_$DATE_SUFFIX.log"
 cat backup_$1.log >> $BKLOG
 
 # Delete old log files.
-find backup*.log -mtime +5 -exec mv {} old \;
-find backup*.log -mtime +30 -exec rm -f {} \;
+find backup*.log -mtime +2 -exec mv {} old \;
+find backup*.log -mtime +31 -exec rm -f {} \;
 
 echo "Fim $1"
 date
@@ -71,4 +71,5 @@ echo "$DATE_SUFFIX $SUBJ" >> $BKLOG
 
 echo "sending mail with log to '$MAILTO'"
 echo "$SUBJ"
+
 cat backup_$1.log | mail -s "$SUBJ" $MAILTO

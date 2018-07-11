@@ -6,12 +6,7 @@ sql "alter session set nls_date_format=''dd.mm.yyyy hh24:mi:ss''";
 run {
  allocate channel prmy1 type disk;
  allocate channel prmy2 type disk;
- allocate channel prmy3 type disk;
- allocate channel prmy4 type disk;
  allocate auxiliary channel stby1 type disk;
- allocate auxiliary channel stby2 type disk;
- allocate auxiliary channel stby3 type disk;
- allocate auxiliary channel stby4 type disk;
 
  DUPLICATE DATABASE
  FOR STANDBY

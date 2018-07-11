@@ -13,7 +13,7 @@ select d.INPUT_TYPE, d.STATUS,
        to_char(D.END_TIME,'dd/mm/yyyy hh24:mi') end_time,
        to_char(D.elapsed_seconds/60,'9,990.00') min
   from V$RMAN_BACKUP_JOB_DETAILS D
-  where D.START_TIME>=sysdate-3
+  where D.START_TIME>=sysdate-5
  order by d.session_key
 /
 

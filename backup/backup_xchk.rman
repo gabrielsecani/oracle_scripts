@@ -8,10 +8,10 @@ RUN{
  crosscheck backupset;
  crosscheck copy;
 
- delete expired archivelog until time 'sysdate-15';
- delete expired copy;
+ delete backupset of database completed before 'sysdate-&1';
+ delete backupset of archivelog until time 'sysdate-&2';
  
- delete backupset of database completed before 'sysdate-1';
+ delete expired backupset completed before 'sysdate-&1';
  delete obsolete;
 
 }

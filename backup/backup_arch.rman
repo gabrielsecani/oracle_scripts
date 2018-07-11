@@ -9,7 +9,7 @@ RUN
    not backed up 2 times
    delete all input
    tag='ARCH_&1'
-   format '/backup/arch/arc_%d_%T_e%e_s%s_p%p_c%c_u%u';
+   format '&2/arch/arc_%d_%T_e%e_s%s_p%p_c%c_u%u';
 }
 
 exit
