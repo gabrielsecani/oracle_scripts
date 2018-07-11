@@ -4,18 +4,21 @@
 -- This query is a basic query and can be further tunned to improve performance
 
 SELECT part.tsname tablespace_name,
-       Max(part.used_size) "Current Size (MB)",  /* Current size of tablespace */
-       Round(Avg(inc_used_size), 2) "Growth Per Day(MB)" /* Growth of tablespace per day */
+       max(part.used_size) "Current Size (GB)",  /* Current size of tablespace */
+       max(part.MAX_SIZE)-max(part.used_size) "Free (GB)",
+       max(part.MAX_SIZE) "Max Size (GB)",  /* Current size of tablespace */
+       Round(Avg(inc_used_size), 2) "Growth Per Day(GB)" /* Growth of tablespace per day */
  FROM 
  (SELECT sub.days,
          sub.tsname,
-         used_size,
+         used_size,MAX_SIZE,
          used_size - Lag (used_size, 1)
           over (PARTITION BY sub.tsname ORDER BY sub.tsname, sub.days) inc_used_size /* getting delta increase using analytic function */
        FROM  
        (SELECT TO_CHAR(hsp.begin_interval_time,'MM-DD-YYYY') days,
         hs.tsname,
-        MAX((hu.tablespace_usedsize* dt.block_size )/(1024*1024)) used_size
+		MAX((HU.TABLESPACE_MAXSIZE* dt.block_size )/(1024*1024*1024)) MAX_SIZE,
+        MAX((hu.tablespace_usedsize* dt.block_size )/(1024*1024*1024)) used_size
       from
         dba_hist_tbspc_space_usage hu, /* historical tablespace usage statistics */
         dba_hist_tablespace_stat hs , /* tablespace information from the control file */
@@ -43,9 +46,10 @@ BREAK ON A SKIP 1 ON REPORT SKIP 1
 SELECT TO_CHAR(TRUNC(FIRST_TIME), 'MONTH') C1, TO_CHAR(TRUNC(FIRST_TIME), 'DAY : DD-MON-YYYY') C2, COUNT(*) C3
   FROM V$LOG_HISTORY
   WHERE TRUNC(FIRST_TIME) > LAST_DAY(SYSDATE-100) +1
-  GROUP BY TRUNC(FIRST_TIME);
-  
-  
+  GROUP BY TRUNC(FIRST_TIME)
+  ORDER BY TRUNC(FIRST_TIME);
+
+
 -- Daily Count and Size of Redo Log Space (Single Instance)
 COL DAY FOR A12
 BREAK ON REPORT
@@ -54,10 +58,10 @@ SELECT A.*, ROUND(A.COUNT#*B.AVG#/1024/1024/1024) DAILY_AVG_GB
   FROM (SELECT TO_CHAR(FIRST_TIME,'YYYY-MM-DD') DAY, COUNT(1) COUNT#, MIN(RECID) MIN#, MAX(RECID) MAX#
           FROM V$LOG_HISTORY
           WHERE first_time >sysdate-7
-          GROUP BY TO_CHAR(FIRST_TIME,'YYYY-MM-DD')
-          ORDER BY 1 DESC) A,
+          GROUP BY TO_CHAR(FIRST_TIME,'YYYY-MM-DD')) A,
        (SELECT AVG(BYTES) AVG#, COUNT(1) COUNT#, MAX(BYTES) MAX_BYTES, MIN(BYTES) MIN_BYTES
-          FROM V$LOG) B;
+          FROM V$LOG) B
+ORDER BY DAY ASC;
 
 -- Hourly count per day
 set lines 400

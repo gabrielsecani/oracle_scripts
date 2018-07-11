@@ -8,6 +8,7 @@ col HOST_NAME format a15 heading "HOSTNAME"
 col BLOCKED format a7 heading "BLOCKED"
 col ACTIVE_STATE format a7 heading "ACTIVE|STATE"
 col ARCHIVER format a8
+set feedback off
 
 PROMPT ## Instance Status
 select INSTANCE_NUMBER, INSTANCE_NAME, HOST_NAME, STARTUP_TIME, VERSION
@@ -27,3 +28,34 @@ select DB_UNIQUE_NAME, FLASHBACK_ON, protection_mode, protection_level
   from v$database;
 
 archive log list;
+
+Select
+   THREAD#,
+   max(SEQUENCE#) "last sequence", 
+   APPLIED,
+   REGISTRAR
+From 
+   V$ARCHIVED_LOG
+ where applied not in ('NO')
+group by thread#, APPLIED, registrar
+order by 2,1,3,4;
+
+-- Verify that the last sequence# received and the last sequence# applied to standby database.
+select al.thrd "Thread", almax "Last Seq Received", lhmax "Last Seq Applied", lhmax2 "Current log"
+from (select thread# thrd, max(sequence#) almax
+	  from v$archived_log
+	  where resetlogs_change#=(select resetlogs_change# from v$database)
+	  group by thread#) al,
+	 (select thread# thrd, max(sequence#) lhmax
+	  from v$log_history
+	  where first_time=(select max(first_time) from v$log_history)
+	  group by thread#) lh,
+	 (SELECT THREAD# thrd, MAX(SEQUENCE#) lhmax2
+	  FROM V$LOG_HISTORY
+	  WHERE RESETLOGS_CHANGE# = (SELECT RESETLOGS_CHANGE#
+	   FROM V$DATABASE_INCARNATION
+	  WHERE STATUS = 'CURRENT')
+	  GROUP BY THREAD#)
+;
+
+set feedback on

@@ -1,6 +1,26 @@
 ﻿https://dbatricksworld.com/steps-to-configure-oracle-11g-data-guard-physical-standby-data-guard-part-i/
 solman: 8000028170
 
+## restart ssh
+lssrc -s sshd 
+stopsrc -s sshd;startsrc -s sshd
+
+#
+find /oracle/ | grep trace.listener.log
+
+kill `ps -ef | grep -i tail | grep -v grep | awk '{print $2}' `
+
+for die1 in `ps -ef | grep -i tail | grep -v grep | awk '{print $2}' `
+do 
+kill ${die1}
+done
+find /oracle/$ORACLE_SID -name listener.log -exec tail -f {]\;
+for lsnr in `find /oracle/$ORACLE_SID -name listener.log`
+do
+  tail -f ${lsnr}&
+done
+
+
 -- cria pfile no $ORACLE_HOME/dbs/initXXXX.ora  XXXX = SID = eq0
 create pfile from spfile;
 -- abrir initeq0.ora para trocar/adicionar db_unique_name='eq0A'
@@ -70,12 +90,26 @@ create pfile='/migracao/backup/initeq0B.ora' from spfile;
 create pfile='/home/oracle/initeq0B.ora' from spfile;
 
 #criar arquivo de senha
-orapwd file=$ORACLE_HOME/dbs/orapwEQ0 password=DRSAP01EQ0 entries=100 force=y ignorecase=Y
+orapwd file=$ORACLE_HOME/dbs/orapwEQ0 password=DRSAP01EQ0 entries=100 force=y format=12
 
 select * from v$pwfile_users;
-orapwd file=$ORACLE_HOME/dbs/orapwEQ0 password=DRSAP01EQ0 entries=100 force=y ignorecase=Y
-scp orapwEQ0 oracle@sapqa1:$ORACLE_HOME/dbs/
-chown oracle:oinstall /oracle/eq011204/dbs/orapwdED0
+col username for a15
+select USERNAME, SYSDBA, SYSOPER, SYSASM, SYSBACKUP, SYSDG, SYSKM, ACCOUNT_STATUS from v$pwfile_users;
+
+
+orapwd file=$ORACLE_HOME/dbs/orapwEQ0 password=DRSAP01EQ0 force=y ignorecase=Y format=12
+
+orapwd file=$ORACLE_HOME/dbs/orapwED0 password=DRSAP01ED0 force=y format=12
+orapwd file=orapwEQ0 password=DRSAP01EQ0 force=y ignorecase=Y format=12
+
+
+scp $ORACLE_HOME/dbs/orapw* oracle@sapdev1:$ORACLE_HOME/dbs/
+chown oracle:oinstall /oracle/eq0/11204/dbs/orapwdED0
+
+sqlplus SYS/DRSAP01EQ0@EQ0A as sysdba
+
+conn SYS/DRSAP01EQ0@EQ0A as sysdba
+conn SYSTEM/DRSAP01EQ0@EQ0A as sysdba
 
 '/oracle/eq0/11204/dbs/stdby.ctl'
 *.control_files='+DATA/eq0/cntrleq0.ctl','+ARCH/eq0/cntrleq0.ctl'
@@ -188,28 +222,56 @@ alter system set LOCAL_LISTENER='(ADDRESS = (PROTOCOL = TCP)(HOST = sapdev2)(POR
 criar no eq0 B os mesmos logfiles
 
 
-ALTER DATABASE CLEAR LOGFILE GROUP 2;
-ALTER DATABASE DROP  LOGFILE GROUP 2;
-ALTER DATABASE ADD   LOGFILE group 3 ('+ARCH', '+DATA') SIZE 400M reuse;
-ALTER DATABASE ADD   LOGFILE group 4 ('+ARCH', '+DATA') SIZE 400M reuse;
+ALTER DATABASE CLEAR LOGFILE GROUP 3;
+ALTER DATABASE DROP  LOGFILE GROUP 3;
+ALTER DATABASE ADD   LOGFILE thread 1 group 1 ('+ARCH', '+DATA') SIZE 400M reuse;
 
+ALTER DATABASE ADD   LOGFILE thread 1 group 1 ('+ARCH', '+DATA') SIZE 400M reuse;
+ALTER DATABASE ADD   LOGFILE thread 1 group 2 ('+ARCH', '+DATA') SIZE 400M reuse;
+ALTER DATABASE ADD   LOGFILE thread 1 group 3 ('+ARCH', '+DATA') SIZE 400M reuse;
+ALTER DATABASE ADD   LOGFILE thread 1 group 4 ('+ARCH', '+DATA') SIZE 400M reuse;
+
+ALTER DATABASE CLEAR LOGFILE GROUP 5;
+ALTER DATABASE DROP  LOGFILE GROUP 5;
+ALTER DATABASE ADD   LOGFILE thread 1 group 5 ('+ARCH', '+DATA') SIZE 1000M reuse;
+
+select group#,thread#,sequence#,bytes,used,status from v$standby_log;
+
+alter database flashback off;
 ALTER SYSTEM SET STANDBY_FILE_MANAGEMENT=MANUAL;
 
 ALTER DATABASE CLEAR LOGFILE GROUP 5;
 ALTER DATABASE DROP  LOGFILE GROUP 5;
-alter database add STANDBY LOGFILE GROUP 5 ('+DATA', '+ARCH') SIZE 200M BLOCKSIZE 512 reuse;
-ALTER DATABASE CLEAR LOGFILE GROUP 10;
-ALTER DATABASE DROP  LOGFILE GROUP 14;
-alter database add STANDBY LOGFILE GROUP 11 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
-alter database add STANDBY LOGFILE GROUP 12 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
-alter database add STANDBY LOGFILE GROUP 13 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
-alter database add STANDBY LOGFILE GROUP 14 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
-alter database add STANDBY LOGFILE GROUP 6 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
-alter database add STANDBY LOGFILE GROUP 6 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
-alter database add STANDBY LOGFILE GROUP 6 ('+DATA/eq0/standbylog/standby_redo6A.dbf', '+ARCH/eq0/standbylog/standby_redo6B.dbf') SIZE 200M BLOCKSIZE 512 reuse;
+alter database add STANDBY LOGFILE thread 1 GROUP 5 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
+ALTER DATABASE CLEAR LOGFILE GROUP 6;
+ALTER DATABASE DROP  LOGFILE GROUP 6;
+alter database add STANDBY LOGFILE thread 1 GROUP 6 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
 
+ALTER DATABASE CLEAR LOGFILE GROUP 11;
+ALTER DATABASE DROP  LOGFILE GROUP 11;
+alter database add STANDBY LOGFILE thread 1 GROUP 11 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
+alter database add STANDBY LOGFILE thread 1 GROUP 12 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
+alter database add STANDBY LOGFILE thread 1 GROUP 13 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
+alter database add STANDBY LOGFILE thread 1 GROUP 14 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
+alter database add STANDBY LOGFILE thread 1 GROUP 15 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
+alter database add STANDBY LOGFILE thread 1 GROUP 16 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
+alter database add STANDBY LOGFILE thread 1 GROUP 17 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
+alter database add STANDBY LOGFILE GROUP 16 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
+alter database add STANDBY LOGFILE GROUP 17 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
+
+ALTER DATABASE DROP LOGFILE GROUP 16;
+ALTER DATABASE DROP LOGFILE GROUP 17;
+alter database add standby logfile thread 1 group 7 size
+
+EDIT DATABASE ep0b SET STATE = APPLY-OFF;
+EDIT DATABASE ep0b SET STATE = APPLY-ON;
+
+alter system switch logfile;
+@logfile
+ 
 show parameters STANDBY
-ALTER SYSTEM SET STANDBY_FILE_MANAGEMENT=AUTO scope=both sid='*';
+alter database flashback on;
+ALTER SYSTEM SET STANDBY_FILE_MANAGEMENT=AUTO scope=both;
 
 ALTER DATABASE RECOVER MANAGED STANDBY DATABASE USING CURRENT LOGFILE NODELAY DISCONNECT FROM SESSION;
 ALTER DATABASE RECOVER MANAGED STANDBY DATABASE DISCONNECT FROM SESSION;
@@ -348,5 +410,18 @@ order by MESSAGE_NUM;
 ALTER SYSTEM SET log_archive_start=true SCOPE=spfile;
 
 ALTER SYSTEM ARCHIVE LOG START;
+
+
+alter system set db_recovery_file_dest_size=120G scope=spfile;
+alter system set java_pool_size=128M scope=spfile;
+alter system set large_pool_size=128M scope=spfile;
+alter system set shared_pool_reserved_size=96M scope=spfile;
+alter system set shared_pool_size=128M scope=spfile;
+alter system set sga_min_size=1G scope=spfile;
+alter system set sga_max_size=4G scope=spfile;
+alter system set large_pool_size=128M scope=spfile;
+create pfile from spfile;
+
+
 !ps -ef | grep arc
 

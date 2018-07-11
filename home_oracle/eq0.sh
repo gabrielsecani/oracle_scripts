@@ -16,6 +16,8 @@ echo $PATH;
 
 set prompt="$ORACLE_SID % "
 
+setprompt
+
 alias sp "$ORACLE_BIN/sqlplus / as sysdba"
 alias dg "dgmgrl SYS/drSAP01EQ0"
 alias cdoh "cd $ORACLE_HOME"
@@ -25,4 +27,6 @@ alias sp0 "sqlplus SYS/drSAP01EQ0@EQ0 as sysdba"
 alias spa "sqlplus SYS/drSAP01EQ0@EQ0A as sysdba"
 alias spb "sqlplus SYS/drSAP01EQ0@EQ0B as sysdba"
 
+alias vitns "vi /oracle/EP0/11204/network/admin/tnsnames.ora"
+alias vilsn "vi /oracle/EP0/11204/network/admin/listener.ora"
 
