@@ -14,8 +14,8 @@ select d.INPUT_TYPE, d.STATUS,
        to_char(D.END_TIME,'dd/mm/yyyy hh24:mi') end_time,
        D.elapsed_seconds/60 min
   from V$RMAN_BACKUP_JOB_DETAILS D
-  where D.START_TIME>=sysdate-3
- order by d.session_key
+  --where D.START_TIME>=sysdate-3
+ order by d.START_TIME
 /
 
 COL RECID    FORMAT 99999
@@ -36,7 +36,7 @@ SELECT S.RECID, P.TAG, P.STATUS,
 FROM   V$BACKUP_PIECE P, V$BACKUP_SET S
 WHERE  P.SET_STAMP = S.SET_STAMP
 AND    P.SET_COUNT = S.SET_COUNT
-and P.START_TIME>=sysdate-3
+--and P.START_TIME>=sysdate-5
 order by P.START_TIME,P.TAG
 /
 
@@ -49,3 +49,4 @@ select RMAN_STATUS_RECID, type, status, filename, buffer_size, buffer_count
    where type <> 'AGGREGATE' and status = 'IN PROGRESS'
 order by RMAN_STATUS_RECID
 /
+

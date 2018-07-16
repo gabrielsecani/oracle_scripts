@@ -59,6 +59,32 @@ where a.TABLESPACE_NAME=f.TABLESPACE_NAME;
 -- select TABLESPACE_NAME, TABLESPACE_SIZE/1024/1024/1024 total, ALLOCATED_SPACE/1024/1024/1024 used, FREE_SPACE/1024/1024 free from DBA_TEMP_FREE_SPACE;
 
 
+prompt === Table space UNDO ===
+col undo_size 		for 999,990.00 heading "ACTUAL UNDO SIZE [MB]"
+col undo_retention_sec heading "UNDO RETENTION [Sec]"
+col undo_retention_min heading "UNDO RETENTION [Sec]"
+col undo_needed 	for 999,990.000 heading"NEEDED UNDO SIZE [MB]"
+SELECT SUBSTR(e.value,1,15) undo_retention_sec,
+       to_number(SUBSTR(e.value,1,15))/60 undo_retention_min,
+       d.undo_size/1024/1024 undo_size,
+       (TO_NUMBER(e.value) * TO_NUMBER(f.value) * g.undo_block_per_sec) / (1024*1024) undo_needed
+  FROM (
+       SELECT SUM(a.bytes) undo_size
+         FROM v$datafile a,
+              v$tablespace b,
+              dba_tablespaces c
+        WHERE c.contents = 'UNDO'
+          AND c.status = 'ONLINE'
+          AND b.name = c.tablespace_name
+          AND a.ts# = b.ts#
+       ) d,
+      v$parameter e,
+      v$parameter f,
+      (SELECT MAX(undoblks/((end_time-begin_time)*3600*24)) undo_block_per_sec FROM v$undostat) g
+ WHERE e.name = 'undo_retention'
+  AND f.name = 'db_block_size';
+
+
 clear break;
 clear columns;
 

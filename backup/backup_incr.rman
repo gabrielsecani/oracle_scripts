@@ -7,7 +7,7 @@ RUN
  ALLOCATE CHANNEL chan3 DEVICE TYPE DISK;
  ALLOCATE CHANNEL chan4 DEVICE TYPE DISK;
 
- backup AS COMPRESSED BACKUPSET incremental level 1 database filesperset 4
+ backup AS COMPRESSED BACKUPSET incremental level 1 database filesperset 6
    tag='INCR_&1'
     format '&2/incr/incr_%d_%T_c%c_u%u_s%s_p%p';
 

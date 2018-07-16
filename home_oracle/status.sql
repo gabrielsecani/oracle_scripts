@@ -1,5 +1,5 @@
-set linesize 400 pagesize 50
-col DB_UNIQUE_NAME for a15 heading "UNIQ|NAME"
+set linesize 400 pagesize 50 feedback off
+col DB_UNIQUE_NAME for a10 heading "UNIQ NAME"
 col instance_number format 99 heading "INST#"
 col INSTANCE_NAME format a10 heading "INST|NAME"
 col SHUTDOWN_PENDING format a4 heading "SHUT|PEND"
@@ -20,12 +20,15 @@ select INSTANCE_NUMBER, PARALLEL, THREAD#, ARCHIVER, LOG_SWITCH_WAIT, LOGINS, SH
 select INSTANCE_NUMBER, DATABASE_STATUS, INSTANCE_ROLE, ACTIVE_STATE, BLOCKED
   from v$instance;
 
+PROMPT 
 PROMPT ## Database Status
 SELECT DB_UNIQUE_NAME, OPEN_MODE, DATABASE_ROLE, SWITCHOVER_STATUS
   FROM v$database;
 
 select DB_UNIQUE_NAME, FLASHBACK_ON, protection_mode, protection_level
   from v$database;
+
+PROMPT
 
 archive log list;
 
@@ -41,7 +44,8 @@ group by thread#, APPLIED, registrar
 order by 2,1,3,4;
 
 -- Verify that the last sequence# received and the last sequence# applied to standby database.
-select al.thrd "Thread", almax "Last Seq Received", lhmax "Last Seq Applied", lhmax2 "Current log"
+select (SELECT DB_UNIQUE_NAME FROM v$database) DB_UNIQUE_NAME,
+       al.thrd "Thread", almax "Last Seq Received", lhmax "Last Seq Applied", lhmax2 "Current log"
 from (select thread# thrd, max(sequence#) almax
 	  from v$archived_log
 	  where resetlogs_change#=(select resetlogs_change# from v$database)
@@ -55,7 +59,6 @@ from (select thread# thrd, max(sequence#) almax
 	  WHERE RESETLOGS_CHANGE# = (SELECT RESETLOGS_CHANGE#
 	   FROM V$DATABASE_INCARNATION
 	  WHERE STATUS = 'CURRENT')
-	  GROUP BY THREAD#)
-;
+	  GROUP BY THREAD#);
 
 set feedback on

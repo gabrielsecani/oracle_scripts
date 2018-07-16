@@ -39,7 +39,7 @@ date >> backup_$1.log
 echo "Files changed today in GB" >> backup_$1.log
 find . -mtime 1 -type f -exec du -ga {} \; >> backup_$1.log
 
-du -g ./* >> backup_$1.log
+du -g ./* | sort +2 >> backup_$1.log
 df -Pg . >> backup_$1.log
 
 echo "BACKUP END" >> backup_$1.log

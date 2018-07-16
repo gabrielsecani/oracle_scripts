@@ -1,7 +1,14 @@
 #!/bin/csh
-set T="/oracle/EP0/saptrace/diag/rdbms/ep0b/EP0/trace"
 
-tail -f -500 $T/alert_EP0.log&
-tail -f -400 $T/drcEP0.log&
+# get all tail process IDs
+kill `ps -f | grep -i tail | grep -v grep | awk '{print $2}' `&
 
+set LOGS = `find /oracle/${ORACLE_SID}/saptrace/ -name "*${ORACLE_SID}.log"`
 
+#if -f $log then echo "### tail -f -500 ${log} ###"; endif
+
+foreach log ($LOGS)
+ tail -f -500 $log&
+end
+
+echo "Reading..."
