@@ -1,0 +1,45 @@
+﻿
+/*
+--ALTER DISKGROUP data DROP DISK DATA_0003;
+--ALTER DISKGROUP arch DROP DISK ARCH_0000;
+--alter diskgroup arch add disk '/dev/rhdisk5ASM';
+--alter diskgroup data add disk '/dev/rhdisk*';
+
+ALTER DISKGROUP ARCH SET ATTRIBUTE 'compatible.asm' = '12.2.0.1';
+ALTER DISKGROUP ARCH SET ATTRIBUTE 'compatible.rdbms' = '12.2.0.1';
+ALTER DISKGROUP DATA SET ATTRIBUTE 'compatible.asm' = '12.2.0.1';
+ALTER DISKGROUP DATA SET ATTRIBUTE 'compatible.rdbms' = '12.2.0.1';
+
+ALTER DISKGROUP ARCH SET ATTRIBUTE 'compatible.asm' = '12.2';
+
+-- iniciar serviço asm.
+
+srvctl status asm
+srvctl start asm
+srvctl stop asm
+
+crsctl stop has
+crsctl start has
+crsctl status has
+
+-- verificar servicos do asm
+crsctl status resource -t -init
+crsctl status resource ora.cssd
+crsctl start resource ora.cssd
+
+crsctl start resource ora.diskmon
+
+
+cp +ARCH/eq0/oraarch/1_60200_940436451.dbf sys/DRSAP01EQ0@sapqa2.1521.+ASM:/
+
+DRSAP01EQ0
+
+
+cp +ARCH/eq0/oraarch/1_601* /migracao/arch/
+
+cp /migracao/arch/1_60157_940436451.dbf +ARCH/eq0/oraarch/
+
+alter database register logfile '+ARCH/eq0/oraarch/1_60158_940436451.dbf';
+
+alter database register logfile '';
+*/

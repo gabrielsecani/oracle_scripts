@@ -1,0 +1,3 @@
+#!/bin/csh
+
+kill `ps -ef | grep -i tail | grep -v grep | awk '{print $2}' `

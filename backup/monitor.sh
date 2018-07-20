@@ -42,7 +42,7 @@ set TEMERRWARN="OK"
 if `grep -i -c -E 'warn' monitor.log` != 0 set TEMERRWARN="WARN"
 if `grep -i -c -E 'err' monitor.log` != 0 set TEMERRWARN="*ERRO*"
 
-set SUBJ="[RAIA] - Monitoramento tbspc dsk `uname -L` $1 $TEMERRWARN $DATE_SUFFIX "
+set SUBJ="[RAIA] - Monitoramento monitor `uname -L` $1 $TEMERRWARN $DATE_SUFFIX "
 
 echo "$DATE_SUFFIX $SUBJ" >> monitor.log
 echo "$DATE_SUFFIX $SUBJ" >> $BKLOG
