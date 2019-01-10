@@ -1,4 +1,8 @@
-﻿--https://www.morganslibrary.org/reference/pkgs/dbms_hm.html
+﻿
+SELECT client_name, status FROM dba_autotask_operation
+/
+
+--https://www.morganslibrary.org/reference/pkgs/dbms_hm.html
 exec dbms_hm.drop_schema(TRUE);
 exec dbms_hm.create_schema;
 

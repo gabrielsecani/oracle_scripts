@@ -300,6 +300,10 @@ ALTER tablespace PSAPTEMP ADD TEMPFILE '+DATA' size 31G;
 ALTER DATABASE TEMPFILE '/oracle/EP0/sapdata1/temp_1/temp.data1' resize 15G;
 ALTER tablespace PSAPTEMP ADD TEMPFILE '/oracle/EP0/sapdata2/temp_2/temp.data2' size 10G;
 
+-- SP0 - SOLMAN RAIA
+ALTER tablespace PSAPTEMP ADD TEMPFILE '/oracle/SP0/sapdata1/temp_1/temp.data2' reuse;
+
+
 ALTER tablespace PSAPTEMP drop tempfile '+DATA/ep0a/tempfile/psaptemp.338.958918095';
 ALTER tablespace PSAPTEMP drop TEMPFILE '+DATA/ep0a/tempfile/psaptemp.335.958907717';
 

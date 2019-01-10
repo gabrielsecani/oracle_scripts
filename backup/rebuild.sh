@@ -13,3 +13,4 @@ endif
 
 date
 
+sleep 3

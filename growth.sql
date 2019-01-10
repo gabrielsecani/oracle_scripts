@@ -162,3 +162,79 @@ select to_char(FIRST_TIME,'DY, DD-MON-YYYY') day,
  group by to_char(FIRST_TIME,'DY, DD-MON-YYYY')
  order by to_date(substr(to_char(FIRST_TIME,'DY, DD-MON-YYYY'),5,15) )
 /
+
+
+COL "day" FOR A17
+COL "d_0" FOR  A4
+COL "d_1" FOR  A4
+COL "d_2" FOR  A4
+COL "d_3" FOR  A4
+COL "d_4" FOR  A4
+COL "d_5" FOR  A4
+COL "d_6" FOR  A4
+COL "d_7" FOR  A4
+COL "d_8" FOR  A4
+COL "d_9" FOR  A4
+COL "d_10" FOR A4
+COL "d_11" FOR A4
+COL "d_12" FOR A4
+COL "d_13" FOR A4
+COL "d_14" FOR A4
+COL "d_15" FOR A4
+COL "d_16" FOR A4
+COL "d_17" FOR A4
+COL "d_18" FOR A4
+COL "d_19" FOR A4
+COL "d_20" FOR A4
+COL "d_21" FOR A4
+COL "d_22" FOR A4
+COL "d_23" FOR A4
+col g1 for 99.00
+col g2 for 99.00
+col g3 for 99.00
+col g4 for 99.00
+select day
+	,g1/total*100 as g1
+	,g2/total*100 as g2
+	,g3/total*100 as g3
+	,g4/total*100 as g4
+from (
+select day, 
+	d_22+d_23+d_21+ 
+	d_0+d_1+d_2+d_3+d_4+d_5+d_6+d_7+d_8+d_9 as g1,
+	d_10+d_11+d_12+d_13+d_14+d_15 as g2,
+	d_16+d_17+d_18+d_19+d_20 as g3,
+	0 as g4, Total
+	from (
+select to_char(FIRST_TIME,'DY, DD-MON-YYYY') day,
+       to_number(sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'00',1,0))) d_0,
+       to_number(sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'01',1,0))) d_1,
+       to_number(sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'02',1,0))) d_2,
+       to_number(sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'03',1,0))) d_3,
+       to_number(sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'04',1,0))) d_4,
+       to_number(sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'05',1,0))) d_5,
+       to_number(sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'06',1,0))) d_6,
+       to_number(sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'07',1,0))) d_7,
+       to_number(sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'08',1,0))) d_8,
+       to_number(sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'09',1,0))) d_9,
+       to_number(sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'10',1,0))) d_10,
+       to_number(sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'11',1,0))) d_11,
+       to_number(sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'12',1,0))) d_12,
+       to_number(sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'13',1,0))) d_13,
+       to_number(sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'14',1,0))) d_14,
+       to_number(sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'15',1,0))) d_15,
+       to_number(sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'16',1,0))) d_16,
+       to_number(sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'17',1,0))) d_17,
+       to_number(sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'18',1,0))) d_18,
+       to_number(sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'19',1,0))) d_19,
+       to_number(sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'20',1,0))) d_20,
+       to_number(sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'21',1,0))) d_21,
+       to_number(sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'22',1,0))) d_22,
+       to_number(sum(decode(substr(to_char(FIRST_TIME,'HH24'),1,2),'23',1,0))) d_23,
+       to_number(count(trunc(FIRST_TIME))) Total
+  from v$log_history
+ group by to_char(FIRST_TIME,'DY, DD-MON-YYYY')
+ order by to_date(substr(to_char(FIRST_TIME,'DY, DD-MON-YYYY'),5,15) )
+)
+)
+/

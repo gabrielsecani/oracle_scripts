@@ -1,7 +1,6 @@
 
 set serveroutput on feedback off
 spool rebuilding_indexes.sql
-
 prompt spool rebuilding_indexes.log
 
 prompt prompt PARTITION INDEXES
@@ -20,12 +19,18 @@ begin for cs in (
     and ui.owner = 'SAPSR3'
     and ui.PARTITIONED = 'YES'
     --and UI.status <> 'VALID'
-    and rownum <= 30
+    and rownum <= 100
 ) loop
     dbms_output.put_line('alter index ' || cs.owner || '."' || cs.index_name || '" rebuild partition '||cs.partition_name||' ONLINE COMPUTE STATISTICS;');
 end loop;
 end;
 /
+prompt spool off
+spool off
+@rebuilding_indexes.sql
+
+spool rebuilding_indexes.sql
+prompt spool rebuilding_indexes.log
 
 prompt prompt INDEXES
 begin for cs in (
@@ -38,8 +43,9 @@ begin for cs in (
     WHERE ui.last_analyzed < add_months(sysdate, -6)
     and ui.owner = 'SAPSR3'
     and ui.PARTITIONED = 'NO'
-    and rownum <= 30
+    and rownum <= 100
 ) loop
+    dbms_output.put_line('prompt index ' || cs.owner || '."' || cs.index_name || '"'); 
     dbms_output.put_line('alter index ' || cs.owner || '."' || cs.index_name || '" rebuild ONLINE COMPUTE STATISTICS;');
 end loop;
 end;

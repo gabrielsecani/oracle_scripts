@@ -1,4 +1,5 @@
-#!/bin/csh 
+#!/bin/csh
+
 setenv ORACLE_SID EP0
 setenv ORACLE_VERSION 122
 setenv ORACLE_BASE /oracle/$ORACLE_SID/$ORACLE_VERSION
@@ -10,7 +11,10 @@ if (! $?PATH_ORIGINAL ) then
 endif
 
 setenv OPATCH "$ORACLE_HOME/OPatch"
-setenv PATH $PATH_ORIGINAL":${ORACLE_BIN}":"${OPATCH}"
+setenv PATH $PATH_ORIGINAL":$ORACLE_BIN"
+setenv PATH $PATH":$ORACLE_HOME/OPatch"
+
+setenv LD_LIBRARY_PATH $ORACLE_HOME/lib
 
 echo ""
 echo $ORACLE_HOME;

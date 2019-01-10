@@ -90,20 +90,20 @@ create pfile='/migracao/backup/initeq0B.ora' from spfile;
 create pfile='/home/oracle/initeq0B.ora' from spfile;
 
 #criar arquivo de senha
-orapwd file=$ORACLE_HOME/dbs/orapwEQ0 password=DRSAP01EQ0 entries=100 force=y format=12
+orapwd file=$ORACLE_HOME/dbs/orapwEQ0 password=DRSAP01EQ0 entries=20 force=y format=12
 
 select * from v$pwfile_users;
 col username for a15
 select USERNAME, SYSDBA, SYSOPER, SYSASM, SYSBACKUP, SYSDG, SYSKM, ACCOUNT_STATUS from v$pwfile_users;
 
 
-orapwd file=$ORACLE_HOME/dbs/orapwEQ0 password=DRSAP01EQ0 force=y ignorecase=Y format=12
+orapwd file=$ORACLE_HOME/dbs/orapwEQ0 password=DRSAP01EP0 force=y format=12
 
 orapwd file=$ORACLE_HOME/dbs/orapwED0 password=DRSAP01ED0 force=y format=12
-orapwd file=orapwEQ0 password=DRSAP01EQ0 force=y ignorecase=Y format=12
+orapwd file=$ORACLE_HOME/dbs/orapwEQ0 password=DRSAP01EQ0 force=y ignorecase=Y format=12
 
 
-scp $ORACLE_HOME/dbs/orapw* oracle@sapdev1:$ORACLE_HOME/dbs/
+scp $ORACLE_HOME/dbs/orapw* oracle@sapqa1:$ORACLE_HOME/dbs/
 chown oracle:oinstall /oracle/eq0/11204/dbs/orapwdED0
 
 sqlplus SYS/DRSAP01EQ0@EQ0A as sysdba
@@ -231,9 +231,9 @@ ALTER DATABASE ADD   LOGFILE thread 1 group 2 ('+ARCH', '+DATA') SIZE 400M reuse
 ALTER DATABASE ADD   LOGFILE thread 1 group 3 ('+ARCH', '+DATA') SIZE 400M reuse;
 ALTER DATABASE ADD   LOGFILE thread 1 group 4 ('+ARCH', '+DATA') SIZE 400M reuse;
 
-ALTER DATABASE CLEAR LOGFILE GROUP 5;
-ALTER DATABASE DROP  LOGFILE GROUP 5;
-ALTER DATABASE ADD   LOGFILE thread 1 group 5 ('+ARCH', '+DATA') SIZE 1000M reuse;
+ALTER DATABASE CLEAR LOGFILE GROUP 3;
+ALTER DATABASE DROP  LOGFILE GROUP 3;
+ALTER DATABASE ADD   LOGFILE thread 1 group 3 ('+ARCH', '+DATA') SIZE 1000M reuse;
 
 select group#,thread#,sequence#,bytes,used,status from v$standby_log;
 
@@ -242,13 +242,25 @@ ALTER SYSTEM SET STANDBY_FILE_MANAGEMENT=MANUAL;
 
 ALTER DATABASE CLEAR LOGFILE GROUP 5;
 ALTER DATABASE DROP  LOGFILE GROUP 5;
-alter database add STANDBY LOGFILE thread 1 GROUP 5 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
+alter database add STANDBY LOGFILE thread 1 GROUP 2 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
 ALTER DATABASE CLEAR LOGFILE GROUP 6;
 ALTER DATABASE DROP  LOGFILE GROUP 6;
-alter database add STANDBY LOGFILE thread 1 GROUP 6 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
+alter database add LOGFILE thread 1 GROUP 6 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
+alter database add LOGFILE thread 1 GROUP 7 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
+alter database add LOGFILE thread 1 GROUP 8 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
+alter database add LOGFILE thread 1 GROUP 9 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
+ALTER DATABASE DROP LOGFILE GROUP 7;
+ALTER DATABASE DROP LOGFILE GROUP 8;
+ALTER DATABASE DROP LOGFILE GROUP 9;
 
 ALTER DATABASE CLEAR LOGFILE GROUP 11;
 ALTER DATABASE DROP  LOGFILE GROUP 11;
+ALTER DATABASE DROP  LOGFILE GROUP 12;
+ALTER DATABASE DROP  LOGFILE GROUP 13;
+ALTER DATABASE DROP  LOGFILE GROUP 14;
+ALTER DATABASE DROP  LOGFILE GROUP 15;
+ALTER DATABASE DROP  LOGFILE GROUP 16;
+ALTER DATABASE DROP  LOGFILE GROUP 17;
 alter database add STANDBY LOGFILE thread 1 GROUP 11 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
 alter database add STANDBY LOGFILE thread 1 GROUP 12 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
 alter database add STANDBY LOGFILE thread 1 GROUP 13 ('+DATA', '+ARCH') SIZE 400M BLOCKSIZE 512 reuse;
@@ -268,7 +280,7 @@ EDIT DATABASE ep0b SET STATE = APPLY-ON;
 
 alter system switch logfile;
 @logfile
- 
+
 show parameters STANDBY
 alter database flashback on;
 ALTER SYSTEM SET STANDBY_FILE_MANAGEMENT=AUTO scope=both;
